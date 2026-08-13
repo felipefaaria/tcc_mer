@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Dados de estímulo — NÃO versionar áudio bruto (copyright)
+data/stimuli/audio/*
+!data/stimuli/audio/.gitkeep
+data/stimuli/lyrics/*
+!data/stimuli/lyrics/.gitkeep
+
+# JSONs de anotação coletados (dados de humanos)
+data/annotations/*.json
+
+# Léxicos de terceiros (ANEW-Br etc. — licença própria, não redistribuir)
+data/lexicons/*
+!data/lexicons/.gitkeep
+
+# Saídas brutas das LFs (regeneráveis)
+data/lf_outputs/*.csv
+data/lf_outputs/*.json
+
+# Sistema
+.DS_Store
+Thumbs.db

@@ -1,0 +1,28 @@
+# LF1 (áudio / Music2Emo) — VENV ISOLADO, não misturar com o ambiente de análise.
+#
+# O Music2Emo não está no PyPI: é clone-do-repo com dependências pinadas que
+# conflitam com o numpy/torch do resto do projeto. Rode a LF1 num venv separado,
+# gere o lf1_raw.csv, e o resto do pipeline consome só o csv.
+#
+# Setup sugerido (Windows / PowerShell), Python 3.10 recomendado pelo upstream:
+#
+#   py -3.10 -m venv .venv-lf1
+#   .venv-lf1\Scripts\activate
+#   git clone https://github.com/AMAAI-Lab/Music2Emotion
+#   pip install -r Music2Emotion/requirements.txt
+#   # baixar o checkpoint do modelo conforme instruções do repo / HuggingFace
+#   #   (amaai-lab/music2emo)
+#
+# Dependências principais do upstream (ver Music2Emotion/requirements.txt para a
+# lista pinada completa):
+#   torch==2.3.1
+#   torchaudio==2.3.1
+#   transformers==4.44.0   # carrega o MERT
+#   librosa==0.10.2.post1
+#   nnAudio==0.3.1
+#   numpy==1.26.4
+#   pytorch_lightning==2.4.0
+#   music21==9.3.0
+#   chordparser==0.4.2
+#
+# ffmpeg é necessário no sistema para decodificar mp3 (não é pacote pip).

@@ -1,0 +1,15 @@
+# Não enviar coisas pesadas/irrelevantes para o build da usina.
+# (o áudio e as saídas entram por VOLUME em runtime, não pela imagem)
+.git
+data/
+tests/
+intrucoes/
+prompts/
+*.pdf
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.venv-lf1/
+README.md

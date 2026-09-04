@@ -3,7 +3,7 @@
 Reconhecimento e **dissociação** de emoções (Valência-Arousal) em música
 brasileira, via *weak supervision* com três labeling functions (áudio, léxico,
 LLM), fusão tardia calibrada e um gold set humano (SAM). Contexto científico
-completo em [`intrucoes/`](intrucoes/).
+completo em [`docs/instrucoes/`](docs/instrucoes/).
 
 **Objeto de estudo:** a discrepância entre o que o áudio "sente" e o que a letra
 "diz" — `D_V = V_letra − V_audio`, `D_A = A_letra − A_audio` — não é erro a
@@ -12,16 +12,24 @@ corrigir, é o fenômeno a medir.
 ## Estrutura
 
 ```
-src/
-  scale.py          # to_unit(x, lo, hi) -> [-1, 1]  (única fonte de verdade)
-  metrics.py        # CCC de Lin, MAE/RMSE, quadrante, F1-macro, bootstrap CI
-  agreement.py      # alfa de Krippendorff intervalar + alfa-se-removido
-  dissociation.py   # D_V, D_A a partir dos canais modais separados
-  calibration.py    # AffineCalibration.fit/apply (afim por LF e por dimensão)
-  fusion.py         # pesos no simplex por CCC (SLSQP) + k-fold fora-da-amostra
+src/                # biblioteca (núcleo científico)
+  scale.py          #   to_unit(x, lo, hi) -> [-1, 1]  (única fonte de verdade)
+  metrics.py        #   CCC de Lin, MAE/RMSE, quadrante, F1-macro, bootstrap CI
+  agreement.py      #   alfa de Krippendorff intervalar + alfa-se-removido
+  dissociation.py   #   D_V, D_A a partir dos canais modais separados
+  calibration.py    #   AffineCalibration.fit/apply (afim por LF e por dimensão)
+  fusion.py         #   pesos no simplex por CCC (SLSQP) + k-fold fora-da-amostra
+  lf1_audio.py / lf2_lexicon.py / lf3_llm.py   # as 3 labeling functions
+scripts/            # runners no Python normal (gerar_lf2/lf3, gold, fusão)
+docker/             # LF1 de áudio (Music2Emo) isolada em container + teste manual
 tests/              # suíte pytest (dados sintéticos)
-data/               # estímulos, anotações, saídas de LF (não versionados)
-prompts/            # prompts versionados das LFs (Fase B)
+prompts/            # prompts versionados das LFs
+docs/               # documentação, relatórios e instruções de orientação
+data/               # NÃO versionado (copyright/PII/regenerável):
+  corpus/           #   audio/ + lyrics/ (estímulos)
+  annotations/      #   anotações humanas + gold derivado
+  lexicons/         #   ANEW-Br
+  outputs/          #   saídas das LFs + dissociação
 ```
 
 ## Rodando os testes

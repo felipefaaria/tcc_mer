@@ -2,11 +2,11 @@
 """Runner da LF3 (LLM zero-shot) — estima V/A das letras via Gemini.
 
 Roda no Python normal. Lê a LETRA COMPLETA de cada faixa em
-``data/stimuli/lyrics/<id>.txt`` (mesmo id do áudio), manda ao LLM com o prompt
+``data/corpus/lyrics/<id>.txt`` (mesmo id do áudio), manda ao LLM com o prompt
 versionado (``prompts/lf3_zero_shot.md``), e escreve:
 
-- ``data/lf_outputs/lf3_raw.csv``   (id, V_raw, A_raw em [-1, 1])
-- ``data/lf_outputs/lf3_meta.json`` (modelo, versão do prompt, contagens)
+- ``data/outputs/lf3_raw.csv``   (id, V_raw, A_raw em [-1, 1])
+- ``data/outputs/lf3_meta.json`` (modelo, versão do prompt, contagens)
 
 Instrumentais (``.txt`` vazio) NÃO consomem chamada — viram ``NaN`` direto.
 
@@ -169,9 +169,9 @@ def make_fake_client():
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Gera lf3_raw.csv via LLM (Gemini).")
     p.add_argument("--lyrics-dir", type=Path,
-                   default=ROOT / "data" / "stimuli" / "lyrics")
+                   default=ROOT / "data" / "corpus" / "lyrics")
     p.add_argument("--out", type=Path,
-                   default=ROOT / "data" / "lf_outputs" / "lf3_raw.csv")
+                   default=ROOT / "data" / "outputs" / "lf3_raw.csv")
     p.add_argument("--model", default="auto",
                    help="modelo Gemini ('auto' descobre um flash disponível).")
     p.add_argument("--temperature", type=float, default=0.0,

@@ -1,29 +1,31 @@
-# Python
+# ================= Python =================
 __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
 .venv/
 venv/
+.venv-lf1/
 
-# Dados de estímulo — NÃO versionar áudio bruto (copyright)
-data/stimuli/audio/*
-!data/stimuli/audio/.gitkeep
-data/stimuli/lyrics/*
-!data/stimuli/lyrics/.gitkeep
+# ================= Dados (NÃO versionar) =================
+# Estímulos de áudio e letra — copyright de terceiros.
+data/corpus/audio/*
+!data/corpus/audio/.gitkeep
+data/corpus/lyrics/*
+!data/corpus/lyrics/.gitkeep
 
-# Anotações humanas (contêm PII: nome/idade) e o gold derivado — NÃO versionar
+# Anotações humanas (PII: nome/idade) + gold derivado.
 data/annotations/*
 !data/annotations/.gitkeep
 
-# Léxicos de terceiros (ANEW-Br etc. — licença própria, não redistribuir)
+# Léxicos de terceiros (ANEW-Br etc. — licença própria, não redistribuir).
 data/lexicons/*
 !data/lexicons/.gitkeep
 
-# Saídas brutas das LFs (regeneráveis)
-data/lf_outputs/*.csv
-data/lf_outputs/*.json
+# Saídas das labeling functions e da fusão (regeneráveis).
+data/outputs/*
+!data/outputs/.gitkeep
 
-# Sistema
+# ================= Sistema =================
 .DS_Store
 Thumbs.db

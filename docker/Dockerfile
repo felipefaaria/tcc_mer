@@ -1,7 +1,7 @@
-# Usina da LF1 (áudio / Music2Emo) — ambiente ISOLADO e pesado.
+# Ambiente Docker da LF1 (áudio / Music2Emo) — ISOLADO e pesado.
 # Usa Python 3.10 (a versão em que o Music2Emo foi desenvolvido), então nada aqui
 # depende do Python do seu Windows. Nosso repo de análise nunca importa isto:
-# a usina só produz o arquivo data/lf_outputs/lf1_raw.csv.
+# o container só produz o arquivo data/outputs/lf1_raw.csv.
 
 FROM python:3.10-slim
 
@@ -27,13 +27,14 @@ RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu 
 RUN pip install --no-cache-dir -r Music2Emotion/requirements.txt
 
 # (Opcional) pré-baixar o checkpoint do modelo aqui, se o repo exigir download
-# manual. Veja usina/README.md -> "Solução de problemas: checkpoint". Deixe
+# manual. Veja docker/README.md -> "Solução de problemas: checkpoint". Deixe
 # comentado até confirmar o mecanismo:
 # RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('amaai-lab/music2emo')"
 
 # Copia SÓ o nosso código leve (reusa scale.py + lf1_audio.py + lf_common.py).
 COPY src/ /app/src/
-COPY usina/gerar_lf1.py /app/usina/gerar_lf1.py
+COPY docker/gerar_lf1.py /app/docker/gerar_lf1.py
+COPY docker/testar_musica.py /app/docker/testar_musica.py
 
 # Torna 'src' e 'music2emo' importáveis; define onde ficam os dados montados.
 ENV PYTHONPATH=/app:/app/Music2Emotion
@@ -42,4 +43,4 @@ ENV DATA_DIR=/app/data
 # cwd = raiz do repo do Music2Emo, para que os caminhos internos dele funcionem.
 WORKDIR /app/Music2Emotion
 
-ENTRYPOINT ["python", "/app/usina/gerar_lf1.py"]
+ENTRYPOINT ["python", "/app/docker/gerar_lf1.py"]

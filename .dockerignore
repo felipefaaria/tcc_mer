@@ -1,9 +1,9 @@
-# Não enviar coisas pesadas/irrelevantes para o build da usina.
+# Não enviar coisas pesadas/irrelevantes para o build da imagem Docker da LF1.
 # (o áudio e as saídas entram por VOLUME em runtime, não pela imagem)
 .git
 data/
 tests/
-intrucoes/
+docs/
 prompts/
 *.pdf
 __pycache__/

@@ -2,11 +2,11 @@
 """Runner da LF2 (léxico ANEW-Br) — lê as letras e gera lf2_raw.csv.
 
 Roda no Python normal do projeto (sem Docker): a LF2 é leve. Descobre as letras
-em ``data/stimuli/lyrics/*.txt`` (uma por faixa, nome do arquivo = id), casa os
+em ``data/corpus/lyrics/*.txt`` (uma por faixa, nome do arquivo = id), casa os
 lemas com o léxico ANEW-Br e escreve:
 
-- ``data/lf_outputs/lf2_raw.csv``   (id, V_raw, A_raw em [-1, 1])
-- ``data/lf_outputs/lf2_meta.json`` (léxico, lematizador, cobertura por faixa)
+- ``data/outputs/lf2_raw.csv``   (id, V_raw, A_raw em [-1, 1])
+- ``data/outputs/lf2_meta.json`` (léxico, lematizador, cobertura por faixa)
 
 O ANEW-Br é material de terceiros com licença própria — **não é versionado** no
 repo. Aponte ``--lexicon`` para o csv local.
@@ -61,11 +61,11 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--lexicon", required=True, type=Path,
                    help="csv do ANEW-Br (não versionado).")
     p.add_argument("--lyrics-dir", type=Path,
-                   default=ROOT / "data" / "stimuli" / "lyrics",
-                   help="pasta com <id>.txt (padrão: data/stimuli/lyrics).")
+                   default=ROOT / "data" / "corpus" / "lyrics",
+                   help="pasta com <id>.txt (padrão: data/corpus/lyrics).")
     p.add_argument("--out", type=Path,
-                   default=ROOT / "data" / "lf_outputs" / "lf2_raw.csv",
-                   help="csv de saída (padrão: data/lf_outputs/lf2_raw.csv).")
+                   default=ROOT / "data" / "outputs" / "lf2_raw.csv",
+                   help="csv de saída (padrão: data/outputs/lf2_raw.csv).")
     p.add_argument("--preset", choices=list(PRESETS), default="anew-br-txt",
                    help="formato do léxico (padrão: anew-br-txt oficial).")
     p.add_argument("--word-col", help="sobrescreve a coluna de palavra do preset.")

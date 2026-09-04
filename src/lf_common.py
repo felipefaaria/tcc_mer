@@ -2,7 +2,7 @@
 
 Cada LF produz um (V, A) por faixa e persiste sua saída **bruta** (já na escala
 interna [-1, 1] via :func:`src.scale.to_unit`, mas **antes** da calibração afim ao
-gold) em ``data/lf_outputs/lfN_raw.csv`` com as colunas ``id, V_raw, A_raw``.
+gold) em ``data/outputs/lfN_raw.csv`` com as colunas ``id, V_raw, A_raw``.
 
 A regra de ouro da Fase B é o **isolamento da dependência externa**: a lógica de
 escala/instrumental/persistência vive aqui e nos módulos de cada LF (testável sem

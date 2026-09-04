@@ -13,7 +13,7 @@ chaves ``valence``/``arousal`` (escala 1-9) e ``predicted_moods``.
 Consequências práticas:
 - A lógica (conversão de escala, persistência, smoke test) é testável **sem** o
   Music2Emo instalado.
-- O modelo real deve viver num **venv isolado** (ver ``requirements-lf1.txt``);
+- O modelo real deve viver num **venv isolado** (ver ``docker/requirements-lf1.txt``);
   ``make_music2emo_predictor()`` faz o import preguiçoso lá dentro.
 - Se o Music2Emo não subir, troca-se só o ``predictor`` (Plano B) sem tocar no
   resto do pipeline.
@@ -51,14 +51,14 @@ def make_music2emo_predictor(**model_kwargs) -> AudioPredictor:
 
     Raises:
         ImportError: se o pacote ``music2emo`` não estiver disponível no ambiente
-            atual (rode no venv isolado de ``requirements-lf1.txt``).
+            atual (rode no venv isolado de ``docker/requirements-lf1.txt``).
     """
     try:
         from music2emo import Music2emo  # type: ignore
     except ImportError as e:  # pragma: no cover - depende de ambiente externo
         raise ImportError(
             "Pacote 'music2emo' não encontrado. Instale num venv isolado "
-            "(requirements-lf1.txt) — ele conflita com o numpy/torch do ambiente "
+            "(docker/requirements-lf1.txt) — ele conflita com o numpy/torch do ambiente "
             "de análise. Ou injete outro predictor (Plano B)."
         ) from e
 

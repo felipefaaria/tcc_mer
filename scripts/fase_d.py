@@ -28,7 +28,7 @@ from src.pipeline import apply_channel, fit_channel, nested_kfold_ccc  # noqa: E
 
 ROOT = Path(__file__).resolve().parent.parent
 GOLD = ROOT / "data" / "annotations" / "gold_wide.csv"
-LFDIR = ROOT / "data" / "lf_outputs"
+LFDIR = ROOT / "data" / "outputs"
 K = 5
 SEED = 0
 

@@ -9,8 +9,11 @@ Você não instala Python 3.10, torch nem MERT no Windows — fica tudo no conta
 O resto do projeto só consome o CSV.
 
 > **Já tinha a imagem antiga `lf1-usina`?** A pasta foi renomeada de `usina/` para
-> `docker/` e a imagem passou a se chamar `tcc-lf1`. Re-etiquete a existente sem
-> rebuild: `docker tag lf1-usina tcc-lf1` — ou simplesmente reconstrua (Passo 2).
+> `docker/` e a imagem passou a se chamar `tcc-lf1`. **Só re-etiquetar não basta**
+> (`docker tag lf1-usina tcc-lf1`) — o `gerar_lf1.py` que já estava DENTRO da
+> imagem antiga ainda procura o caminho velho (`data/stimuli/audio`) e vai falhar
+> com "pasta de áudio não existe". Descoberto na prática em 2026-09-27: é preciso
+> **reconstruir de verdade** (Passo 2) para a imagem passar a usar `data/corpus/audio`.
 
 ---
 
@@ -82,6 +85,18 @@ data/outputs/lf1_meta.json   <- modelo, data, contagens (reprodutibilidade)
 
 - **"docker: command not found" / erro de conexão** — Docker Desktop não está aberto.
 - **`-v "${PWD}/data:..."` não montou** — use caminho absoluto entre aspas.
+- **Rodando em Git Bash (não PowerShell) e a pasta "não existe" dentro do
+  container, mesmo com o `-v` certo** — é um bug conhecido do Git Bash/MSYS: ele
+  "traduz" automaticamente qualquer argumento que comece com `/` para um caminho
+  Windows, inclusive o lado do CONTAINER (`/app/data`), virando algo tipo
+  `C:/Program Files/Git/app/data`. Prefixe o comando com `MSYS_NO_PATHCONV=1`:
+  ```bash
+  MSYS_NO_PATHCONV=1 docker run --rm \
+    -v "$(pwd)/data:/app/data" \
+    -v "lf1-hfcache:/root/.cache/huggingface" \
+    tcc-lf1
+  ```
+  (No PowerShell isso não acontece — os exemplos com `${PWD}` acima já funcionam.)
 - **Erro de checkpoint / `saved_models` faltando** — o `Music2emo()` tenta obter os
   pesos; se reclamar, veja o README do repositório
   (<https://github.com/AMAAI-Lab/Music2Emotion>) e me mande a mensagem — há uma

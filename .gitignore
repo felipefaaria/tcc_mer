@@ -26,6 +26,9 @@ data/lexicons/*
 data/outputs/*
 !data/outputs/.gitkeep
 
+# ================= Segredos =================
+.env
+
 # ================= Sistema =================
 .DS_Store
 Thumbs.db

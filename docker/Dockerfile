@@ -20,7 +20,14 @@ RUN git clone https://github.com/AMAAI-Lab/Music2Emotion.git
 # wheels CUDA (nvidia-*-cu12) que o torch do PyPI padrão puxaria — inúteis num
 # laptop CPU-only e onde um download corrompido quebrou o build. Com o torch já
 # satisfeito, o requirements.txt abaixo não rebaixará a versão CUDA.
+# --extra-index-url (fallback no PyPI normal): sem isso, o pip às vezes decide
+# compilar uma dependência transitiva (ex. typing_extensions) a partir do
+# código-fonte por causa de um mismatch de maiúsculas/minúsculas no nome do
+# pacote — e o build precisa do flit_core, que não existe no índice restrito
+# do PyTorch. Achado ao reconstruir a imagem depois de ~1,5 mês (deriva da
+# imagem-base python:3.10-slim).
 RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu \
+        --extra-index-url https://pypi.org/simple/ \
         torch==2.3.1 torchaudio==2.3.1
 
 # Demais dependências pinadas do Music2Emo (MERT via transformers, librosa, etc.).

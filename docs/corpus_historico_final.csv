@@ -1,0 +1,591 @@
+id_temp,fase,fonte,ano,decada,faixa,interprete_compositor,genero,posicao_ranking,forca_sucesso,nota_sucesso,confianca_ocr,pagina,status
+H0001,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1901,1900,Ó Abre Alas,Chiquinha Gonzaga,marcha-rancho,,1,composicao preferida dos folioes ate 1910,alta,17,disponibilidade_confirmada
+H0002,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1907,1900,Amor Perdido,Patápio Silva,valsa,,0,peca instrumental para flauta e piano (confirmado),alta,28,disponibilidade_confirmada_instrumental
+H0003,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1907,1900,Favorito,Ernesto Nazareth,tango,,0,,alta,28,disponibilidade_confirmada
+H0004,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1910,1910,Odeon,Ernesto Nazareth,tango,,2,obra-prima do genero tango brasileiro,alta,27,disponibilidade_confirmada
+H0005,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1911,1910,Lua Branca,Chiquinha Gonzaga,modinha,,0,,alta,38,disponibilidade_confirmada
+H0006,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1914,1910,Luar do Sertão,Catulo da Paixão Cearense (letra) e João Pernambuco (melodia atribuida),toada,,2,um dos maiores sucessos da musica popular brasileira,alta,36,disponibilidade_confirmada
+H0007,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1915,1910,Apanhei-te Cavaquinho,Ernesto Nazareth,polca,,1,segunda composicao mais gravada do autor,alta,37,disponibilidade_confirmada
+H0008,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1917,1910,Pelo Telefone,Donga e Mauro de Almeida,samba,,3,primeiro samba de sucesso marco do samba carnavalesco,alta,51,disponibilidade_confirmada
+H0009,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1918,1910,Quem São Eles,Sinhô,samba/carnaval,,1,cantado no carnaval de 1918 dedicado a bloco Fenianos,alta,52,disponibilidade_confirmada
+H0010,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1918,1910,Já Te Digo,Pixinguinha e China (Otávio da Rocha Viana),samba,,1,resposta a Quem São Eles sucesso no carnaval de 1919 projetou Pixinguinha,alta,54,disponibilidade_confirmada
+H0011,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1919,1910,Confessa Meu Bem,Sinhô,samba/carnaval,,0,,alta,55,disponibilidade_confirmada
+H0012,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1920,1920,O Pé de Anjo,Sinhô,marcha/carnaval,,2,maior sucesso do carnaval de 1920 primeira gravacao de Francisco Alves,alta,55,disponibilidade_confirmada
+H0013,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1920,1920,Fala Meu Louro,Sinhô,samba/carnaval,,1,melhor samba da fase inicial de Sinho satira politica,alta,54,disponibilidade_confirmada
+H0014,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1920,1920,De-A-Da,Careca,samba,,0,,alta,56,disponibilidade_confirmada
+H0015,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1920,1920,Vou Me Benzer,Sinhô,samba,,0,,alta,56,disponibilidade_confirmada
+H0016,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1922,1920,Sai da Raia,Sinhô,marcha/carnaval,,0,,alta,65,disponibilidade_confirmada
+H0017,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1922,1920,Sete Coroas,Sinhô,samba,,0,,alta,65,disponibilidade_confirmada
+H0018,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1923,1920,Tatu Subiu no Pau,Eduardo Souto,samba à moda paulista,,1,destaque no carnaval apesar de nao ser tema carnavalesco,media,63,disponibilidade_confirmada
+H0019,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1923,1920,Macumba Gegê,Sinhô,samba/carnaval,,0,,alta,65,disponibilidade_confirmada
+H0020,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1923,1920,Só Teu Amor,Eduardo Souto,marcha-rancho,,0,,alta,65,disponibilidade_confirmada
+H0021,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1924,1920,Branca,Zequinha de Abreu,valsa,,1,popularidade a partir de 1924,alta,64,disponibilidade_confirmada
+H0022,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1925,1920,Abismo de Rosas,Américo Jacomino (Canhoto),valsa,,2,considerada hino nacional do violao brasileiro,alta,71,disponibilidade_confirmada
+H0023,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1925,1920,Caneca de Couro,Sinhô,maxixe/carnaval,,0,,alta,74,disponibilidade_confirmada
+H0024,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1925,1920,Dor de Cabeça,Sinhô,samba/carnaval,,0,,alta,75,disponibilidade_confirmada
+H0025,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1927,1920,Ora Vejam Só,Sinhô,samba/carnaval,,1,sucesso absoluto no carnaval de 1927,alta,72,disponibilidade_confirmada
+H0026,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1927,1920,Pinião,Augusto Calheiros e Luperce Miranda,embolada,,1,composicao mais cantada no carnaval de 1928,alta,72,disponibilidade_confirmada
+H0027,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1927,1920,O Pequeno Tururu,Augusto Calheiros e Luperce Miranda,samba,,0,,alta,75,disponibilidade_confirmada
+H0028,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1928,1920,Amar a Uma Só Mulher,Sinhô,samba/carnaval,,1,lancado na revista Lingua de Sogra em janeiro de 1928,alta,73,disponibilidade_confirmada
+H0029,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1928,1920,A Favela Vai Abaixo,Sinhô,samba,,1,destaque em revista teatral homonima,alta,73,disponibilidade_confirmada
+H0030,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1928,1920,A Voz do Violão,Francisco Alves e Horácio Campos,canção,,1,importante no repertorio de Francisco Alves,alta,74,disponibilidade_confirmada
+H0031,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1928,1920,Deus Nos Livre do Castigo das Mulheres,Sinhô,samba,,0,,alta,76,disponibilidade_confirmada
+H0032,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1928,1920,Lamento,Pixinguinha,choro,,0,"peca originalmente instrumental (1928); letra de Vinicius de Moraes so foi adicionada em 1962, posterior ao recorte do corpus",alta,77,disponibilidade_confirmada_instrumental
+H0033,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1929,1920,Jura,Sinhô,samba,,2,maior sucesso de Sinhô uma das musicas mais cantadas no Brasil nos anos seguintes,alta,90,disponibilidade_confirmada
+H0034,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1929,1920,Casa de Caboclo,Hekel Tavares e Luís Peixoto,canção,,1,mote virou dito popular grande sucesso lancado por Gastão Formenti,alta,89,disponibilidade_confirmada
+H0035,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1929,1920,Gosto Que Me Enrosco,Sinhô,samba,,1,grande sucesso em 1929 gravado por Mário Reis,alta,90,disponibilidade_confirmada
+H0036,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1929,1920,Cansei,Sinhô,samba,,0,,alta,91,disponibilidade_confirmada
+H0037,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1929,1920,Lua Nova,Francisco Alves e Luís Iglesias,canção,,0,,alta,91,disponibilidade_confirmada
+H0038,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1930,1930,Dá Nele,Sinhô (pseudônimo Zé Baião),samba,,1,resposta a Dá Nela,alta,97,disponibilidade_confirmada
+H0039,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1930,1930,Dor de Recordar,Joubert de Carvalho e Olegário Mariano,foxe-canção,,1,um dos primeiros foxes brasileiros a alcançar sucesso nacional,alta,97,disponibilidade_confirmada
+H0040,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1930,1930,Adda,Mário Ramos e Salvador Morais,valsa,,0,,alta,99,disponibilidade_confirmada
+H0041,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1931,1930,Com Que Roupa,Noel Rosa,samba/carnaval,,2,primeiro sucesso de Noel Rosa virou dito popular,alta,103,disponibilidade_confirmada
+H0042,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1931,1930,Tico-Tico no Fubá,Zequinha de Abreu,choro,,1,tornou-se uma das musicas brasileiras mais gravadas de todos os tempos,alta,105,disponibilidade_confirmada
+H0043,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1931,1930,No Rancho Fundo,Ari Barroso e Lamartine Babo,samba-canção,,0,,alta,104,disponibilidade_confirmada
+H0044,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1931,1930,Batucada,Eduardo Souto e João de Barro,marcha/carnaval,,0,,alta,106,disponibilidade_confirmada
+H0045,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1931,1930,Cadê Viramundo,J. B. de Carvalho,batuque,,0,,alta,106,disponibilidade_confirmada
+H0046,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1932,1930,Coisas Nossas,Noel Rosa,samba,,1,lancado no filme Coisas Nossas de 1931,alta,109,disponibilidade_confirmada
+H0047,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1932,1930,Maringá,Joubert de Carvalho,toada,,1,obra prima inspirou o nome de uma cidade em 1947,alta,109,disponibilidade_confirmada
+H0048,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1932,1930,Para Me Livrar do Mal,Ismael Silva e Noel Rosa,samba,,1,inicio da parceria Ismael-Noel Rosa,alta,111,disponibilidade_confirmada
+H0049,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1932,1930,O Teu Cabelo Não Nega,Irmãos Valença e Lamartine Babo,marcha/carnaval,,1,uma das maiores marchas de todos os tempos,alta,111,disponibilidade_confirmada
+H0050,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1933,1930,Feitio de Oração,Noel Rosa e Vadico,samba,,2,obra-prima que iniciou a parceria Noel e Vadico,alta,120,disponibilidade_confirmada
+H0051,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1933,1930,Boas Festas,Assis Valente,marcha,,1,tornou-se a cancao natalina brasileira mais conhecida,alta,119,disponibilidade_confirmada
+H0052,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1933,1930,Fita Amarela,Noel Rosa,samba/carnaval,,1,presenca no carnaval de 1933 ano prodigo de Noel Rosa,alta,120,disponibilidade_confirmada
+H0053,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1933,1930,Linda Morena,Lamartine Babo,marcha/carnaval,,1,um dos grandes sucessos do ano inspirou paródias,alta,120,disponibilidade_confirmada
+H0054,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1933,1930,Maria,Ari Barroso e Luís Peixoto,samba-canção,,1,gravada por Sílvio Caldas foi sucesso em 1934 e 1940,alta,121,disponibilidade_confirmada
+H0055,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1934,1930,Uma Andorinha Não Faz Verão,João de Barro e Lamartine Babo,marcha/carnaval,,1,sucesso na voz de Mário Reis em 1934 versao original de 1931,alta,127,disponibilidade_confirmada
+H0056,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1934,1930,O Orvalho Vem Caindo,Noel Rosa e Kid Pepe,samba/carnaval,,0,,alta,129,disponibilidade_confirmada
+H0057,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1934,1930,Tu,Ari Barroso,samba-canção,,0,,alta,129,disponibilidade_confirmada
+H0058,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1934,1930,Alô Alô,André Filho,samba,,0,,alta,129,disponibilidade_confirmada
+H0059,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1934,1930,História do Brasil,Lamartine Babo,marcha/carnaval,,0,,alta,130,disponibilidade_confirmada
+H0060,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1935,1930,Adeus Batucada,Sinval Silva,samba,,1,tornou-se um dos numeros mais representativos do repertorio de Carmen Miranda,alta,133,disponibilidade_confirmada
+H0061,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1935,1930,Feitiço da Vila,Noel Rosa e Vadico,samba,,1,classico dedicado a Vila Isabel lancado dezembro de 1934,alta,134,disponibilidade_confirmada
+H0062,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1935,1930,Grau Dez,Ari Barroso e Lamartine Babo,marcha/carnaval,,1,marchinha de exaltacao do carnaval de 1935,alta,134,disponibilidade_confirmada
+H0063,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1935,1930,Serenata,Sílvio Caldas e Orestes Barbosa,canção,,1,sucesso em 1935 marca musical das audicoes de Sílvio Caldas,alta,135,disponibilidade_confirmada
+H0064,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1936,1930,No Tabuleiro da Baiana,Ari Barroso,samba-batuque,,2,um dos maiores sucessos de Ari Barroso nos anos trinta,alta,144,disponibilidade_confirmada
+H0065,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1936,1930,Boa Noite Amor,José Maria de Abreu e Francisco Matoso,valsa,,1,prefixo e sufixo das audicoes de Francisco Alves no radio,alta,141,disponibilidade_confirmada
+H0066,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1936,1930,O Ébrio,Vicente Celestino,canção,,1,sucesso permanente inspirou filme homonimo dez anos depois,alta,142,disponibilidade_confirmada
+H0067,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1936,1930,Palpite Infeliz,Noel Rosa,samba,,1,tornou-se sucesso de carnaval resposta na polemica com Wilson Batista,alta,145,disponibilidade_confirmada
+H0068,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1936,1930,Pierrô Apaixonado,Noel Rosa e Heitor dos Prazeres,marcha/carnaval,,1,melhor marcha do carnaval de 1936,alta,145,disponibilidade_confirmada
+H0069,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1937,1930,Carinhoso,Pixinguinha e João de Barro,samba-choro,,2,um dos maiores classicos da MPB mais de 200 gravacoes composto originalmente em 1917,alta,151,disponibilidade_confirmada
+H0070,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1937,1930,Coração Materno,Vicente Celestino,tango-canção,,2,um dos maiores e mais duradouros sucessos do autor,alta,153,disponibilidade_confirmada
+H0071,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1937,1930,Lábios Que Beijei,J. Cascata e Leonel Azevedo,valsa,,2,valsa de enorme sucesso consagrou Orlando Silva como cantor em 1937,alta,154,disponibilidade_confirmada
+H0072,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1937,1930,Chão de Estrelas,Orestes Barbosa e Sílvio Caldas,canção,,1,destacou-se em 1937 tornou-se sucesso nacional nos anos 1950,alta,153,disponibilidade_confirmada
+H0073,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1937,1930,Mamãe Eu Quero,Jararaca e Vicente Paiva,marcha/carnaval,,1,uma das marchinhas mais cantadas de todos os tempos sucesso internacional,alta,154,disponibilidade_confirmada
+H0074,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1938,1930,Último Desejo,Noel Rosa,samba,,2,obra-prima ultima composicao de Noel escrita em seu leito de morte,alta,168,disponibilidade_confirmada
+H0075,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1938,1930,Camisa Listrada,Assis Valente,samba-choro,,1,um dos sambas preferidos pelos folioes de 1938 gravado por Carmen Miranda,alta,163,disponibilidade_confirmada
+H0076,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1938,1930,Na Baixa do Sapateiro,Ari Barroso,samba,,1,segunda composicao mais gravada do autor sucesso internacional como Bahia,alta,164,disponibilidade_confirmada
+H0077,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1938,1930,Nada Além,Custódio Mesquita e Mário Lago,foxe-canção,,1,da revista de sucesso Rumo ao Catete gravado por Orlando Silva,alta,164,disponibilidade_confirmada
+H0078,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1938,1930,Pastorinhas,João de Barro e Noel Rosa,marcha/carnaval,,1,vencedora do concurso de marchas do carnaval de 1938,alta,165,disponibilidade_confirmada
+H0079,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1939,1930,Aquarela do Brasil,Ari Barroso,samba,,2,segundo hino nacional; sucesso internacional enorme,alta,175-176,disponibilidade_confirmada
+H0080,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1939,1930,Da Cor do Pecado,Bororó (Alberto de Castro Simoens da Silva),samba,,1,grande samba; lançado por Sílvio Caldas na melhor fase,alta,177,disponibilidade_confirmada
+H0081,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1939,1930,O Que É Que a Baiana Tem,Dorival Caymmi,samba,,1,abriu portas da fama; cantada por Carmen Miranda no filme,alta,179-180,disponibilidade_confirmada
+H0082,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1939,1930,Camisa Amarela,Ari Barroso,samba,,0,,alta,176-177,disponibilidade_confirmada
+H0083,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1939,1930,Brasil,Benedito Lacerda e Aldo Cabral,samba,,0,,alta,181,disponibilidade_confirmada
+H0084,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1940,1940,Acertei no Milhar,Wilson Batista e Geraldo Pereira,samba-de-breque,,1,feito para Moreira da Silva,alta,185,disponibilidade_confirmada
+H0085,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1940,1940,Curare,Bororó (Alberto de Castro Simoens da Silva),samba,,1,segundo grande sucesso do compositor,alta,185,disponibilidade_confirmada
+H0086,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1940,1940,Ó Seu Oscar,Wilson Batista e Ataulfo Alves,samba/carnaval,,1,vencedor do concurso de sambas carnaval 1940,alta,186-187,disponibilidade_confirmada
+H0087,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1940,1940,O Samba de Minha Terra,Dorival Caymmi,samba,,1,regravado por João Gilberto em 1961 e 1964,alta,187,disponibilidade_confirmada
+H0088,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1940,1940,"Cai, Cai",Roberto Martins,batucada/carnaval,,0,,alta,188,disponibilidade_confirmada
+H0089,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1941,1940,É Doce Morrer no Mar,Dorival Caymmi e Jorge Amado,canção,,2,obra-prima de Caymmi,alta,195-196,disponibilidade_confirmada
+H0090,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1941,1940,A Jangada Voltou Só,Dorival Caymmi,canção,,2,obra-prima; gravada no mesmo disco de É Doce Morrer no Mar,alta,"196,198",disponibilidade_confirmada
+H0091,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1941,1940,Aurora,Roberto Roberti e Mário Lago,marcha/carnaval,,1,grande sucesso carnaval 1941; sucesso também nos EUA e Inglaterra,alta,194,disponibilidade_confirmada
+H0092,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1941,1940,O Bonde de São Januário,Wilson Batista e Ataulfo Alves,samba/carnaval,,1,samba de exaltação ao trabalho incentivado pelo DIP,alta,194,disponibilidade_confirmada
+H0093,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1941,1940,"Helena, Helena",Antônio Almeida e Constantino Silva,samba/carnaval,,1,primeiro grande samba carnavalesco dos anos 40; gravação transmitida ao vivo pelo rádio,alta,196,disponibilidade_confirmada
+H0094,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1942,1940,Ai Que Saudades da Amélia,Ataulfo Alves e Mário Lago,samba/carnaval,,1,enorme sucesso; empatou 1º lugar concurso carnaval 1942 com Praça Onze,alta,203-204,disponibilidade_confirmada
+H0095,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1942,1940,Aos Pés da Cruz,Zé da Zilda e Marino Pinto,samba,,1,último grande sucesso de Orlando Silva na Victor,alta,203-205,disponibilidade_confirmada
+H0096,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1942,1940,Meus Vinte Anos,Wilson Batista e Sílvio Caldas,samba,,1,sucesso estendido ao ano seguinte,alta,206-207,disponibilidade_confirmada
+H0097,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1942,1940,Praça Onze,Herivelto Martins e Grande Otelo,samba/carnaval,,1,extraordinário sucesso; empatou 1º lugar concurso carnaval 1942,alta,207-208,disponibilidade_confirmada
+H0098,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1942,1940,Só Vendo Que Beleza,Henricão e Rubens Campos,samba,,1,tornou conhecida a cantora Carmen Costa; grande sucesso,alta,208-209,disponibilidade_confirmada
+H0099,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1943,1940,Terra Seca,Ari Barroso,canção,,1,apontada por Ari Barroso como sua música predileta,alta,217,disponibilidade_confirmada
+H0100,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1943,1940,Solidão,desconhecido (intérprete: Nelson Gonçalves),,,1,gravação representativa listada sem menção de autoria no trecho lido,baixa,218,disponibilidade_confirmada
+H0101,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1943,1940,China Pau,João de Barro e Alberto Ribeiro,marcha/carnaval,,0,,alta,217,disponibilidade_confirmada
+H0102,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1943,1940,Mãe Maria,Custódio Mesquita e David Nasser,samba-canção,,0,,alta,217,disponibilidade_confirmada
+H0103,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1943,1940,"Que É, Que É?",Bororó e Evrágio Lopes,samba-choro,,0,,alta,217,disponibilidade_confirmada
+H0104,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1944,1940,Falsa Baiana,Geraldo Pereira,samba,,2,"maior sucesso da carreira de Geraldo Pereira, lançado por Ciro Monteiro",alta,"224-225,226",disponibilidade_confirmada
+H0105,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1944,1940,Atire a Primeira Pedra,Ataulfo Alves e Mário Lago,samba/carnaval,,1,estourou no carnaval de 1944; um dos melhores sambas carnavalescos de todos os tempos,alta,223,disponibilidade_confirmada
+H0106,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1944,1940,Cecília,Roberto Martins e Mário Rossi,marcha/carnaval,,1,rivalizava com Eu Brinco no carnaval de 1944,alta,"224,226",disponibilidade_confirmada
+H0107,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1944,1940,Acontece Que Eu Sou Baiano,Dorival Caymmi,samba,,0,,alta,225-226,disponibilidade_confirmada
+H0108,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1944,1940,Chamego,Luiz Gonzaga e Miguel Lima,samba,,0,,alta,226,disponibilidade_confirmada
+H0109,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1945,1940,Maria Betânia,Capiba (Lourenço da Fonseca Barbosa),canção,,2,tornou-se clássico; inspirou o nome da cantora Maria Bethânia,alta,"231,234",disponibilidade_confirmada
+H0110,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1945,1940,Bolinha de Papel,Geraldo Pereira,samba,,1,sucesso mesmo abaixo do potencial; regravado por João Gilberto uma década e meia depois,alta,229,disponibilidade_confirmada
+H0111,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1945,1940,Dora,Dorival Caymmi,samba-canção,,1,"notável samba-canção, guardado 3 anos antes de gravar",alta,"230,234",disponibilidade_confirmada
+H0112,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1945,1940,Brasa,Lupicínio Rodrigues,samba,,0,,alta,232,disponibilidade_confirmada
+H0113,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1945,1940,Doralice,Dorival Caymmi e Antônio Almeida,samba,,0,,alta,232,disponibilidade_confirmada
+H0114,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1946,1940,Baião,Luiz Gonzaga e Humberto Teixeira,baião,,2,"início do ciclo do baião, marco da música nordestina",alta,"243,247",disponibilidade_confirmada
+H0115,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1946,1940,Copacabana,João de Barro e Alberto Ribeiro,samba-canção,,2,recordista de vendagem; liderou paradas de set/46 a fim de 47; marco do arranjo moderno de Radamés Gnattali,alta,"243-244,247",disponibilidade_confirmada
+H0116,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1946,1940,Porta Aberta,Vicente Celestino,canção,,1,um dos discos mais vendidos do ano; do filme O Ébrio,alta,"245,248",disponibilidade_confirmada
+H0117,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1946,1940,Até Hoje Não Voltou,Geraldo Pereira e J. Portela,samba,,0,,alta,246,disponibilidade_confirmada
+H0118,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1946,1940,Espanhola,Benedito Lacerda e Haroldo Lobo,marcha/carnaval,,0,,alta,246,disponibilidade_confirmada
+H0119,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1947,1940,Marina,Dorival Caymmi,samba-canção,,2,um dos grandes sucessos caymmianos; gravação de maior sucesso foi a de Dick Farney,alta,252-253,disponibilidade_confirmada
+H0120,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1947,1940,Pirata da Perna de Pau,João de Barro,marcha/carnaval,,2,marcha vitoriosa do carnaval de 1947; consagrou o cantor Nuno Roland,alta,"253,256",disponibilidade_confirmada
+H0121,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1947,1940,Fim de Semana em Paquetá,João de Barro e Alberto Ribeiro,samba-canção,,2,consagrou a versatilidade do cantor Nuno Roland,alta,"254,256",disponibilidade_confirmada
+H0122,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1947,1940,De Conversa em Conversa,Lúcio Alves e Haroldo Barbosa,samba,,1,lançado no rádio como Não Sou Limão,alta,251-252,disponibilidade_confirmada
+H0123,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1948,1940,É Com Esse Que Eu Vou,Pedro Caetano,samba/carnaval,,1,animadíssimo samba; regravado 25 anos depois por Elis Regina,alta,259-260,disponibilidade_confirmada
+H0124,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1948,1940,A Moda da Mula Preta,Raul Torres e Florêncio (recolhida do folclore mineiro por Torres),moda-de-viola,,1,disco que mais dividendos rendeu a Luiz Gonzaga; recordista de vendagem,alta,"260,263",disponibilidade_confirmada
+H0125,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1948,1940,Saudade de Itapoã,Dorival Caymmi,canção,,1,lançada pelo compositor em abril de 1948,alta,"260,263",disponibilidade_confirmada
+H0126,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1948,1940,A Saudade Mata a Gente,João de Barro e Antônio Almeida,toada,,1,um dos motivos do êxito foi a interpretação de Dick Farney,alta,"260-261,263",disponibilidade_confirmada
+H0127,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1948,1940,Esses Moços,Lupicínio Rodrigues,samba-canção,,0,,alta,"261,263",disponibilidade_confirmada
+H0128,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1949,1940,Juazeiro,Luiz Gonzaga e Humberto Teixeira,baião,,2,"clássico; gravado nos EUA por Peggy Lee e na França como Le Voyageur, sem crédito da origem brasileira",alta,"267,270",disponibilidade_confirmada
+H0129,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1949,1940,Na Glória,Raul de Barros e Ari dos Santos,choro,,2,maior sucesso da carreira de Raul de Barros; virou prefixo de sua orquestra,alta,268,disponibilidade_confirmada
+H0130,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1949,1940,Chiquita Bacana,João de Barro e Alberto Ribeiro,marcha/carnaval,,1,"3ª vitória consecutiva de Braguinha no carnaval; gravada nos EUA, Argentina, Itália, Holanda, Inglaterra e França",alta,"266,270",disponibilidade_confirmada
+H0131,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1949,1940,Brumas,Lúcio Alves,bolero,,0,,alta,269,disponibilidade_confirmada
+H0132,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1949,1940,Lorota Boa,Luiz Gonzaga e Humberto Teixeira,polca,,0,,alta,269,disponibilidade_confirmada
+H0133,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1950,1950,Antonico,Ismael Silva,samba,,2,maior sucesso da segunda fase da carreira de Ismael Silva,alta,275,disponibilidade_confirmada
+H0134,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1950,1950,Paraíba,Luiz Gonzaga e Humberto Teixeira,baião,,2,um dos maiores sucessos da carreira de Luiz Gonzaga,alta,276-277,disponibilidade_confirmada
+H0135,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1950,1950,Qui Nem Jiló,Luiz Gonzaga e Humberto Teixeira,baião,,1,um dos melhores baiões da dupla Gonzaga-Teixeira,alta,"277-278,279",disponibilidade_confirmada
+H0136,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1950,1950,Daqui Não Saio,Paquito e Romeu Gentil,marcha/carnaval,,1,dividiu preferência dos foliões de 1950,alta,278,disponibilidade_confirmada
+H0137,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1950,1950,Baião de Dois,Luiz Gonzaga e Humberto Teixeira,baião,,0,,alta,278,disponibilidade_confirmada
+H0138,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1951,1950,Vingança,Lupicínio Rodrigues,samba-canção,,2,tornou-se o maior sucesso da carreira de Linda Batista,alta,"282-283,283",disponibilidade_confirmada
+H0139,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1951,1950,Canção de Amor,Chocolate (Dorival Silva) e Elano de Paula,samba,,1,lançou Elizeth Cardoso para o estrelato; permaneceu 4 meses nas paradas,alta,"281,283",disponibilidade_confirmada
+H0140,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1951,1950,Delicado,Valdir Azevedo,baião,,1,recordista de venda no Brasil; gravação de Percy Faith entrou no hit parade da Cash Box,alta,281-282,disponibilidade_confirmada
+H0141,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1951,1950,Ministério da Economia,Geraldo Pereira e Arnaldo Passos,samba,,1,recado político dirigido a Getúlio Vargas,alta,281-282,disponibilidade_confirmada
+H0142,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1951,1950,Adeus Maria Fulô,Sivuca e Humberto Teixeira,baião,,0,,alta,283,disponibilidade_confirmada
+H0143,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1952,1950,Ninguém Me Ama,Antônio Maria e Fernando Lobo,samba-canção,,1,paradigma do samba-de-fossa; sucesso nacional na voz de Nora Ney,alta,291,disponibilidade_confirmada
+H0144,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1952,1950,Canção da Criança,Francisco Alves e René Bittencourt,valsa,,0,,alta,291,disponibilidade_confirmada
+H0145,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1953,1950,João Valentão,Dorival Caymmi,samba-canção,,1,peça tipicamente caymmiana,alta,293,disponibilidade_confirmada
+H0146,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1953,1950,Folha Morta,Ari Barroso,samba-canção,,1,"samba-de-fossa mais interessante melodicamente que Risque, segundo o autor do livro",alta,"294,295",disponibilidade_confirmada
+H0147,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1953,1950,Orgulho,desconhecido (intérprete: Ângela Maria),,,1,gravação representativa sem menção de autoria no trecho lido,baixa,296,disponibilidade_confirmada
+H0148,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1953,1950,Barracão,Luís Antônio e Oldemar Magalhães,samba/carnaval,,0,,alta,295,disponibilidade_confirmada
+H0149,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1953,1950,O Chote das Meninas,Luiz Gonzaga e Zé Dantas,chotis,,0,,alta,295,disponibilidade_confirmada
+H0150,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1954,1950,O Menino de Braçanã,Luís Vieira,toada,,1,"tornou conhecido o compositor e cantor Luís Vieira, eleito Príncipe do Baião",média,"301-302,306",disponibilidade_confirmada
+H0151,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1954,1950,Mãe Solteira,Wilson Batista e Jorge de Castro,samba,,0,,alta,305,disponibilidade_confirmada
+H0152,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1954,1950,Quase,Mirabeau e Jorge Gonçalves,samba-canção,,0,,alta,305,disponibilidade_confirmada
+H0153,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1954,1950,Quem Vem pra Beira do Mar,Dorival Caymmi,toada,,0,,alta,305,disponibilidade_confirmada
+H0154,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1954,1950,Rua sem Sol,Mário Lago e Henrique Gandelman,samba-canção,,0,,alta,305,disponibilidade_confirmada
+H0155,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1955,1950,Se É por Falta de Adeus,Dolores Duran e Tom Jobim,samba-canção,,2,marcou a estreia de Dolores Duran como compositora,alta,309,disponibilidade_confirmada
+H0156,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1955,1950,O Menino da Porteira,Luisinho e Teddy Vieira,cururu,,2,"primeiro grande sucesso de Teddy Vieira, um dos maiores compositores da música caipira",alta,309-310,disponibilidade_confirmada
+H0157,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1955,1950,Duas Contas,Garoto (Aníbal Augusto Sardinha),samba,,2,clássico do período pré-bossa nova; único texto com letra feito por Garoto,alta,310,disponibilidade_confirmada
+H0158,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1955,1950,Saudosa Maloca,Adoniran Barbosa,samba,,2,primeiro sucesso nacional de Adoniran Barbosa; popularizada pelos Demônios da Garoa,alta,"311,314",disponibilidade_confirmada
+H0159,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1955,1950,Dó-Ré-Mi,Fernando César,samba-canção,,1,"fez sucesso imediato nas paradas radiofônicas de 1955, com arranjo de Tom Jobim",alta,309,disponibilidade_confirmada
+H0160,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1956,1950,Conceição,Dunga (Valdemar de Abreu) e Jair Amorim,samba-canção,,2,o maior sucesso de 1956; peça mais característica do estilo de Cauby Peixoto,alta,317,disponibilidade_confirmada
+H0161,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1956,1950,Foi a Noite,Antônio Carlos Jobim e Newton Mendonça,samba-canção,,2,considerada por alguns o marco inaugural da bossa nova,alta,318,disponibilidade_confirmada
+H0162,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1956,1950,A Voz do Morro,Zé Kéti (José Flores de Jesus),samba,,2,primeiro sucesso de Zé Kéti; incluída na trilha do filme Rio 40 Graus,alta,321-322,disponibilidade_confirmada
+H0163,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1956,1950,Maracangalha,Dorival Caymmi,samba,,1,sucesso extraordinário que se estendeu ao carnaval,alta,318-319,disponibilidade_confirmada
+H0164,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1956,1950,Mulata Assanhada,Ataulfo Alves,samba,,1,encontrou intérprete ideal em Elizeth Cardoso,alta,319,disponibilidade_confirmada
+H0165,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1957,1950,Evocação,Nelson Ferreira,frevo-de-bloco/carnaval,,2,"maior sucesso do carnaval de 1957, superando a produção do eixo Rio-São Paulo",alta,"325-326,330",disponibilidade_confirmada
+H0166,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1957,1950,Pranto de Poeta,Nelson Cavaquinho e Guilherme de Brito,samba,,2,"obra-prima da dupla, citada junto com A Flor e o Espinho",alta,"326,329",disponibilidade_confirmada
+H0167,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1957,1950,Saudade da Bahia,Dorival Caymmi,samba,,2,bateu recordes de vendagem,alta,"327-328,330",disponibilidade_confirmada
+H0168,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1957,1950,Chove Lá Fora,Tito Madi,valsa,,1,"elo de união entre Chico Alves e a bossa nova, segundo o próprio Tito Madi",alta,325,disponibilidade_confirmada
+H0169,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1957,1950,Boneca Cobiçada,Biá (Sebastião Alves da Cunha) e Bolinha (Euclides Pereira Rangel),bolero caipira,,1,ganhou as paradas de sucesso em janeiro de 1957 por mais de dez semanas,alta,"325,330",disponibilidade_confirmada
+H0170,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1958,1950,Balada Triste,Dalton Vogeler e Esdras Silva,samba-canção,,2,duplo lançamento fez maior sucesso,alta,16,disponibilidade_NAO_verificada
+H0171,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1958,1950,Castigo,Dolores Duran,samba-canção,,2,marcou a carreira de Roberto Luna,alta,17,disponibilidade_NAO_verificada
+H0172,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1958,1950,Madureira Chorou,Carvalhinho e Júlio Monteiro (Joel de Almeida),samba/carnaval,,2,samba de maior sucesso no carnaval de 1958,alta,19,disponibilidade_NAO_verificada
+H0173,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1958,1950,O Apito no Samba,Luís Bandeira e Luís Antônio,samba,,1,gravado por Marlene faixa principal de seu LP,alta,16,disponibilidade_NAO_verificada
+H0174,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1959,1950,Desafinado,Antônio Carlos Jobim e Newton Mendonça,samba,,2,marco da bossa nova; sucesso internacional com Getz/Byrd,alta,24,disponibilidade_NAO_verificada
+H0175,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1959,1950,Manhã de Carnaval,Luís Bonfá e Antônio Maria,samba,,2,clássico do repertório internacional de jazz,alta,28,disponibilidade_NAO_verificada
+H0176,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1959,1950,A Noite do Meu Bem,Dolores Duran,samba-canção,,2,maior sucesso de Dolores Duran,alta,28,disponibilidade_NAO_verificada
+H0177,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1959,1950,Chiclete com Banana,Gordurinha e Almira Castilho,samba,,1,estourou com Jackson do Pandeiro em 1959,alta,24,disponibilidade_NAO_verificada
+H0178,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1959,1950,Dindi,Antônio Carlos Jobim e Aloísio de Oliveira,samba-canção,,1,lançada por Sílvia Teles,alta,25,disponibilidade_NAO_verificada
+H0179,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1960,1960,Zelão,Sérgio Ricardo,samba,,2,maior sucesso de Sérgio Ricardo,alta,39,disponibilidade_NAO_verificada
+H0180,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1960,1960,Alguém Me Disse,Evaldo Gouveia e Jair Amorim,bolero,,1,sucesso de Anísio Silva,alta,34,disponibilidade_NAO_verificada
+H0181,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1960,1960,Corcovado,Antônio Carlos Jobim,samba,,1,uma das canções mais gravadas de Jobim,alta,34,disponibilidade_NAO_verificada
+H0182,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1960,1960,Negue,Adelino Moreira e Enzo de Almeida Passos,samba-canção,,1,grande sucesso de Adelino Moreira em 1960,alta,36,disponibilidade_NAO_verificada
+H0183,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1961,1960,Fica Comigo Esta Noite,Adelino Moreira e Nelson Gonçalves,samba-canção,,1,tema de filme erótico,alta,45,disponibilidade_NAO_verificada
+H0184,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1961,1960,Insensatez,Antônio Carlos Jobim e Vinicius de Moraes,samba,,1,lançada por João Gilberto,alta,46,disponibilidade_NAO_verificada
+H0185,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1961,1960,Palhaçada,Luís Reis e Haroldo Barbosa,samba,,1,onze gravações só em 1961,alta,47,disponibilidade_NAO_verificada
+H0186,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1961,1960,Tenho Ciúme de Tudo,Valdir Machado,bolero,,1,carro-chefe de Orlando Dias em 1961,alta,47,disponibilidade_NAO_verificada
+H0187,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1961,1960,Ternura Antiga,Dolores Duran e Ribamar,samba-canção,,1,segundo lugar em festival de canções de amor,alta,48,disponibilidade_NAO_verificada
+H0188,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1962,1960,Oba,Osvaldo Nunes,samba,,2,maior sucesso do carnaval de 62,alta,56,disponibilidade_NAO_verificada
+H0189,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1962,1960,Prelúdio para Ninar Gente Grande (Menino Passarinho),Luís Vieira,balada,,2,um dos maiores sucessos de Luís Vieira,alta,56,disponibilidade_NAO_verificada
+H0190,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1962,1960,Volta por Cima,Paulo Vanzolini,samba,,2,maior sucesso de Noite Ilustrada,alta,56,disponibilidade_NAO_verificada
+H0191,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1962,1960,Estão Voltando as Flores,Paulo Soledade,marcha-rancho,,1,melhor canção de Paulo Soledade segundo ele mesmo,alta,52,disponibilidade_NAO_verificada
+H0192,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1962,1960,Influência do Jazz,Carlos Lira,samba,,1,executado no Carnegie Hall,alta,52,disponibilidade_NAO_verificada
+H0193,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1963,1960,Marcha da Quarta-Feira de Cinzas,Carlos Lira e Vinicius de Moraes,marcha-rancho,,1,protesto premonitório contra a ditadura,alta,63,disponibilidade_NAO_verificada
+H0194,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1963,1960,Mas Que Nada,Jorge Ben,samba,,1,vendeu cem mil cópias em dois meses,alta,64,disponibilidade_NAO_verificada
+H0195,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1963,1960,Parei na Contramão,Roberto Carlos e Erasmo Carlos,rock,,1,um dos primeiros grandes sucessos do rock nacional,alta,64,disponibilidade_NAO_verificada
+H0196,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1963,1960,Tudo de Mim,Evaldo Gouveia e Jair Amorim,bolero,,1,sucesso maior do LP de estreia de Altemar Dutra,alta,66,disponibilidade_NAO_verificada
+H0197,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1964,1960,Bigorrilho,"Paquito, Romeu Gentil e Sebastião Gomes",samba-coco/carnaval,,2,marcou surpreendentemente o carnaval de 64,alta,70,disponibilidade_NAO_verificada
+H0198,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1964,1960,Rua Augusta,Hervê Cordovil,samba,,2,considerado o primeiro hino do rock brasileiro; maior sucesso de Ronnie Cord,alta,75,disponibilidade_NAO_verificada
+H0199,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1964,1960,Berimbau,Baden Powell e Vinicius de Moraes,samba,,1,tornou o berimbau conhecido em todo o país,alta,70,disponibilidade_NAO_verificada
+H0200,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1964,1960,Deixa Isso pra Lá,Alberto Paz e Edson Menezes,samba,,1,tornou conhecido Jair Rodrigues,alta,71,disponibilidade_NAO_verificada
+H0201,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1964,1960,Luz Negra,Nelson Cavaquinho e Amâncio Cardoso,samba,,1,tema do filme A Falecida,alta,72,disponibilidade_NAO_verificada
+H0202,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1965,1960,Arrastão,Edu Lobo e Vinicius de Moraes,,,2,venceu o I Festival de MPB da TV Excelsior,alta,80,disponibilidade_NAO_verificada
+H0203,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1965,1960,Carcará,João do Vale e José Cândido,,,2,consagrou Maria Bethânia na peça Opinião,alta,80,disponibilidade_NAO_verificada
+H0204,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1965,1960,Pedro Pedreiro,Chico Buarque,samba,,2,marco inicial da carreira profissional de Chico Buarque,alta,86,disponibilidade_NAO_verificada
+H0205,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1965,1960,Os Cinco Bailes da História do Rio,"Silas de Oliveira, Bacalhau e Dona Ivone Lara",samba-enredo/carnaval,,1,segundo lugar no carnaval do IV Centenário do Rio,alta,81,disponibilidade_NAO_verificada
+H0206,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1965,1960,Das Rosas,Dorival Caymmi,samba-valsa,,1,sucesso simultâneo no Brasil e nos EUA,alta,82,disponibilidade_NAO_verificada
+H0207,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1966,1960,Apelo,Baden Powell e Vinicius de Moraes,samba,,2,um dos maiores sucessos da dupla,alta,94,disponibilidade_NAO_verificada
+H0208,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1966,1960,Negro Gato,Getúlio Côrtes,rock,,2,clássico da Jovem Guarda,alta,98,disponibilidade_NAO_verificada
+H0209,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1966,1960,Saveiros,Dori Caymmi e Nelson Mota,,,2,vencedor do festival da TV Rio,alta,101,disponibilidade_NAO_verificada
+H0210,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1966,1960,Canto de Ossanha,Baden Powell e Vinicius de Moraes,samba,,1,um dos melhores e mais conhecidos afro-sambas,alta,95,disponibilidade_NAO_verificada
+H0211,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1967,1960,Ponteio,Edu Lobo e Capinan,,,2,venceu o III Festival de MPB da TV Record,alta,110,disponibilidade_NAO_verificada
+H0212,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1967,1960,Margarida,Gutemberg Guarabira,,,2,vencedora da fase nacional do II Festival Internacional da Canção,alta,115,disponibilidade_NAO_verificada
+H0213,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1967,1960,Carolina,Chico Buarque,samba,,1,3ª classificada no II Festival Internacional da Canção,alta,105,disponibilidade_NAO_verificada
+H0214,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1967,1960,Coração de Papel,Sérgio Reis,,,1,puxado por concurso de calouros do Chacrinha,alta,105,disponibilidade_NAO_verificada
+H0215,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1968,1960,Lapinha,Baden Powell e Paulo César Pinheiro,samba,,2,venceu a 1ª Bienal do Samba da TV Record,alta,123,disponibilidade_NAO_verificada
+H0216,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1968,1960,Sabiá,Antônio Carlos Jobim e Chico Buarque,,,2,venceu o III FIC apesar de forte vaia na fase nacional,alta,127,disponibilidade_NAO_verificada
+H0217,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1968,1960,Andança,"Danilo Caymmi, Edmundo Souto e Paulinho Tapajós",samba/toada,,1,3ª colocada no III Festival Internacional da Canção,alta,120,disponibilidade_NAO_verificada
+H0218,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1968,1960,Baby,Caetano Veloso,,,1,primeiro grande sucesso de Gal Costa,alta,121,disponibilidade_NAO_verificada
+H0219,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1968,1960,Caminhando (Pra Não Dizer que Não Falei de Flores),Geraldo Vandré,,,1,2º lugar no III FIC; proibida pela censura logo depois,alta,122,disponibilidade_NAO_verificada
+H0220,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1969,1960,Hoje,Taiguara,balada,,2,maior sucesso de Taiguara,alta,139,disponibilidade_NAO_verificada
+H0221,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1969,1960,Sinal Fechado,Paulinho da Viola,,,2,venceu o V Festival de MPB da TV Record,alta,142,disponibilidade_NAO_verificada
+H0222,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1969,1960,Ando Meio Desligado,"Arnaldo Baptista, Rita Lee e Sérgio Dias",,,1,10ª colocada no IV Festival Internacional da Canção,alta,136,disponibilidade_NAO_verificada
+H0223,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1969,1960,Aquele Abraço,Gilberto Gil,samba,,1,dois meses em 1º lugar; composição mais executada de Gil,alta,136,disponibilidade_NAO_verificada
+H0224,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1969,1960,Atrás do Trio Elétrico,Caetano Veloso,marcha-frevo,,1,hino ao Trio Elétrico Dodô e Osmar,alta,137,disponibilidade_NAO_verificada
+H0225,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1970,1970,Azul da Cor do Mar,Tim Maia,,,2,marcou para sempre o estilo soul de Tim Maia,alta,148,disponibilidade_NAO_verificada
+H0226,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1970,1970,Bandeira Branca,Max Nunes e Laércio Alves,marcha-rancho/carnaval,,2,último clássico do repertório carnavalesco tradicional,alta,149,disponibilidade_NAO_verificada
+H0227,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1970,1970,Menina,Paulinho Nogueira,,,2,maior sucesso de Paulinho Nogueira,alta,152,disponibilidade_NAO_verificada
+H0228,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1970,1970,BR-3,Antônio Adolfo e Tibério Gaspar,,,2,vencedora da fase nacional do V FIC,alta,154,disponibilidade_NAO_verificada
+H0229,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1970,1970,Apesar de Você,Chico Buarque,samba,,1,proibida e destruída pela censura após vender quase 100 mil cópias,alta,148,disponibilidade_NAO_verificada
+H0230,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1971,1970,Construção,Chico Buarque,,,2,obra-prima; LP campeão de vendagem,alta,158,disponibilidade_NAO_verificada
+H0231,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1971,1970,Como Dois e Dois,Caetano Veloso,rock-balada,,1,resposta-homenagem a Debaixo dos Caracóis dos Seus Cabelos,alta,158,disponibilidade_NAO_verificada
+H0232,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1971,1970,Debaixo dos Caracóis dos Seus Cabelos,Roberto Carlos e Erasmo Carlos,,,1,homenagem de Roberto Carlos a Caetano Veloso no exílio,alta,160,disponibilidade_NAO_verificada
+H0233,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1971,1970,Detalhes,Roberto Carlos e Erasmo Carlos,,,1,uma das melhores canções da parceria Roberto/Erasmo,alta,160,disponibilidade_NAO_verificada
+H0234,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1971,1970,Festa para um Rei Negro (Pega no Ganzê),Zuzuca,samba-enredo/carnaval,,1,sucesso extraordinário que transcendeu o carnaval de 1971,alta,161,disponibilidade_NAO_verificada
+H0235,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1972,1970,Acabou Chorare,Moraes Moreira e Luiz Galvão,samba,,1,permaneceu entre os primeiros colocados no hit parade por mais de 30 semanas,alta,166,disponibilidade_NAO_verificada
+H0236,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1972,1970,Casa no Campo,Zé Rodrix e Tavito,,,1,tornou-se manifesto de intenções da juventude da época,alta,168,disponibilidade_NAO_verificada
+H0237,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1972,1970,"Chuva, Suor e Cerveja",Caetano Veloso,frevo,,1,sucesso carnavalesco de 1971/72,alta,169,disponibilidade_NAO_verificada
+H0238,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1972,1970,Eu Quero É Botar Meu Bloco na Rua,Sérgio Sampaio,marcha-rancho,,1,"finalista do VII FIC, grande sucesso",alta,169,disponibilidade_NAO_verificada
+H0239,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1973,1970,Viagem,João de Aquino e Paulo César Pinheiro,,,2,maior sucesso da carreira de Marisa Gata Mansa,alta,189,disponibilidade_NAO_verificada
+H0240,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1973,1970,Estácio Holy Estácio,Luiz Melodia,,,1,um dos sucessos de 1973,alta,186,disponibilidade_NAO_verificada
+H0241,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1973,1970,Folhas Secas,Nelson Cavaquinho e Guilherme de Brito,samba,,1,um dos grandes sambas da dupla,alta,186,disponibilidade_NAO_verificada
+H0242,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1973,1970,Gostava Tanto de Você,Edson Trindade,,,1,"precursora do chamado samba-funk, sucesso com Tim Maia",alta,187,disponibilidade_NAO_verificada
+H0243,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1973,1970,Ouro de Tolo,Raul Seixas,,,1,consolidou o sucesso do elepê Krig-Ha Bandolo,alta,187,disponibilidade_NAO_verificada
+H0244,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1974,1970,Feelings,Morris Albert,,,2,"sucesso internacional, mais de 1 milhão de cópias",alta,195,disponibilidade_NAO_verificada
+H0245,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1974,1970,"Na Rua, na Chuva, na Fazenda (Casinha de Sapé)",Hyldon,soul,,2,primeiro e maior sucesso de Hyldon,alta,198,disponibilidade_NAO_verificada
+H0246,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1974,1970,Conto de Areia,Romildo S. Bastos e Toninho,,,1,elepê vendeu 312 mil cópias,alta,195,disponibilidade_NAO_verificada
+H0247,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1974,1970,Gita,Raul Seixas e Paulo Coelho,,,1,proporcionou o primeiro disco de ouro de Raul Seixas,alta,196,disponibilidade_NAO_verificada
+H0248,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1975,1970,"Fé Cega, Faca Amolada",Milton Nascimento e Ronaldo Bastos,,,2,marco na carreira de Milton Nascimento,alta,205,disponibilidade_NAO_verificada
+H0249,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1975,1970,Moça,Wando,,,2,"elepê alcançou 1,2 milhão de cópias vendidas",alta,206,disponibilidade_NAO_verificada
+H0250,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1975,1970,Beijo Partido,Toninho Horta,,,1,tipifica o estilo do compositor,alta,204,disponibilidade_NAO_verificada
+H0251,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1975,1970,De Frente pro Crime,João Bosco e Aldir Blanc,samba,,1,um dos quatro sucessos da dupla em 1975,alta,204,disponibilidade_NAO_verificada
+H0252,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1975,1970,"Dois pra Lá, Dois pra Cá",João Bosco e Aldir Blanc,bolero,,1,"lançada por Elis Regina, grande sucesso",alta,205,disponibilidade_NAO_verificada
+H0253,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1976,1970,Pavão Misterioso,Ednardo,,,2,primeiro e maior sucesso de Ednardo,alta,218,disponibilidade_NAO_verificada
+H0254,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1976,1970,O Que Será,Chico Buarque,,,2,"obra-prima, grande sucesso na versão de Chico e Milton",alta,219,disponibilidade_NAO_verificada
+H0255,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1976,1970,Como Nossos Pais,Belchior,,,1,elepê vendeu 30 mil cópias em um mês,alta,214,disponibilidade_NAO_verificada
+H0256,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1976,1970,Gota d'Água,Chico Buarque,,,1,tema central da peça Gota d'Água,alta,214,disponibilidade_NAO_verificada
+H0257,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1977,1970,Barra Pesada (Melô da Baixada),Dicró e José Paulo,samba,,2,primeiro sucesso de Dicró,alta,226,disponibilidade_NAO_verificada
+H0258,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1977,1970,Pombo Correio,"Dodô, Osmar e Moraes Moreira",marchinha,,2,clássico do carnaval baiano,alta,229,disponibilidade_NAO_verificada
+H0259,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1977,1970,Romaria,Renato Teixeira,toada,,2,tornou-se rapidamente um clássico do gênero sertanejo,alta,230,disponibilidade_NAO_verificada
+H0260,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1977,1970,Amigo,Roberto Carlos e Erasmo Carlos,,,1,"hino à amizade, muito tocada",alta,226,disponibilidade_NAO_verificada
+H0261,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1977,1970,Começaria Tudo Outra Vez,Luiz Gonzaga Júnior,bolero,,1,primeiro grande sucesso de Gonzaguinha,alta,227,disponibilidade_NAO_verificada
+H0262,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1978,1970,Sampa,Caetano Veloso,,,2,homenagem que consagrou a sigla Sampa,alta,240,disponibilidade_NAO_verificada
+H0263,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1978,1970,Café da Manhã,Roberto Carlos e Erasmo Carlos,,,1,um dos sucessos de Roberto Carlos em 1978,alta,235,disponibilidade_NAO_verificada
+H0264,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1978,1970,Dancin' Days,Nelson Mota e Rubens Queiroz,disco-music,,1,"tema de abertura de telenovela, sucesso nacional",alta,236,disponibilidade_NAO_verificada
+H0265,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1978,1970,Folhetim,Chico Buarque,,,1,boa canção feminina de Chico Buarque,alta,236,disponibilidade_NAO_verificada
+H0266,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1979,1970,Explode Coração (Não Dá Mais pra Segurar),Luiz Gonzaga Júnior,,,2,um dos maiores sucessos de Gonzaguinha,alta,250,disponibilidade_NAO_verificada
+H0267,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1979,1970,Gostoso Veneno,Wilson Moreira e Nei Lopes,samba,,2,tornou-se um clássico do repertório de Alcione,alta,250,disponibilidade_NAO_verificada
+H0268,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1979,1970,Vou Festejar,"Jorge Aragão, Dida e Neoci",samba,,2,maior sucesso do carnaval seguinte,alta,253,disponibilidade_NAO_verificada
+H0269,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1979,1970,"Amor, Meu Grande Amor",Ângela Ro Ro e Ana Terra,,,1,sucesso imediato de Ângela Ro Ro,alta,247,disponibilidade_NAO_verificada
+H0270,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1979,1970,O Bêbado e a Equilibrista,João Bosco e Aldir Blanc,,,1,notável crítica lançada por Elis Regina em 1979,alta,247,disponibilidade_NAO_verificada
+H0271,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1980,1980,Admirável Gado Novo,Zé Ramalho,,,2,recordista com quase dois milhões de cópias,alta,257,disponibilidade_NAO_verificada
+H0272,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1980,1980,Grito de Alerta,Luiz Gonzaga Júnior,,,2,um dos maiores sucessos do ano,alta,261,disponibilidade_NAO_verificada
+H0273,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1980,1980,Meu Bem Querer,Djavan,,,2,"música do ano, consagrou Djavan como compositor",alta,264,disponibilidade_NAO_verificada
+H0274,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1980,1980,Balancê,João de Barro e Alberto Ribeiro,,,2,lançado em 1937 sem maior sucesso,média,267,disponibilidade_NAO_verificada
+H0275,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1980,1980,Bandolins,Osvaldo Montenegro,valsa,,1,terceiro lugar no Festival 79 da TV Tupi,alta,257,disponibilidade_NAO_verificada
+H0276,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1981,1980,Emoções,Roberto Carlos e Erasmo Carlos,fox-canção,,2,"elepê vendeu 2,2 milhões de cópias em um ano",alta,272,disponibilidade_NAO_verificada
+H0277,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1981,1980,Lança-Perfume,Rita Lee e Roberto de Carvalho,,,2,possivelmente o maior sucesso de Rita Lee,alta,274,disponibilidade_NAO_verificada
+H0278,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1981,1980,Baila Comigo,Rita Lee,,,1,"tema de telenovela, sucesso de março a setembro de 81",alta,271,disponibilidade_NAO_verificada
+H0279,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1981,1980,Dia Branco,Geraldo Azevedo e Renato Rocha,,,1,de grande importância na obra de Geraldo Azevedo,alta,271,disponibilidade_NAO_verificada
+H0280,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1981,1980,Eternas Ondas,Zé Ramalho,,,1,faixa de abertura do álbum Raimundo Fagner,alta,272,disponibilidade_NAO_verificada
+H0281,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1982,1980,Asa Morena,Zé Caradipia,toada,,2,maior sucesso do quinto elepê de Zizi Possi,alta,283,disponibilidade_NAO_verificada
+H0282,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1982,1980,Bum Bum Paticumbum Prugurundum,Beto Sem Braço e Aloísio Machado,samba-enredo/carnaval,,2,"1302 execuções, vencedor do carnaval de 1982",alta,285,disponibilidade_NAO_verificada
+H0283,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1982,1980,Como Dois Animais,Alceu Valença,toada,,2,álbum vendeu mais de meio milhão de cópias,alta,286,disponibilidade_NAO_verificada
+H0284,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1982,1980,Portela na Avenida,Mauro Duarte e Paulo César Pinheiro,samba,,2,consagrou-se no carnaval de 1982,alta,288,disponibilidade_NAO_verificada
+H0285,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1982,1980,Bilhete,Ivan Lins e Vitor Martins,,,2,lançado em 1980 sem maior sucesso,média,291,disponibilidade_NAO_verificada
+H0286,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1983,1980,Beatriz,Edu Lobo e Chico Buarque,valsa,,2,clássico da moderna música brasileira,alta,297,disponibilidade_NAO_verificada
+H0287,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1983,1980,Fio de Cabelo,Darci Rossi e Marciano,guarânia,,2,levou Chitãozinho e Xororó a dois milhões de cópias,alta,299,disponibilidade_NAO_verificada
+H0288,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1983,1980,Você É Linda,Caetano Veloso,,,2,faixa de maior sucesso do álbum Uns,alta,302,disponibilidade_NAO_verificada
+H0289,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1983,1980,Ai Que Saudade De Ocê,Vital Farias,baião,,1,tornou-se conhecida com Elba Ramalho em 1983,alta,295,disponibilidade_NAO_verificada
+H0290,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1983,1980,O Amanhã,João Sérgio (Didi),samba-enredo,,1,grande sucesso de Simone em disco e palco,alta,295,disponibilidade_NAO_verificada
+H0291,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1984,1980,Deixa Eu Te Amar,"Agepê, Vamilo e Mauro Silva",samba,,2,vendagem superior a um milhão de cópias,alta,308,disponibilidade_NAO_verificada
+H0292,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1984,1980,Como Eu Quero,Leoni e Paula Toller,,,1,sucesso do segundo compacto do Kid Abelha,alta,307,disponibilidade_NAO_verificada
+H0293,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1984,1980,Fullgás,Marina Lima e Antônio Cícero,,,1,álbum vendeu 80 mil cópias,alta,308,disponibilidade_NAO_verificada
+H0294,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1984,1980,Inútil,Roger (Ultraje a Rigor),rock,,1,entrou para o anedotário político,alta,309,disponibilidade_NAO_verificada
+H0295,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1984,1980,Me Chama,Lobão,,,1,linha melódica acima da média,alta,309,disponibilidade_NAO_verificada
+H0296,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1985,1980,Escrito nas Estrelas,Arnaldo Black e Carlos Rennó,,,2,venceu o Festival dos Festivais em 1985,alta,320,disponibilidade_NAO_verificada
+H0297,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1985,1980,Chuva de Prata,Ed Wilson e Ronaldo Bastos,bolero,,1,versão de Gal Costa no álbum Profana,alta,317,disponibilidade_NAO_verificada
+H0298,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1985,1980,De Volta pro Aconchego,Dominguinhos e Nando Cordel,baião,,1,invadiu as paradas com a novela Roque Santeiro,alta,317,disponibilidade_NAO_verificada
+H0299,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1985,1980,Dona,Luís Carlos Sá e Gutemberg Guarabira,,,1,tema da personagem Porcina em Roque Santeiro,alta,319,disponibilidade_NAO_verificada
+H0300,Fase4a_1958-1985,A Cancao no Tempo Vol.2 (Severiano e Zuza),1985,1980,Geração Coca-Cola,Renato Russo,rock,,1,estourou no disco de estréia da Legião Urbana,alta,320,disponibilidade_NAO_verificada
+H0301,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1986,1980,Demais,Veronica Sabino,,3,,,,,a_verificar_autoria
+H0302,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1986,1980,Eduardo e Monica,Legiao Urbana (Renato Russo),,4,,,,,a_verificar_autoria
+H0303,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1986,1980,Quando Gira o Mundo,Fabio Jr.,,5,,,,,a_verificar_autoria
+H0304,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1986,1980,Alagados,Os Paralamas do Sucesso,,7,,,,,a_verificar_autoria
+H0305,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1986,1980,Sina,Djavan,,8,,,,,a_verificar_autoria
+H0306,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1987,1980,Um Certo Alguem,Lulu Santos,,4,,,,,a_verificar_autoria
+H0307,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1987,1980,O Amor e o Poder,Rosana Fiengo,,6,,,,,a_verificar_autoria
+H0308,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1987,1980,Codinome Beija-Flor,Cazuza,,7,,,,,a_verificar_autoria
+H0309,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1987,1980,Katia Flavia,Fausto Fawcett e os Robos Efemeros,,11,,,,,a_verificar_autoria
+H0310,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1988,1980,Faz Parte do Meu Show,Cazuza,,1,,,,,a_verificar_autoria
+H0311,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1988,1980,Ideologia,Cazuza,,5,,,,,a_verificar_autoria
+H0312,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1988,1980,Marvin (Patches),Titas,,11,,,,,a_verificar_autoria
+H0313,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1988,1980,Mais uma vez,Placa Luminosa,,16,,,,,a_verificar_autoria
+H0314,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1989,1980,Bem Que Se Quis,Marisa Monte,,1,,,,,a_verificar_autoria
+H0315,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1989,1980,Deus Te Proteja De Mim,Wando,,2,,,,,a_verificar_autoria
+H0316,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1989,1980,Entre Tapas E Beijos,Leandro e Leonardo,,3,,,,,a_verificar_autoria
+H0317,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1989,1980,Adelaide,Inimigos do Rei,,6,,,,,a_verificar_autoria
+H0318,Fase4b_1986-1989,"Mais Tocadas (audiencia de radio, capitais BR)",1989,1980,Nuvem de Lagrimas,Chitaozinho e Xororo,,7,,,,,a_verificar_autoria
+H0319,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1990,1990,Prefixo de Verao,Banda Mel,,4,,,,,a_verificar_autoria
+H0320,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1990,1990,Pense em Mim,Leandro e Leonardo,,6,,,,,a_verificar_autoria
+H0321,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1990,1990,Aguenta Coracao,Jose Augusto,,14,,,,,a_verificar_autoria
+H0322,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1990,1990,Naquela Estacao,Adriana Calcanhoto,,17,,,,,a_verificar_autoria
+H0323,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1990,1990,Luar do Sertao,Roberta Miranda,,18,,,,,a_verificar_autoria
+H0324,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1991,1990,E O Amor,Zeze Di Camargo e Luciano,,3,,,,,a_verificar_autoria
+H0325,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1991,1990,Noite Preta,Vange Leonel,,4,,,,,a_verificar_autoria
+H0326,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1991,1990,Swing da Cor,Daniela Mercury,,8,,,,,a_verificar_autoria
+H0327,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1991,1990,W/Brasil (Chama O Sindico),Jorge Ben Jor,,12,,,,,a_verificar_autoria
+H0328,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1991,1990,Suga Suga,Joao Penca e Seus Miquinhos Amestrados,,14,,,,,a_verificar_autoria
+H0329,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1992,1990,Cigana,Raca Negra,,6,,,,,a_verificar_autoria
+H0330,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1992,1990,Cabecinha no Ombro,Fagner e Roberta Miranda,,8,,,,,a_verificar_autoria
+H0331,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1992,1990,Olha Amor,Gian e Giovani,,10,,,,,a_verificar_autoria
+H0332,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1992,1990,Brincar De Ser Feliz,Chitaozinho e Xororo,,12,,,,,a_verificar_autoria
+H0333,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1992,1990,Temporal de Amor,Leandro e Leonardo,,13,,,,,a_verificar_autoria
+H0334,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1993,1990,Que Se Chama Amor,So Pra Contrariar,,2,,,,,a_verificar_autoria
+H0335,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1993,1990,To Legal,Grupo Raca,,4,,,,,a_verificar_autoria
+H0336,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1993,1990,Lorraburra,Gabriel O Pensador,,6,,,,,a_verificar_autoria
+H0337,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1993,1990,O Mais Belo Dos Belos,Daniela Mercury,,10,,,,,a_verificar_autoria
+H0338,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1993,1990,Faz Mais Uma Vez Comigo,Zeze Di Camargo e Luciano,,11,,,,,a_verificar_autoria
+H0339,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1994,1990,Eu So Penso Em Voce,Zeze Di Camargo e Luciano (feat. Willie Nelson),,5,,,,,a_verificar_autoria
+H0340,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1994,1990,Cartao Postal,Olodum,,7,,,,,a_verificar_autoria
+H0341,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1994,1990,Essa Tal Liberdade,So Pra Contrariar,,8,,,,,a_verificar_autoria
+H0342,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1994,1990,Onde Voce Mora?,Cidade Negra,,11,,,,,a_verificar_autoria
+H0343,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1994,1990,Musica de Rua,Daniela Mercury,,12,,,,,a_verificar_autoria
+H0344,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1995,1990,Vira-Vira,Mamonas Assassinas,,2,,,,,a_verificar_autoria
+H0345,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1995,1990,Pelados em Santos,Mamonas Assassinas,,3,,,,,a_verificar_autoria
+H0346,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1995,1990,Eu Me Amarrei,Joao Paulo e Daniel,,6,,,,,a_verificar_autoria
+H0347,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1995,1990,La Vem o Negao,Cravo e Canela,,7,,,,,a_verificar_autoria
+H0348,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1995,1990,Catedral,Zelia Duncan,,8,,,,,a_verificar_autoria
+H0349,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1996,1990,Garota Nacional,Skank,,1,,,,,a_verificar_autoria
+H0350,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1996,1990,Estou Apaixonado,Joao Paulo e Daniel,,3,,,,,a_verificar_autoria
+H0351,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1996,1990,Sem Medo de Ser Feliz,Zeze Di Camargo e Luciano,,6,,,,,a_verificar_autoria
+H0352,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1996,1990,Recado a Minha Amada,Katinguele,,7,,,,,a_verificar_autoria
+H0353,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1996,1990,A Primeira Vista,Daniela Mercury,,9,,,,,a_verificar_autoria
+H0354,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1997,1990,Palpite,Vanessa Rangel,,2,,,,,a_verificar_autoria
+H0355,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1997,1990,Depois do Prazer,So Pra Contrariar,,4,,,,,a_verificar_autoria
+H0356,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1997,1990,Ralando o Tchan,E o Tchan,,6,,,,,a_verificar_autoria
+H0357,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1997,1990,Toma Juizo,Zeze Di Camargo e Luciano,,8,,,,,a_verificar_autoria
+H0358,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1997,1990,Vem Nha Nha,Grupo Boquinha Da Garrafa,,9,,,,,a_verificar_autoria
+H0359,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1998,1990,Cada Volta e Um Recomeco,Zeze Di Camargo e Luciano,,2,,,,,a_verificar_autoria
+H0360,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1998,1990,Liberar Geral,Terra Samba,,3,,,,,a_verificar_autoria
+H0361,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1998,1990,Cachimbo da Paz,Gabriel O Pensador,,8,,,,,a_verificar_autoria
+H0362,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1998,1990,Mineirinho,So Pra Contrariar,,9,,,,,a_verificar_autoria
+H0363,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1998,1990,Quando E Amor,So Pra Contrariar,,12,,,,,a_verificar_autoria
+H0364,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1999,1990,Sozinho,Caetano Veloso,,1,,,,,a_verificar_autoria
+H0365,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1999,1990,Mina de Fe,Os Morenos,,2,,,,,a_verificar_autoria
+H0366,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1999,1990,Pra Falar A Verdade,Daniel,,3,,,,,a_verificar_autoria
+H0367,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1999,1990,Me Apaixonei Pela Pessoa Errada,Exaltasamba,,4,,,,,a_verificar_autoria
+H0368,Fase3_1990-1999,"Mais Tocadas (audiencia de radio, capitais BR)",1999,1990,Pela Vida Inteira,Grupo Kiloucura,,5,,,,,a_verificar_autoria
+H0369,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2000,2000,Se Eu Nao Te Amasse Tanto Assim,Ivete Sangalo,,1,,,,,a_verificar_autoria
+H0370,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2000,2000,Amor I Love You,Marisa Monte,,2,,,,,a_verificar_autoria
+H0371,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2000,2000,Anna Julia,Los Hermanos,,4,,,,,a_verificar_autoria
+H0372,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2000,2000,Xibom Bombom,As Meninas,,5,,,,,a_verificar_autoria
+H0373,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2000,2000,To Te Filmando (Sorria),Os Travessos,,6,,,,,a_verificar_autoria
+H0374,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2001,2000,Quem De Nos Dois,Ana Carolina,,1,,,,,a_verificar_autoria
+H0375,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2001,2000,Malandragem,Cassia Eller,,3,,,,,a_verificar_autoria
+H0376,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2001,2000,Acima do Sol,Skank,,6,,,,,a_verificar_autoria
+H0377,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2001,2000,Por Te Amar Assim,Marlon e Maicon,,8,,,,,a_verificar_autoria
+H0378,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2001,2000,Vou Te Procurar,Os Travessos,,10,,,,,a_verificar_autoria
+H0379,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2002,2000,Toque de Magica,Pedro e Thiago,,1,,,,,a_verificar_autoria
+H0380,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2002,2000,Love Never Fails,Sandy e Junior,,2,,,,,a_verificar_autoria
+H0381,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2002,2000,Festa,Ivete Sangalo,,3,,,,,a_verificar_autoria
+H0382,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2002,2000,Anjo,Kelly Key,,6,,,,,a_verificar_autoria
+H0383,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2002,2000,Epitafio,Titas,,8,,,,,a_verificar_autoria
+H0384,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2003,2000,Velha Infancia,Tribalistas,,1,,,,,a_verificar_autoria
+H0385,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2003,2000,To Nem Ai,Luka,,2,,,,,a_verificar_autoria
+H0386,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2003,2000,Mais Uma Vez,Renato Russo,,3,,,,,a_verificar_autoria
+H0387,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2003,2000,Dois Rios,Skank,,5,,,,,a_verificar_autoria
+H0388,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2003,2000,Amor Maior,Jota Quest,,6,,,,,a_verificar_autoria
+H0389,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2004,2000,Nosso Amor E Ouro,Zeze Di Camargo e Luciano,,1,,,,,a_verificar_autoria
+H0390,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2004,2000,Vou Deixar,Skank,,2,,,,,a_verificar_autoria
+H0391,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2004,2000,Equalize,Pitty,,4,,,,,a_verificar_autoria
+H0392,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2004,2000,Flor Do Reggae,Ivete Sangalo,,6,,,,,a_verificar_autoria
+H0393,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2004,2000,Amanha Nao Se Sabe,LS Jack,,7,,,,,a_verificar_autoria
+H0394,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2005,2000,Fui Eu,Zeze Di Camargo e Luciano,,1,,,,,a_verificar_autoria
+H0395,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2005,2000,Eu Amo,Zeze Di Camargo e Luciano,,3,,,,,a_verificar_autoria
+H0396,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2005,2000,Quer Casar Comigo,Bruno e Marrone,,4,,,,,a_verificar_autoria
+H0397,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2005,2000,Vamos Fugir,Skank,,6,,,,,a_verificar_autoria
+H0398,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2005,2000,Choram As Rosas,Bruno e Marrone,,7,,,,,a_verificar_autoria
+H0399,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2006,2000,O Sol,Jota Quest,,3,,,,,a_verificar_autoria
+H0400,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2006,2000,E Isso Ai,Ana Carolina e Seu Jorge,,4,,,,,a_verificar_autoria
+H0401,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2006,2000,Me Namora,Edu Ribeiro,,5,,,,,a_verificar_autoria
+H0402,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2006,2000,Ai Ai Ai,Vanessa Da Mata,,6,,,,,a_verificar_autoria
+H0403,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2006,2000,Se Ela Danca Eu Danco,MC Leozinho,,8,,,,,a_verificar_autoria
+H0404,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2007,2000,Razoes e Emocoes,NX Zero,,3,,,,,a_verificar_autoria
+H0405,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2007,2000,Natiruts Reggae Power,Natiruts,,4,,,,,a_verificar_autoria
+H0406,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2007,2000,Eu Sei,Papas da Lingua,,9,,,,,a_verificar_autoria
+H0407,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2007,2000,Deixo,Ivete Sangalo,,10,,,,,a_verificar_autoria
+H0408,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2007,2000,Depois do Amor,Belo (part. Perlla),,14,,,,,a_verificar_autoria
+H0409,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2008,2000,Boa Sorte / Good Luck,Vanessa Da Mata,,1,,,,,a_verificar_autoria
+H0410,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2008,2000,Mina Do Condominio,Seu Jorge,,6,,,,,a_verificar_autoria
+H0411,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2008,2000,Tem Que Ser Voce,Victor e Leo,,8,,,,,a_verificar_autoria
+H0412,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2008,2000,Um Minuto,D'Black,,9,,,,,a_verificar_autoria
+H0413,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2008,2000,Exttravasa,Claudia Leitte,,10,,,,,a_verificar_autoria
+H0414,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2009,2000,Chora Me Liga,Joao Bosco e Vinicius,,4,,,,,a_verificar_autoria
+H0415,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2009,2000,Versos Simples,Chimarruts,,5,,,,,a_verificar_autoria
+H0416,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2009,2000,Borboletas,Victor e Leo,,8,,,,,a_verificar_autoria
+H0417,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2009,2000,Agenda,Belo e Ornella,,12,,,,,a_verificar_autoria
+H0418,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2009,2000,Nao Tente Me Impedir,Bruno e Marrone,,13,,,,,a_verificar_autoria
+H0419,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2010,2010,Fugidinha,Michel Telo,,5,,,,,a_verificar_autoria
+H0420,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2010,2010,Amo Noite e Dia,Jorge e Mateus,,7,,,,,a_verificar_autoria
+H0421,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2010,2010,Adrenalina,Luan Santana,,12,,,,,a_verificar_autoria
+H0422,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2010,2010,Tapa na Cara,Zeze Di Camargo e Luciano,,13,,,,,a_verificar_autoria
+H0423,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2010,2010,Ta Vendo Aquela Lua,Exaltasamba,,14,,,,,a_verificar_autoria
+H0424,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2011,2010,Pra Voce,Paula Fernandes,,1,,,,,a_verificar_autoria
+H0425,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2011,2010,Amar Nao E Pecado,Luan Santana,,2,,,,,a_verificar_autoria
+H0426,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2011,2010,Mentes Tao Bem,Zeze Di Camargo e Luciano,,4,,,,,a_verificar_autoria
+H0427,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2011,2010,Ai Se Eu Te Pego,Michel Telo,,5,,,,,a_verificar_autoria
+H0428,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2011,2010,Nao Precisa,Paula Fernandes (feat. Victor e Leo),,6,,,,,a_verificar_autoria
+H0429,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2012,2010,Humilde Residencia,Michel Telo,,1,,,,,a_verificar_autoria
+H0430,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2012,2010,Assim Voce Mata o Papai,Sorriso Maroto,,2,,,,,a_verificar_autoria
+H0431,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2012,2010,Camaro Amarelo,Munhoz e Mariano,,4,,,,,a_verificar_autoria
+H0432,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2012,2010,Ja Nao Sei Mais Nada (Yo No Se Manana),Bruno e Marrone,,6,,,,,a_verificar_autoria
+H0433,Fase2_2000-2012,"Mais Tocadas (audiencia de radio, capitais BR)",2012,2010,Te Vivo,Luan Santana,,8,,,,,a_verificar_autoria
+H0434,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2013,2010,Vidro Fume,Bruno e Marrone,,1,,,,,a_verificar_autoria
+H0435,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2013,2010,Te Esperando,Luan Santana (feat. Giovanna Lancellotti),,2,,,,,a_verificar_autoria
+H0436,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2013,2010,Vagalumes,Pollo (feat. Ivo Mozart),,3,,,,,a_verificar_autoria
+H0437,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2013,2010,Show das Poderosas,Anitta,,4,,,,,a_verificar_autoria
+H0438,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2013,2010,Amor de Chocolate,Naldo Benny,,6,,,,,a_verificar_autoria
+H0439,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2014,2010,Domingo de Manha,Marcos e Belutti,,1,,,,,a_verificar_autoria
+H0440,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2014,2010,Ce Topa,Luan Santana,,2,,,,,a_verificar_autoria
+H0441,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2014,2010,Os 10 Mandamentos do Amor,Eduardo Costa,,3,,,,,a_verificar_autoria
+H0442,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2014,2010,O Tempo Nao Apaga,Victor e Leo,,4,,,,,a_verificar_autoria
+H0443,Fase1_2013-2025,Mais Tocadas (radio) - pre-Spotify BR,2014,2010,Mozao,Lucas Lucco,,5,,,,,a_verificar_autoria
+H0444,Fase1_2013-2025,Spotify (retrospectiva oficial),2015,2010,Suite 14,Henrique e Diego (feat. MC Guime),,1,,,,,a_verificar_autoria
+H0445,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2015,2010,Escreve Ai,Luan Santana,,1,,,,,a_verificar_autoria
+H0446,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2015,2010,Mudando de Assunto,Henrique e Juliano,,3,,,,,a_verificar_autoria
+H0447,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2015,2010,10 Minutos Longe de Voce,Victor e Leo (part. Henrique e Juliano),,4,,,,,a_verificar_autoria
+H0448,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2015,2010,Agora (Ahora),Bruno e Marrone,,5,,,,,a_verificar_autoria
+H0449,Fase1_2013-2025,Mais Tocadas (radio) - sem dado Spotify,2016,2010,Seu Policia,Ze Neto e Cristiano,,1,,,,,a_verificar_autoria
+H0450,Fase1_2013-2025,Mais Tocadas (radio) - sem dado Spotify,2016,2010,Infiel,Marilia Mendonca,,2,,,,,a_verificar_autoria
+H0451,Fase1_2013-2025,Mais Tocadas (radio) - sem dado Spotify,2016,2010,Pronto Falei,Eduardo Costa,,3,,,,,a_verificar_autoria
+H0452,Fase1_2013-2025,Mais Tocadas (radio) - sem dado Spotify,2016,2010,Romantico Anonimo,Marcos e Belutti (feat. Fernando Zor),,4,,,,,a_verificar_autoria
+H0453,Fase1_2013-2025,Mais Tocadas (radio) - sem dado Spotify,2016,2010,Medo Bobo,Maiara e Maraisa,,5,,,,,a_verificar_autoria
+H0454,Fase1_2013-2025,Spotify (retrospectiva oficial),2017,2010,Hear Me Now,Alok,,2,,,,,a_verificar_autoria
+H0455,Fase1_2013-2025,Spotify (retrospectiva oficial),2017,2010,Vidinha de Balada (Ao Vivo),Henrique e Juliano,,3,,,,,a_verificar_autoria
+H0456,Fase1_2013-2025,Spotify (retrospectiva oficial),2017,2010,Te Assumi pro Brasil (Ao Vivo),Matheus e Kauan,,4,,,,,a_verificar_autoria
+H0457,Fase1_2013-2025,Spotify (retrospectiva oficial),2017,2010,Sua Cara,Anitta e Pabllo Vittar (com Major Lazer),,5,,,,,a_verificar_autoria
+H0458,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2017,2010,Acordando o Predio,Luan Santana,,1,,,,,a_verificar_autoria
+H0459,Fase1_2013-2025,Spotify (retrospectiva oficial),2018,2010,Propaganda,Jorge e Mateus,,1,,,,,a_verificar_autoria
+H0460,Fase1_2013-2025,Spotify (retrospectiva oficial),2018,2010,Vai Malandra,Anitta,,2,,,,,a_verificar_autoria
+H0461,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2018,2010,Apelido Carinhoso,Gusttavo Lima,,1,,,,,a_verificar_autoria
+H0462,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2018,2010,Largado as Tracas,Ze Neto e Cristiano,,2,,,,,a_verificar_autoria
+H0463,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2018,2010,Transplante,Marilia Mendonca (feat. Bruno e Marrone),,3,,,,,a_verificar_autoria
+H0464,Fase1_2013-2025,Spotify (retrospectiva oficial),2019,2010,Lencol Dobrado,Joao Gustavo e Murilo,,1,,,,,a_verificar_autoria
+H0465,Fase1_2013-2025,Spotify (retrospectiva oficial),2019,2010,Bebi Liguei,Marilia Mendonca,,2,,,,,a_verificar_autoria
+H0466,Fase1_2013-2025,Spotify (retrospectiva oficial),2019,2010,Atrasadinha,Felipe Araujo e Ferrugem,,3,,,,,a_verificar_autoria
+H0467,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2019,2010,Cem Mil,Gusttavo Lima,,1,,,,,a_verificar_autoria
+H0468,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2019,2010,Quando a Bad Bater,Luan Santana,,2,,,,,a_verificar_autoria
+H0469,Fase1_2013-2025,Spotify+Mais Tocadas (convergem),2020,2020,Com ou Sem Mim,Gustavo Mioto,,1,,,,,a_verificar_autoria
+H0470,Fase1_2013-2025,Spotify+Mais Tocadas (convergem),2020,2020,A Gente Fez Amor,Gusttavo Lima,,2,,,,,a_verificar_autoria
+H0471,Fase1_2013-2025,Spotify+Mais Tocadas (convergem),2020,2020,Liberdade Provisoria,Henrique e Juliano,,3,,,,,a_verificar_autoria
+H0472,Fase1_2013-2025,Spotify+Mais Tocadas (convergem),2020,2020,Graveto,Marilia Mendonca,,4,,,,,a_verificar_autoria
+H0473,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2020,2020,Litrao,Matheus e Kauan,,5,,,,,a_verificar_autoria
+H0474,Fase1_2013-2025,Spotify (retrospectiva oficial),2021,2020,Batom de Cereja,Israel e Rodolffo,,1,,,,,a_verificar_autoria
+H0475,Fase1_2013-2025,Spotify (retrospectiva oficial),2021,2020,Facas,Diego e Victor Hugo (feat. Bruno e Marrone),,2,,,,,a_verificar_autoria
+H0476,Fase1_2013-2025,Spotify (retrospectiva oficial),2021,2020,Ele E Ele Eu Sou Eu,Wesley Safadao,,3,,,,,a_verificar_autoria
+H0477,Fase1_2013-2025,Spotify (retrospectiva oficial),2021,2020,Meu Pedaco de Pecado,Joao Gomes,,4,,,,,a_verificar_autoria
+H0478,Fase1_2013-2025,Spotify (retrospectiva oficial),2021,2020,Baby Me Atende,Matheus Fernandes,,5,,,,,a_verificar_autoria
+H0479,Fase1_2013-2025,Spotify (retrospectiva oficial),2022,2020,Por Aqui Mal Feito,Hugo e Guilherme,,1,,,,,a_verificar_autoria
+H0480,Fase1_2013-2025,Spotify (retrospectiva oficial),2022,2020,Malvadao 3,Xama,,2,,,,,a_verificar_autoria
+H0481,Fase1_2013-2025,Spotify (retrospectiva oficial),2022,2020,Vai La em Casa Hoje,George Henrique e Rodrigo (feat. Marilia Mendonca),,3,,,,,a_verificar_autoria
+H0482,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2022,2020,Termina Comigo Antes,Gusttavo Lima,,1,,,,,a_verificar_autoria
+H0483,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2022,2020,Bloqueado,Gusttavo Lima,,2,,,,,a_verificar_autoria
+H0484,Fase1_2013-2025,Spotify (retrospectiva oficial),2023,2020,Nosso Quadro,Ana Castela,,1,,,,,a_verificar_autoria
+H0485,Fase1_2013-2025,Spotify (retrospectiva oficial),2023,2020,Leao,Marilia Mendonca,,2,,,,,a_verificar_autoria
+H0486,Fase1_2013-2025,Spotify (retrospectiva oficial),2023,2020,Erro Gostoso,Simone Mendes,,3,,,,,a_verificar_autoria
+H0487,Fase1_2013-2025,Spotify (retrospectiva oficial),2023,2020,Bombonzinho,Israel e Rodolffo (feat. Ana Castela),,4,,,,,a_verificar_autoria
+H0488,Fase1_2013-2025,Spotify (retrospectiva oficial),2023,2020,Seu Brilho Sumiu,Israel e Rodolffo (feat. Mari Fernandez),,5,,,,,a_verificar_autoria
+H0489,Fase1_2013-2025,Spotify (retrospectiva oficial),2024,2020,The Box Medley Funk 2,"THE BOX, Mc Brinquedo, MC Cebezinho, MC Tuto, Mc Laranjinha, Dj Oreia",,1,,,,,a_verificar_autoria
+H0490,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2024,2020,Relacao Errada,Gusttavo Lima e Bruno e Marrone,,1,,,,,a_verificar_autoria
+H0491,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2024,2020,Dois Tristes,Simone Mendes,,2,,,,,a_verificar_autoria
+H0492,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2024,2020,Bem Mais Que Eu,Diego e Victor Hugo,,3,,,,,a_verificar_autoria
+H0493,Fase1_2013-2025,"Mais Tocadas (radio, complemento)",2024,2020,Daqui Pra Frente,Manu Bahtidao e Simone Mendes,,4,,,,,a_verificar_autoria
+H0494,Fase1_2013-2025,Mais Tocadas (radio) - sem retrospectiva Spotify ainda,2025,2020,Tubaroes,Diego e Victor Hugo,,1,,,,,a_verificar_autoria
+H0495,Fase1_2013-2025,Mais Tocadas (radio) - sem retrospectiva Spotify ainda,2025,2020,Me Libertando,Elis Justi,,2,,,,,a_verificar_autoria
+H0496,Fase1_2013-2025,Mais Tocadas (radio) - sem retrospectiva Spotify ainda,2025,2020,Opa Cade Eu,Clayton e Romario,,3,,,,,a_verificar_autoria
+H0497,Fase1_2013-2025,Mais Tocadas (radio) - sem retrospectiva Spotify ainda,2025,2020,Me Ama ou Me Larga,Simone Mendes,,4,,,,,a_verificar_autoria
+H0498,Fase1_2013-2025,Mais Tocadas (radio) - sem retrospectiva Spotify ainda,2025,2020,Arruma um Bao,Israel e Rodolffo,,5,,,,,a_verificar_autoria
+H0499,Fase5b_1901_extra,Canção da História (letra manual: MPB Cifrantiga/IMS),1901,1900,As Laranjas da Sabina,Artur Azevedo (interprete: Pepa Delgado),lundu/tango,,1,sucesso teatral de 1890 (revista A Republica) gravado em cilindro em 1902 e em disco por Pepa Delgado em 1906,n/a (fonte externa nao-OCR),,disponibilidade_confirmada_manual
+H0500,Fase5b_1901_extra,Canção da História,1901,1900,O Gondoleiro do Amor,Castro Alves (poema Dama Negra; interpretacao: Edelmir),modinha/melodrama,,1,poema de Castro Alves musicado; interpretacao gravada em 1994 (album Cabaceiras),n/a (fonte externa nao-OCR),,disponibilidade_confirmada
+H0501,Fase5b_1901_extra,Canção da História (letra manual: MPB Cifrantiga/IMS),1901,1900,Perdão Emília,José Henrique da Silva e Juca Pedaço (interprete: Paraguassu),modinha,,1,modinha de autoria incerta composta por volta de 1889 primeira gravacao em 1902 (Casa Edison) interpretacao de Paraguassu de 1945 usada aqui,n/a (fonte externa nao-OCR),,disponibilidade_confirmada_manual
+H0502,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1902,1900,A Conquista do Ar (Santos Dumont),Eduardo das Neves (interprete: Bahiano),marcha,,1,sucesso de 1902 celebrando Santos Dumont,alta,17,disponibilidade_parcial_audio_pendente
+H0503,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1902,1900,O Arame,Ernesto de Souza,cançoneta,,2,gravado por Bahiano em 1902; midia original nao localizada,alta,20,letra_e_audio_nao_recuperados
+H0504,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1902,1900,Os Boêmios (O Boêmio),Anacleto de Medeiros e Catulo da Paixao Cearense (interprete: Mario Pinheiro),tango-cançoneta,,3,tango original instrumental que recebeu letra de Catulo,alta,20,disponibilidade_confirmada
+H0505,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1902,1900,Borboleta Gentil,autor desconhecido (interprete: Senhorita Odette),valsa,,4,gravada por Senhorita Odette 1902-1904,alta,20,disponibilidade_confirmada_youtube
+H0506,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1902,1900,Me Compra Ioiô,Ernesto de Souza (interprete: Senhorita Odette),cançoneta,,5,gravada por Senhorita Odette em 1903,alta,20,audio_confirmado_youtube_letra_nao_recuperada
+H0507,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1903,1900,O Fadário (Medrosa),Anacleto de Medeiros e Catulo da Paixao Cearense (interprete: Mario Pinheiro),canção,,1,gravada por Mario Pinheiro circa 1904-1905,alta,20,audio_confirmado_youtube_letra_nao_recuperada
+H0508,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1903,1900,Quem Inventou a Mulata,Ernesto de Souza,cançoneta,,2,primeiro sucesso carnavalesco com tema da mulata; peca São João na roça,alta,20,letra_e_audio_nao_recuperados
+H0509,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1904,1900,Corta-Jaca (Gaúcho),Chiquinha Gonzaga,tango,,1,oito gravacoes entre 1904 e 1912 grande popularidade,alta,18,disponibilidade_confirmada
+H0510,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1904,1900,Primeiro Amor,Patápio Silva,valsa,,2,um dos maiores sucessos do autor; peca instrumental (flauta e piano),alta,18,disponibilidade_confirmada_instrumental
+H0511,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1904,1900,Rato Rato,Casemiro Rocha e Claudino Costa (interprete: Ademilde Fonseca),polca,,3,sucesso ligado a campanha contra a peste bubonica,alta,18,disponibilidade_confirmada
+H0512,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1904,1900,Saudades de Matão (Francana),Jorge Galati (letra 1938: Raul Torres),valsa,,4,tornou-se sucesso nacional decadas depois com a letra de Raul Torres,alta,19,disponibilidade_confirmada
+H0513,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1904,1900,Alvorada das Rosas,Júlio Reis (interprete: Patápio Silva),romança,,5,peca instrumental para flauta,alta,20,disponibilidade_confirmada_youtube_instrumental
+H0514,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1905,1900,Terna Saudade (Por um Beijo),Anacleto de Medeiros e Catulo da Paixao Cearense (interprete: Vânia Bastos),valsa,,1,valsa que recebeu letra de Catulo tornando-se Por um Beijo,media,19,disponibilidade_confirmada
+H0515,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1905,1900,Escovado,Ernesto Nazareth,tango,,2,peca instrumental para piano dedicada ao irmao do compositor,alta,20,disponibilidade_confirmada_instrumental
+H0516,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1905,1900,Farrula,Anacleto de Medeiros,valsa,,3,peca instrumental gravada pela Banda do Corpo de Bombeiros em 1904,alta,20,disponibilidade_confirmada_youtube_instrumental
+H0517,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1905,1900,Maxixe Aristocrático,José Nunes (interpretes 1905: Pepa Delgado e Alfredo Silva),maxixe,,4,da revista Cá e Lá 1904; letra ironiza preconceito de classe contra o maxixe,alta,20,audio_confirmado_youtube_letra_nao_recuperada
+H0518,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1905,1900,Meu Assobio,Eustórgio Wanderley (interprete: Geraldo Magalhães),cançoneta,,5,gravada com assobio de Geraldo Magalhaes 1905,alta,20,audio_confirmado_youtube_letra_nao_recuperada_possivelmente_assobiada
+H0519,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1906,1900,Os Olhos Dela,Irineu de Almeida e Catulo da Paixao Cearense (interprete: Vicente Celestino),chótis,,1,sucesso instrumental que recebeu letra de Catulo; dezenas de gravacoes,alta,28,disponibilidade_confirmada
+H0520,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1906,1900,Sou Teu Escravo,Neco (Manoel Ferreira Capellani) (interprete: Mario Pinheiro),modinha,,2,,alta,28,audio_confirmado_youtube_letra_nao_recuperada
+H0521,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1906,1900,Vem Cá Mulata,Arquimedes de Oliveira e Bastos Tigre (interprete: Os Geraldos),tango-chula,,3,sucesso carnavalesco duradouro varios carnavais,alta,25,disponibilidade_confirmada_youtube
+H0522,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1906,1900,Três Estrelinhas (O Que Tu És),Anacleto de Medeiros e Catulo da Paixao Cearense (interprete: Rogério Duprat),polca,,4,sucesso instrumental que recebeu letra de Catulo,alta,28,disponibilidade_confirmada
+H0523,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1906,1900,Casinha Pequenina,autor desconhecido (atribuida a Bernardino Belém de Souza) (interprete: Silvio Caldas),modinha,,5,dezenas de gravacoes maior sucesso entre as modinhas,alta,25,disponibilidade_confirmada
+H0524,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1907,1900,Choro e Poesia (Ontem ao Luar),Pedro de Alcântara e Catulo da Paixao Cearense (interprete: Vicente Celestino),polca,,1,voltou a ser sucesso na decada de 1970 como Ontem ao Luar,alta,26,disponibilidade_confirmada
+H0525,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1907,1900,Iara (Rasga o Coração),Anacleto de Medeiros e Catulo da Paixao Cearense (interprete: Mario Pinheiro),chótis,,2,peca obrigatoria no repertorio de bandas; recebeu letra de Catulo,alta,26,disponibilidade_confirmada
+H0526,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1908,1900,Constelações,Cupertino de Menezes e Hermes Fontes,modinha,,1,tambem conhecida como Manhas de Abril,alta,28,audio_confirmado_youtube_letra_nao_recuperada
+H0527,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1908,1900,Fado Liró,Nicolino Milano,fado,,2,sucesso do carnaval de 1911 em ritmo de marcha,alta,28,audio_confirmado_youtube_letra_incerta_nao_usada
+H0528,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1909,1900,No Bico da Chaleira,Juca Storoni (João José da Costa Júnior),polca,,1,sucesso do carnaval de 1909 satirizando bajuladores do senador Pinheiro Machado,alta,27,disponibilidade_confirmada
+H0529,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1910,1900,Meu Casamento (Olhos de Veludo),Pedro Galdino e Gutenberg Cruz,chótis,,1,,alta,28,audio_confirmado_youtube_letra_nao_recuperada
+H0530,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1910,1900,Monteiro no Sarilho,Albertino Pimentel,polca,,2,peca instrumental (banda),alta,28,audio_confirmado_youtube_instrumental_provavel
+H0531,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1910,1900,Estela,Abdon Lira e Adelmar Tavares,modinha,,3,,alta,28,audio_confirmado_youtube_letra_nao_recuperada
+H0532,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1911,1910,Dor Suprema,J. F. de Almeida,valsa,,1,,alta,38,audio_confirmado_youtube_letra_nao_recuperada
+H0533,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1911,1910,O Sairá,José Rebelo da Silva e Antenor de Oliveira,marcha-rancho,,2,,alta,38,letra_e_audio_nao_recuperados
+H0534,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1911,1910,Sorrir Dormindo (Por Que Sorris),Juca Kalut (letra: Catulo da Paixao Cearense),valsa,,3,,alta,38,disponibilidade_confirmada
+H0535,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1912,1910,Ameno Resedá,Ernesto Nazareth,polca,,1,peca instrumental para piano,alta,38,disponibilidade_confirmada_instrumental
+H0536,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1912,1910,O Forrobodó,Chiquinha Gonzaga,tango,,2,tema da burleta Forrobodo maior sucesso teatral da epoca; letra nao aplicavel (peca de show com varios numeros),alta,39,disponibilidade_confirmada_youtube
+H0537,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1912,1910,Pudesse Esta Paixão,Chiquinha Gonzaga e Álvaro Colas,valsa,,3,valsa da burleta homonima de Alvaro Colas; provavelmente instrumental (baile),alta,39,disponibilidade_confirmada
+H0538,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1912,1910,Flor do Mal (Saudade Eterna),Santos Coelho e Domingos Correia,canção,,4,ganhou repercussao apos suicidio do letrista,alta,35,disponibilidade_confirmada_youtube
+H0539,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1913,1910,Caboca de Caxangá,Catulo da Paixão Cearense (melodia atribuida a João Pernambuco),batuque sertanejo,,1,sucesso que se estendeu ao carnaval de 1914,alta,35,disponibilidade_confirmada
+H0540,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1913,1910,Dengo Dengo,Emílio Duque Estrada Faria,polca,,2,,alta,39,letra_e_audio_nao_recuperados
+H0541,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1913,1910,Lágrimas e Risos,Eustórgio Wanderley e A. Tavares,valsa,,3,,alta,39,disponibilidade_confirmada_youtube
+H0542,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1913,1910,Bambino,Ernesto Nazareth,tango,,4,peca instrumental para piano,alta,39,disponibilidade_confirmada_instrumental
+H0543,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1913,1910,Subindo ao Céu,Aristides Borges,valsa,,5,obra prima que permanece no repertorio de interpretes; peca instrumental (valsa-choro),alta,36,disponibilidade_confirmada_instrumental
+H0544,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1914,1910,Moleque Vagabundo,Louro (Lourival de Carvalho),samba,,1,,alta,39,disponibilidade_confirmada_youtube_provavel_instrumental
+H0545,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1914,1910,São Paulo Futuro,Marcelo Tupinambá e Danton Vampré,maxixe,,2,tema da revista teatral homonima,alta,39,disponibilidade_confirmada_youtube_provavel_instrumental
+H0546,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1914,1910,Urubu Malandro (Samba do Urubu),autor desconhecido (variacoes por Louro; letra posterior de João de Barro),samba,,3,tema folclorico popularizado em disco,media,37,disponibilidade_confirmada_youtube
+H0547,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1915,1910,Ai Filomena,J. Carvalho Bulhões,marcha,,1,sucesso do carnaval de 1914 sobre melodia italiana Viva Garibaldi; satira politica,alta,39,disponibilidade_confirmada_youtube
+H0548,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1915,1910,Flor do Abacate,Álvaro Sandim e Felipe Tedesco,polca,,2,imortalizou o Rancho Flor do Abacate,alta,39,disponibilidade_confirmada
+H0549,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1915,1910,Os Que Sofrem (Valsa dos que Sofrem),Alfredo Gama e Armando Oliveira,valsa,,3,,alta,39,disponibilidade_confirmada_youtube_provavel_instrumental
+H0550,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1915,1910,Pierrô e Colombina,Oscar de Almeida (interpretacao: Eduardo das Neves),valsa,,4,sucesso nos carnavais de 1915 e 1916; tambem chamada O Despertar de Pierrot,alta,38,disponibilidade_confirmada_youtube
+H0551,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1916,1910,O Meu Boi Morreu,autor desconhecido (interpretes: Eduardo das Neves e Bahiano),toada,,1,,alta,39,disponibilidade_confirmada_youtube
+H0552,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1917,1910,Franqueza Rude,Belchior da Silveira (Caramuru) e João B. Fittipaldi,modinha,,1,,alta,55,audio_confirmado_youtube_letra_nao_recuperada
+H0553,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1917,1910,Viola Cantadeira,Marcelo Tupinambá e Arlindo Leal,tanguinho,,2,tema da revista Cenas da Roca,alta,55,audio_confirmado_youtube_letra_nao_recuperada
+H0554,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1917,1910,Maricota Sai da Chuva,Marcelo Tupinambá e Arlindo Leal,tanguinho,,3,tema da revista Cenas da Roca,alta,55,disponibilidade_confirmada_youtube
+H0555,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1918,1910,O Boi no Telhado,José Monteiro,tango,,1,,alta,55,audio_confirmado_youtube_letra_nao_recuperada
+H0556,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1918,1910,A Baratinha,Mário de São João Rabelo,marcha,,2,sucesso do carnaval de 1918,alta,55,disponibilidade_confirmada_youtube
+H0557,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1918,1910,O Matuto,Marcelo Tupinambá e Cândido Costa,cateretê,,3,um dos maiores sucessos do estilizador da musica rural paulista,alta,53,disponibilidade_confirmada_youtube
+H0558,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1919,1910,Seu Derfim Tem que Vortá,Eduardo Souto e Norberto Bittencourt,maxixe,,1,satira politica ao entao vice-presidente Delfim Moreira,alta,55,letra_e_audio_nao_recuperados
+H0559,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1919,1910,Tristeza de Caboclo,Marcelo Tupinambá e Arlindo Leal,tanguinho,,2,tema da revista Cenas da Roca/Flor do Sertao,alta,55,audio_confirmado_deezer_letra_nao_recuperada
+H0560,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1919,1910,A Rolinha do Sertão,J. Rezende e Mirandela,samba/carnaval,,3,,alta,55,audio_confirmado_youtube_letra_nao_recuperada
+H0561,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1919,1910,O Despertar da Montanha,Eduardo Souto,tango de salão,,4,peca essencial do repertorio pianistico brasileiro; originalmente instrumental (letra posterior de Francisco Pimentel nao localizada),alta,53,disponibilidade_confirmada_provavel_instrumental
+H0562,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1920,1920,Alivia Esses Olhos (Eu Queria Saber O Que É),Sinhô (e Heitor dos Prazeres),samba,,1,,alta,55,audio_confirmado_deezer_letra_nao_recuperada
+H0563,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1921,1920,Ai Amor,Freire Júnior,marcha/carnaval,,1,sucesso da revista Reco Reco 1920-1921,alta,64,disponibilidade_confirmada_youtube
+H0564,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1921,1920,Do Sorriso da Mulher Nasceram as Flores,Eduardo Souto,tango de salão,,2,,alta,64,disponibilidade_confirmada
+H0565,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1921,1920,Mimosa,Leopoldo Fróes,canção,,3,derivada da peca teatral A Mimosa; gravada por Beniamino Gigli no Rio em 1951,alta,64,disponibilidade_confirmada
+H0566,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1921,1920,Paixão de Artista,Eduardo Souto,canção,,4,burleta com libreto de Soares Junior e Tapajos Gomes; dueto Vicente Celestino e Lais Areda 1922,alta,64,disponibilidade_confirmada_youtube
+H0567,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1921,1920,Esta Nega Qué Me Dá,Caninha e Lezute,samba/carnaval,,5,sucesso do carnaval de 1921 por titulo de duplo sentido,alta,61,disponibilidade_confirmada_youtube
+H0568,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1922,1920,Ai Seu Mé,Freire Júnior e Careca,marcha/carnaval,,1,maior sucesso do carnaval de 1922 satira politica a Artur Bernardes; compositor preso pela satira,alta,61,disponibilidade_confirmada_youtube
+H0569,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1922,1920,Luar de Paquetá,Freire Júnior e Hermes Fontes,tango-fado,,2,deu nome a revista teatral homonima,alta,62,disponibilidade_confirmada
+H0570,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1922,1920,Tristezas do Jeca,Angelino de Oliveira,toada-paulista,,3,um dos maiores classicos da musica sertaneja; nasceu em Botucatu 1918 popularizou-se em 1922,alta,62,disponibilidade_confirmada_youtube
+H0571,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1923,1920,Cabeça Inchada,Sinhô,marcha,,1,,alta,65,disponibilidade_confirmada_youtube
+H0572,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1923,1920,Caiubi (Canção da Cabocla Bonita),Pedro de Sá Pereira,canção,,2,,alta,65,disponibilidade_confirmada_youtube
+H0573,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1924,1920,O Casaco da Mulata,Careca,samba/carnaval,,1,numero 1 do carnaval de 1924,alta,65,disponibilidade_confirmada_youtube
+H0574,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1924,1920,Ave Maria,Erotides de Campos,valsa,,2,primeira Ave Maria de sucesso na musica popular brasileira; publicada sob pseudonimo Jonas Neves,alta,63,disponibilidade_confirmada_youtube
+H0575,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1924,1920,Fubá,Romeu Silva,maxixe,,3,"composto sobre motivo popular; peca instrumental (maxixe de jazz band, regravada por Jacob do Bandolim em 1959, sem letra registrada)",alta,65,disponibilidade_confirmada_instrumental
+H0576,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1924,1920,O Cigano,Marcelo Tupinambá e João do Sul (Gastão Barroso),foxe-canção,,4,fez sucesso em 1924 e revivido 22 anos depois,alta,64,disponibilidade_confirmada_youtube
+H0577,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1925,1920,Chuá Chuá,Pedro de Sá Pereira e Ari Pavão,canção,,1,composta para revista Comidas Meu Santo 1925,alta,71,disponibilidade_confirmada_youtube
+H0578,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1926,1920,Zizinha,José Francisco de Freitas Carlos Bittencourt e Cardozo de Menezes,marcha/carnaval,,1,maior sucesso do carnaval de 1926 (lancada em 1925),alta,72,disponibilidade_confirmada_youtube
+H0579,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1926,1920,Amor Sem Dinheiro,Sinhô,samba,,2,,alta,75,disponibilidade_confirmada_youtube
+H0580,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1926,1920,Café Com Leite,Freire Júnior,maxixe/carnaval,,3,tema da peca teatral homonima sobre a politica cafe-com-leite,alta,75,disponibilidade_confirmada_youtube
+H0581,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1926,1920,Eu Vi Lili,José Francisco de Freitas,marcha/carnaval,,4,,alta,75,audio_confirmado_youtube_letra_nao_recuperada
+H0582,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1926,1920,Luar do Sul,Zeca Ivo e J. Carneiro Ribas,canção,,5,cancao gaucha,alta,75,audio_confirmado_youtube_letra_nao_recuperada
+H0583,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1927,1920,Morro de Mangueira,Manoel Dias,samba/carnaval,,1,,alta,75,audio_confirmado_youtube_letra_nao_recuperada
+H0584,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1927,1920,Braço de Cera,Nestor Brandão,samba/carnaval,,2,,alta,75,audio_confirmado_youtube_letra_nao_recuperada
+H0585,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1927,1920,Rapaziada do Brás,Alberto Marino,valsa-choro,,3,tornou-se conhecida no final da decada de 1920,alta,73,audio_confirmado_itunes_letra_nao_recuperada
+H0586,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1930,1930,Na Pavuna,Homero Dornelas e Almirante,samba/carnaval,,1,preferida do publico no carnaval de 1930; marco tecnico primeira gravacao eletrica com percussao no Brasil,alta,98,disponibilidade_confirmada_youtube
+H0587,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1930,1930,Pra Você Gostar de Mim (Taí),Joubert de Carvalho,marcha/carnaval,,2,sucesso o ano todo lancou Carmen Miranda,alta,98,disponibilidade_confirmada
+H0588,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1952,1950,Alguém Como Tu,José Maria de Abreu e Jair Amorim,samba-canção,,1,uma das musicas mais executadas de 1952; voltou a fazer sucesso em 1991 em telenovela,alta,289,disponibilidade_confirmada
+H0589,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1952,1950,Baião Caçula,Mário Gennari Filho,baião,,2,teve quatro gravacoes so em 1952; peca instrumental (confirmado pela propria fonte),alta,289,disponibilidade_confirmada_instrumental
+H0590,Fase5_1901-1957,A Cancao no Tempo Vol.1 (Severiano e Zuza),1952,1950,Kalu,Humberto Teixeira,baião,,3,maior sucesso individual de Teixeira apos separacao de Luiz Gonzaga,alta,289,disponibilidade_confirmada

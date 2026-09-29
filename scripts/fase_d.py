@@ -64,10 +64,13 @@ def main() -> None:
         ("LF2 léxico (letra)",   ["lf2_A"], "A_letra", "A"),
         ("LF3 LLM (letra)",      ["lf3_V"], "V_letra", "V"),
         ("LF3 LLM (letra)",      ["lf3_A"], "A_letra", "A"),
-        ("FUSÃO letra (LF2+LF3)", ["lf2_V", "lf3_V"], "V_letra", "V"),
-        ("FUSÃO letra (LF2+LF3)", ["lf2_A", "lf3_A"], "A_letra", "A"),
-        ("FUSÃO completa (LF1+2+3)", ["lf1_V", "lf2_V", "lf3_V"], "V_completa", "V"),
-        ("FUSÃO completa (LF1+2+3)", ["lf1_A", "lf2_A", "lf3_A"], "A_completa", "A"),
+        # LF2 (léxico ANEW-Br) fica FORA da fusão por decisão do Felipe (viés de
+        # positividade estrutural, documentado — ver docs/preparacao_orientacao.md
+        # §5). Ela continua reportada sozinha acima só para registrar esse achado
+        # no artigo; a fusão de letra passa a ser a própria LF3 (por isso não há
+        # mais uma linha "FUSÃO letra" separada — seria idêntica à LF3 sozinha).
+        ("FUSÃO completa (LF1+LF3)", ["lf1_V", "lf3_V"], "V_completa", "V"),
+        ("FUSÃO completa (LF1+LF3)", ["lf1_A", "lf3_A"], "A_completa", "A"),
     ]
     for nome, cols, ycol, dim in plan:
         c, w, n = oos(df, cols, ycol)
@@ -84,11 +87,11 @@ def main() -> None:
     for dim in ("V", "A"):
         cal_a, w_a = fit_channel(df[[f"lf1_{dim}"]].to_numpy(float),
                                  df[f"{dim}_audio"].to_numpy(float))
-        cal_l, w_l = fit_channel(df[[f"lf2_{dim}", f"lf3_{dim}"]].to_numpy(float),
+        # Canal letra = só LF3 (LF2 excluída da fusão por decisão do Felipe).
+        cal_l, w_l = fit_channel(df[[f"lf3_{dim}"]].to_numpy(float),
                                  df[f"{dim}_letra"].to_numpy(float))
         est[f"{dim}_audio_hat"] = apply_channel(cal_a, w_a, df[[f"lf1_{dim}"]].to_numpy(float))
-        est[f"{dim}_letra_hat"] = apply_channel(cal_l, w_l,
-                                                df[[f"lf2_{dim}", f"lf3_{dim}"]].to_numpy(float))
+        est[f"{dim}_letra_hat"] = apply_channel(cal_l, w_l, df[[f"lf3_{dim}"]].to_numpy(float))
     E = pd.DataFrame(est, index=df.index)
     E["Dv_hat"] = E["V_letra_hat"] - E["V_audio_hat"]
     E["Da_hat"] = E["A_letra_hat"] - E["A_audio_hat"]

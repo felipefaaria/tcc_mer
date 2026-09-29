@@ -1,0 +1,38 @@
+id,eixo,regiao,genero_macro_ou_ritmo,decada,popularidade_tier,interprete,compositor,autoral,faixa,ano_aprox,instrumental,genius_status,deezer_status
+MPB10,generalista,,MPB,1960s,canonico,Chico Buarque,Chico Buarque,sim,A Banda,1966,False,ok,ok_deezer
+MPB11,generalista,,MPB,1960s,canonico,Caetano Veloso,Caetano Veloso,sim,Alegria Alegria,1967,False,ok,ok_deezer
+MPB12,generalista,,MPB,1970s,canonico,Tom Jobim,Tom Jobim,sim,Águas de Março,1972,False,ok,ok_deezer
+MPB13,generalista,,MPB,1960s,canonico,Chico Buarque,Chico Buarque,sim,A Banda,1966,False,ok,ok_deezer
+MPB14,generalista,,MPB,1960s,canonico,Caetano Veloso,Caetano Veloso,sim,Alegria Alegria,1967,False,ok,ok_deezer
+MPB15,generalista,,MPB,1970s,canonico,Tom Jobim,Tom Jobim,sim,Águas de Março,1972,False,ok,ok_deezer
+MPB16,generalista,,MPB,1980s,canonico,Djavan,Djavan,sim,Flor de Lis,1976,False,ok,ok_deezer
+MPB17,generalista,,MPB,1990s,canonico,Marisa Monte,"Marisa Monte, Arnaldo Antunes e Arto Lindsay",sim,Beija Eu,1994,False,ok,ok_deezer
+MPB18,generalista,,MPB,2010s,canonico,Tim Bernardes,Tim Bernardes,sim,Recomeçar,2017,False,ok,ok_deezer
+SAM06,generalista,,Samba,1930s,canonico,Noel Rosa,Noel Rosa (letra) e Vadico (melodia),sim,Conversa de Botequim,1935,False,ok,ok_deezer
+SAM07,generalista,,Samba,1970s,canonico,Cartola,Cartola,sim,As Rosas Não Falam,1976,False,ok,ok_deezer
+SAM08,generalista,,Samba,1970s,canonico,Paulinho da Viola,Paulinho da Viola (fontes divergem sobre coautoria de Maestro Gaya),sim,Foi um Rio que Passou em Minha Vida,1969-1970,False,ok,ok_deezer
+SAM09,generalista,,Samba,1970s,canonico,Martinho da Vila,Martinho da Vila,sim,Canta Canta Minha Gente,1974,False,ok,ok_deezer
+SAM10,generalista,,Samba,1990s,canonico,Jorge Aragão,Jorge Aragão e Luiz Carlos da Vila,sim,Reflexão,1990,False,ok,ok_deezer
+SER04,generalista,,Sertanejo,1970s,canonico,Milionário e José Rico,José Rico (Milionário não compõe),parcial,Estrada da Vida,1977,False,ok,ok_deezer
+SER05,generalista,,Sertanejo,1990s,canonico,Chitãozinho e Xororó,José Augusto e Paulo Sérgio Valle,não,Evidências,1990,False,ok,ok_deezer
+SER06,generalista,,Sertanejo,2010s,canonico,Marília Mendonça,Marília Mendonça (uma fonte cita coautoria de Juliano Tchula),sim,Infiel,2015,False,ok,ok_deezer
+FOR03,generalista,,Forró,1970s,canonico,Dominguinhos,Dominguinhos e Anastácia,sim,Eu Só Quero um Xodó,"incerto (1962 ou 1973/74, fontes divergem)",False,ok,ok_deezer
+FOR04,generalista,,Forró,2000s,canonico,Falamansa,"Ricardo Ramos da Cruz ('Tato', vocalista/membro da banda)",sim,Xote dos Milagres,2000,False,ok,ok_deezer
+FNK03,generalista,,Funk carioca,1990s,canonico,MC Marcinho,MC Marcinho,sim,Glamurosa,"incerto (1997 ou 2002, fontes divergem)",False,ok,ok_deezer
+RAP02,generalista,,Rap nacional,1990s,canonico,Racionais MC's,Mano Brown e Jocenir (Josemir Prado),sim,Diário de um Detento,1997,False,ok,ok_deezer
+RAP03,generalista,,Rap nacional,2010s,canonico,Emicida,Emicida,sim,Boa Esperança,2015,False,ok,ok_deezer
+ROC06,generalista,,Rock brasileiro,1970s,canonico,Raul Seixas,Raul Seixas e Cláudio Roberto,sim,Maluco Beleza,1977 (álbum) / 1978 (single),False,ok,ok_deezer
+ROC07,generalista,,Rock brasileiro,1980s,canonico,Legião Urbana,Renato Russo,sim,Que País É Este,1978 (composta) / 1987 (lançada),False,ok,ok_deezer
+ROC08,generalista,,Rock brasileiro,1980s,canonico,Titãs,"Arnaldo Antunes, Marcelo Fromer e Sérgio Britto (membros da banda)",sim,Comida,1987,False,ok,ok_deezer
+AXE03,generalista,,Axé,1990s,canonico,Daniela Mercury,Daniela Mercury e Tote Gira,parcial,O Canto da Cidade,1992,False,ok,ok_deezer
+AXE04,generalista,,Axé,1990s,canonico,Carlinhos Brown,Carlinhos Brown,sim,A Namorada,1996,False,ok,ok_deezer
+BOS05,generalista,,Bossa nova,1950s,canonico,Tom Jobim e Vinícius de Moraes,Tom Jobim (música) e Vinícius de Moraes (letra),sim,Chega de Saudade,1956 (composta) / 1958 (lançada),False,ok,ok_deezer
+PAG06,generalista,,Pagode,1980s,canonico,Fundo de Quintal,"Arlindo Cruz, Luiz Carlos da Vila e Sombrinha (integrantes do grupo)",sim,O Show Tem Que Continuar,1988,False,ok,ok_deezer
+PAG07,generalista,,Pagode,2010s,canonico,Thiaguinho,"Rodriguinho, Thiaguinho e Gabriel Barriga",sim,Vamo Que Vamo,2016,False,ok,ok_deezer
+FRV01,regional,Nordeste,Frevo,1950s,canonico,Nelson Ferreira (frevo-de-bloco; gravado por Batutas de São José),Nelson Ferreira,sim,Evocação Nº 1,1957,True,instrumental (sem busca),ok_deezer
+MAN01,regional,Nordeste,Maracatu / manguebeat,1990s,canonico,Chico Science e Nação Zumbi,Chico Science,sim,Da Lama ao Caos,1994,False,ok,ok_deezer
+REP01,regional,Nordeste,Repente / cordel,tradicional,canonico,Luiz Gonzaga (intérprete/melodia),Patativa do Assaré (letra) e Luiz Gonzaga (melodia),parcial,Triste Partida,1964,False,ok,ok_deezer
+GAU01,regional,Sul,Música gaúcha tradicionalista,1960s,canonico,Teixeirinha,Teixeirinha,sim,Coração de Luto,1961,False,ok,ok_deezer
+VAN01,regional,Sul,Vanerão / milonga campeira,contemporaneo,provavel,Renato Borghetti,"Renato Borghetti (provável, não 100% confirmado por fonte)",provavel,Milonga para as Missões,1990,True,instrumental (sem busca),ok_deezer
+BOI01,regional,Norte,Toada de boi-bumbá,1990s,canonico,Carrapicho (versão popularizada) / boi Garantido (origem),Braulino Lima,sim,Tic Tic Tac,1993 (composição) / 1996 (sucesso via Carrapicho),False,ok,ok_deezer
+PAN01,regional,Centro-Oeste,Toada / rasqueado pantaneiro,1990s,canonico,Almir Sater e Renato Teixeira,Almir Sater e Renato Teixeira,sim,Tocando em Frente,1990,False,ok,ok_deezer

@@ -19,3 +19,9 @@ pytest>=7.0
 # Fase C (estímulos):
 #   librosa          # análise de áudio para corte de excertos
 #   (ffmpeg via sistema, não pip)
+# Extração do corpus expandido (scripts/extrair_corpus.py):
+#   requests             # já costuma vir transitivo, mas declarado explícito aqui
+#   beautifulsoup4       # parse da página de letra do Genius
+#   python-dotenv        # carrega .env (GENIUS_ACCESS_TOKEN/ANTHROPIC_API_KEY) sem precisar de setx
+# LF3 via Anthropic (scripts/gerar_lf3_anthropic.py, scripts/avaliar_modelos_anthropic.py):
+#   anthropic            # SDK oficial; chave em ANTHROPIC_API_KEY

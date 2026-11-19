@@ -1,107 +1,84 @@
-"""Concordância entre anotadores — alfa de Krippendorff (nível intervalar).
+"""Concordância entre anotadores: alfa de Krippendorff intervalar.
 
-Quando vários humanos anotam a mesma faixa, precisamos saber se concordam —
-senão o gold não é ouro. O alfa de Krippendorff corrige o acaso, funciona com
-dados contínuos, múltiplos anotadores e valores faltantes (ideal para o desenho
-de sobreposição parcial da coleta).
+O alfa corrige o acaso e aceita dados contínuos, vários anotadores e valores
+faltantes (o desenho do gold set tem sobreposição parcial). Calcule uma vez por
+dimensão: valência e arousal nunca entram na mesma matriz.
 
-Calcular **separadamente** para Valência e Arousal (chamadas distintas) — nunca
-combinar as dimensões. Espere alfa menor em Valência que em Arousal: isso é
-*resultado*, não fracasso.
+Implementação pela matriz de coincidências, com diferença intervalar
+``δ²(c, k) = (c - k)²``::
 
-Implementação pela matriz de coincidências, com a função de diferença intervalar
-δ²(c,k) = (c-k)²:
-
-    Do = (1/n) · Σ_u [ 1/(m_u-1) · Σ_{i≠j} (x_ui - x_uj)² ]
-    De = (1/(n·(n-1))) · Σ_{i,j∈pool} (P_i - P_j)²
+    Do = (1/n) · Σ_u [ 1/(m_u - 1) · Σ_{i≠j} (x_ui - x_uj)² ]
+    De = (1/(n·(n - 1))) · Σ_{i,j ∈ pool} (P_i - P_j)²
     α  = 1 - Do/De
 
-onde n = Σ_u m_u sobre unidades com ≥2 valores válidos, e ``pool`` é a lista de
-todos os valores emparelháveis.
+em que ``n = Σ_u m_u`` sobre as unidades com pelo menos dois valores e ``pool`` é
+a lista de todos os valores emparelháveis.
 """
-from __future__ import annotations
 
 import numpy as np
 
 __all__ = ["krippendorff_alpha", "alpha_leave_one_out"]
 
 
-def _pair_sum_sq(vals: np.ndarray) -> float:
-    """Σ_{i≠j} (x_i - x_j)² = 2·(m·Σx² - (Σx)²) para um vetor ``vals``."""
-    m = vals.size
-    s = vals.sum()
-    ss = (vals * vals).sum()
-    return 2.0 * (m * ss - s * s)
+def _pair_sum_sq(values: np.ndarray) -> float:
+    """``Σ_{i≠j} (x_i - x_j)² = 2·(m·Σx² - (Σx)²)``."""
+    m = values.size
+    return 2.0 * (m * (values * values).sum() - values.sum() ** 2)
 
 
 def krippendorff_alpha(ratings: np.ndarray) -> float:
-    """Alfa de Krippendorff intervalar para uma matriz de avaliações.
+    """Alfa de Krippendorff intervalar.
 
     Args:
         ratings: matriz ``(n_faixas, n_anotadores)`` com ``NaN`` para ausência.
-            Cada linha é uma faixa (unidade); cada coluna, um anotador.
 
     Returns:
-        Alfa em (-∞, 1]. ``1.0`` = concordância perfeita; ``0`` = nível do acaso.
-        Retorna ``nan`` se não houver unidades emparelháveis (≥2 valores) ou se o
-        desacordo esperado for zero (todos os valores idênticos).
-
-    Notas:
-        Chame uma vez para Valência e outra para Arousal — nunca misture as
-        dimensões numa mesma matriz.
+        Alfa em (-∞, 1]: 1 é concordância perfeita e 0, o nível do acaso. Retorna
+        ``nan`` sem unidades emparelháveis ou quando o desacordo esperado é zero.
     """
     ratings = np.asarray(ratings, dtype=float)
     if ratings.ndim != 2:
         raise ValueError("ratings deve ser 2-D (n_faixas, n_anotadores)")
 
-    do_num = 0.0
+    observed_numerator = 0.0
     n = 0
     pool: list[np.ndarray] = []
     for row in ratings:
-        vals = row[~np.isnan(row)]
-        m = vals.size
-        if m >= 2:
-            do_num += _pair_sum_sq(vals) / (m - 1)
-            n += m
-            pool.append(vals)
+        values = row[~np.isnan(row)]
+        if values.size >= 2:
+            observed_numerator += _pair_sum_sq(values) / (values.size - 1)
+            n += values.size
+            pool.append(values)
 
     if n < 2:
         return float("nan")
 
-    do = do_num / n
-    pooled = np.concatenate(pool)
-    de_num = _pair_sum_sq(pooled)  # Σ_{i,j} (P_i - P_j)²
-    de = de_num / (n * (n - 1))
-    if de == 0:
+    observed = observed_numerator / n
+    expected = _pair_sum_sq(np.concatenate(pool)) / (n * (n - 1))
+    if expected == 0:
         return float("nan")
-    return float(1.0 - do / de)
+    return float(1.0 - observed / expected)
 
 
-def alpha_leave_one_out(
-    ratings: np.ndarray, annotator_ids: list[str]
-) -> dict[str, float]:
-    """Recalcula o alfa excluindo cada anotador (uma coluna) por vez.
+def alpha_leave_one_out(ratings: np.ndarray, annotator_ids: list[str]) -> dict[str, float]:
+    """Alfa recalculado sem cada anotador (uma coluna por vez).
 
-    Um salto grande no alfa ao remover alguém sinaliza um outlier a investigar —
-    é uma das camadas do QC de anotadores. Nunca excluir por discordância pura;
-    este é apenas um sinal de diagnóstico.
+    Um salto grande ao remover alguém sinaliza um anotador a investigar. Serve de
+    diagnóstico, nunca de critério de exclusão por discordância.
 
     Args:
         ratings: matriz ``(n_faixas, n_anotadores)`` com ``NaN`` para ausência.
-        annotator_ids: rótulos das colunas, ``len == n_anotadores``.
+        annotator_ids: rótulos das colunas.
 
     Returns:
-        ``{pid: alfa_sem_esse_pid}`` para cada anotador.
+        ``{id: alfa_sem_esse_anotador}``.
     """
     ratings = np.asarray(ratings, dtype=float)
     if ratings.ndim != 2:
         raise ValueError("ratings deve ser 2-D (n_faixas, n_anotadores)")
     if len(annotator_ids) != ratings.shape[1]:
-        raise ValueError(
-            f"annotator_ids ({len(annotator_ids)}) != n colunas ({ratings.shape[1]})"
-        )
-    out: dict[str, float] = {}
-    for j, pid in enumerate(annotator_ids):
-        reduced = np.delete(ratings, j, axis=1)
-        out[pid] = krippendorff_alpha(reduced)
-    return out
+        raise ValueError(f"annotator_ids ({len(annotator_ids)}) != n colunas ({ratings.shape[1]})")
+    return {
+        annotator: krippendorff_alpha(np.delete(ratings, j, axis=1))
+        for j, annotator in enumerate(annotator_ids)
+    }

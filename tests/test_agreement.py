@@ -1,17 +1,20 @@
-"""Testes de src/agreement.py — alfa de Krippendorff intervalar + leave-one-out."""
+"""Testes de tcc_mer/agreement.py: alfa de Krippendorff intervalar e leave-one-out."""
+
 import numpy as np
 import pytest
 
-from src.agreement import alpha_leave_one_out, krippendorff_alpha
+from tcc_mer.agreement import alpha_leave_one_out, krippendorff_alpha
 
 
 def test_concordancia_perfeita_alpha_1():
     """Todas as colunas idênticas => alfa = 1."""
-    ratings = np.array([
-        [1.0, 1.0, 1.0],
-        [2.0, 2.0, 2.0],
-        [3.0, 3.0, 3.0],
-    ])
+    ratings = np.array(
+        [
+            [1.0, 1.0, 1.0],
+            [2.0, 2.0, 2.0],
+            [3.0, 3.0, 3.0],
+        ]
+    )
     assert krippendorff_alpha(ratings) == pytest.approx(1.0)
 
 
@@ -24,10 +27,12 @@ def test_valor_conhecido_hand_computed():
       De = 40/(6·5) = 4/3
       α  = 1 - (1/3)/(4/3) = 1 - 1/4 = 0.75
     """
-    ratings = np.array([
-        [1.0, 1.0, 1.0],
-        [2.0, 2.0, 3.0],
-    ])
+    ratings = np.array(
+        [
+            [1.0, 1.0, 1.0],
+            [2.0, 2.0, 3.0],
+        ]
+    )
     assert krippendorff_alpha(ratings) == pytest.approx(0.75, abs=1e-9)
 
 
@@ -39,12 +44,14 @@ def test_uma_unidade_so_alpha_0():
 
 def test_missing_values_sobreposicao_parcial():
     """NaN (ausência) é tolerado; unidades com <2 valores são ignoradas."""
-    ratings = np.array([
-        [1.0, 1.0, np.nan],
-        [2.0, np.nan, 2.0],
-        [3.0, 3.0, 3.0],
-        [4.0, np.nan, np.nan],  # ignorada (só 1 valor)
-    ])
+    ratings = np.array(
+        [
+            [1.0, 1.0, np.nan],
+            [2.0, np.nan, 2.0],
+            [3.0, 3.0, 3.0],
+            [4.0, np.nan, np.nan],  # ignorada (só 1 valor)
+        ]
+    )
     a = krippendorff_alpha(ratings)
     assert a == pytest.approx(1.0)  # onde há pares, concordam perfeitamente
 
@@ -72,12 +79,14 @@ def test_valencia_e_arousal_sao_chamadas_separadas():
 def test_leave_one_out_detecta_outlier():
     """Remover um anotador destoante deve elevar bastante o alfa."""
     # 2 anotadores concordam, o 3º é ruído invertido.
-    ratings = np.array([
-        [1.0, 1.1, 3.0],
-        [2.0, 2.0, 1.0],
-        [3.0, 2.9, 1.0],
-        [4.0, 4.1, 2.0],
-    ])
+    ratings = np.array(
+        [
+            [1.0, 1.1, 3.0],
+            [2.0, 2.0, 1.0],
+            [3.0, 2.9, 1.0],
+            [4.0, 4.1, 2.0],
+        ]
+    )
     ids = ["A", "B", "C"]
     loo = alpha_leave_one_out(ratings, ids)
     base = krippendorff_alpha(ratings)

@@ -1,18 +1,18 @@
-"""Testes de src/metrics.py — CCC, MAE/RMSE, quadrantes, bootstrap.
+"""Testes de tcc_mer/metrics.py: CCC, MAE/RMSE, acerto de quadrante e bootstrap.
 
 Inclui o teste que motiva a escolha do CCC: sob viés de deslocamento, a Pearson
 continua alta enquanto o CCC cai (o CCC pune o viés que a Pearson ignora).
 """
+
 import numpy as np
 import pytest
 
-from src.metrics import (
+from tcc_mer.metrics import (
     bootstrap_ci,
     ccc,
     mae,
     quadrant_accuracy,
     quadrant_f1_macro,
-    quadrant_from_va,
     rmse,
 )
 
@@ -31,8 +31,8 @@ def test_ccc_igual_1_quando_identico():
 def test_ccc_menor_que_pearson_sob_vies():
     """CCC ≠ Pearson: com deslocamento de média, Pearson=1 mas CCC<1.
 
-    Este é o caso que justifica usar CCC em vez de Pearson (PP1). y = x + 0.3:
-    forma perfeitamente correlacionada, mas sistematicamente deslocada.
+    Este é o caso que justifica usar CCC em vez de Pearson. Com y = x + 0.3,
+    a forma é perfeitamente correlacionada, mas sistematicamente deslocada.
     """
     x = np.array([-1.0, -0.5, 0.0, 0.5, 1.0])
     y = x + 0.3  # viés de deslocamento puro
@@ -49,7 +49,7 @@ def test_ccc_valor_conhecido():
     b = 0.3
     y = x + b
     var = x.var()  # populacional
-    esperado = 2 * var / (2 * var + b ** 2)
+    esperado = 2 * var / (2 * var + b**2)
     assert ccc(x, y) == pytest.approx(esperado)
 
 
@@ -63,8 +63,7 @@ def test_ccc_ignora_nan_pareado():
     x = np.array([-1.0, np.nan, 0.5, 1.0])
     y = np.array([-1.0, 0.3, 0.5, 1.0])
     # deve equivaler a remover o par com NaN
-    assert ccc(x, y) == pytest.approx(ccc(np.array([-1.0, 0.5, 1.0]),
-                                          np.array([-1.0, 0.5, 1.0])))
+    assert ccc(x, y) == pytest.approx(ccc(np.array([-1.0, 0.5, 1.0]), np.array([-1.0, 0.5, 1.0])))
 
 
 def test_ccc_poucos_pares_retorna_nan():
@@ -84,23 +83,6 @@ def test_rmse_penaliza_outlier_mais_que_mae():
     assert rmse(x, y) > mae(x, y)
 
 
-def test_quadrantes():
-    assert quadrant_from_va(0.5, 0.5) == "Q1"
-    assert quadrant_from_va(-0.5, 0.5) == "Q2"
-    assert quadrant_from_va(-0.5, -0.5) == "Q3"
-    assert quadrant_from_va(0.5, -0.5) == "Q4"
-
-
-def test_quadrante_bordas_zero_positivo():
-    """Convenção: 0 conta como positivo."""
-    assert quadrant_from_va(0.0, 0.0) == "Q1"
-    assert quadrant_from_va(0.0, -0.1) == "Q4"
-
-
-def test_quadrante_nan_vazio():
-    assert quadrant_from_va(np.nan, 0.5) == ""
-
-
 def test_quadrant_accuracy_perfeita():
     v = np.array([0.5, -0.5, -0.5, 0.5])
     a = np.array([0.5, 0.5, -0.5, -0.5])
@@ -109,9 +91,9 @@ def test_quadrant_accuracy_perfeita():
 
 def test_quadrant_accuracy_metade():
     vt = np.array([0.5, 0.5])
-    at = np.array([0.5, 0.5])   # ambos Q1
+    at = np.array([0.5, 0.5])  # ambos Q1
     vp = np.array([0.5, -0.5])
-    ap = np.array([0.5, 0.5])   # Q1, Q2
+    ap = np.array([0.5, 0.5])  # Q1, Q2
     assert quadrant_accuracy(vt, at, vp, ap) == pytest.approx(0.5)
 
 
@@ -135,8 +117,7 @@ def test_bootstrap_ci_ccc_pareado():
     x = rng.normal(0, 0.5, size=100)
     y = x + rng.normal(0, 0.1, size=100)
     m = np.column_stack([x, y])
-    lo, hi = bootstrap_ci(m, lambda mm: ccc(mm[:, 0], mm[:, 1]),
-                          n_boot=800, seed=3)
+    lo, hi = bootstrap_ci(m, lambda mm: ccc(mm[:, 0], mm[:, 1]), n_boot=800, seed=3)
     assert 0.0 < lo <= hi <= 1.0
 
 

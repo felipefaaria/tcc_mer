@@ -1,53 +1,39 @@
-# Ambiente Docker da LF1 (áudio / Music2Emo) — ISOLADO e pesado.
-# Usa Python 3.10 (a versão em que o Music2Emo foi desenvolvido), então nada aqui
-# depende do Python do seu Windows. Nosso repo de análise nunca importa isto:
-# o container só produz o arquivo data/outputs/lf1_raw.csv.
+# Ambiente da LF1 (áudio, Music2Emo): isolado e pesado.
+# Usa Python 3.10, a versão em que o Music2Emo foi desenvolvido. O repositório de análise
+# nunca importa isto: o container só produz data/outputs/lf1_raw.csv.
 
 FROM python:3.10-slim
 
-# Libs de sistema: git (uma dependência vem de git+), ffmpeg (decodifica mp3),
-# libsndfile1 (librosa), build-essential (compila deps que não tenham wheel).
+# git (uma dependência vem de git+), ffmpeg (decodifica mp3), libsndfile1 (librosa) e
+# build-essential (compila dependências sem wheel).
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git ffmpeg libsndfile1 build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Clona o Music2Emo.
 RUN git clone https://github.com/AMAAI-Lab/Music2Emotion.git
 
-# Instala o torch/torchaudio na variante CPU ANTES do resto. Isso evita ~2 GB de
-# wheels CUDA (nvidia-*-cu12) que o torch do PyPI padrão puxaria — inúteis num
-# laptop CPU-only e onde um download corrompido quebrou o build. Com o torch já
-# satisfeito, o requirements.txt abaixo não rebaixará a versão CUDA.
-# --extra-index-url (fallback no PyPI normal): sem isso, o pip às vezes decide
-# compilar uma dependência transitiva (ex. typing_extensions) a partir do
-# código-fonte por causa de um mismatch de maiúsculas/minúsculas no nome do
-# pacote — e o build precisa do flit_core, que não existe no índice restrito
-# do PyTorch. Achado ao reconstruir a imagem depois de ~1,5 mês (deriva da
-# imagem-base python:3.10-slim).
+# torch e torchaudio na variante CPU ANTES do resto: o torch padrão do PyPI puxaria ~2 GB
+# de wheels CUDA inúteis num computador sem GPU. Com o torch já instalado, o
+# requirements.txt do Music2Emo não o troca. O --extra-index-url cai no PyPI normal para
+# dependências que o índice da PyTorch não tem (sem ele, o pip pode tentar compilar
+# typing_extensions do código-fonte).
 RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu \
         --extra-index-url https://pypi.org/simple/ \
         torch==2.3.1 torchaudio==2.3.1
 
-# Demais dependências pinadas do Music2Emo (MERT via transformers, librosa, etc.).
 RUN pip install --no-cache-dir -r Music2Emotion/requirements.txt
 
-# (Opcional) pré-baixar o checkpoint do modelo aqui, se o repo exigir download
-# manual. Veja docker/README.md -> "Solução de problemas: checkpoint". Deixe
-# comentado até confirmar o mecanismo:
-# RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('amaai-lab/music2emo')"
+# Só o nosso código leve: lf1_audio.py, lf_common.py, scale.py e quadrant.py.
+COPY tcc_mer/ /app/tcc_mer/
+COPY docker/gerar_lf1.py docker/testar_musica.py docker/reprocessar_ids.py /app/docker/
 
-# Copia SÓ o nosso código leve (reusa scale.py + lf1_audio.py + lf_common.py).
-COPY src/ /app/src/
-COPY docker/gerar_lf1.py /app/docker/gerar_lf1.py
-COPY docker/testar_musica.py /app/docker/testar_musica.py
-
-# Torna 'src' e 'music2emo' importáveis; define onde ficam os dados montados.
+# Torna 'tcc_mer' e 'music2emo' importáveis e define onde ficam os dados montados.
 ENV PYTHONPATH=/app:/app/Music2Emotion
 ENV DATA_DIR=/app/data
 
-# cwd = raiz do repo do Music2Emo, para que os caminhos internos dele funcionem.
+# O cwd é a raiz do repositório do Music2Emo, para os caminhos internos dele funcionarem.
 WORKDIR /app/Music2Emotion
 
 ENTRYPOINT ["python", "/app/docker/gerar_lf1.py"]

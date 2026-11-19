@@ -1,37 +1,33 @@
-"""LF3 — estimador de Valência-Arousal da letra via LLM zero-shot.
+"""LF2: valência e arousal da letra estimados por um LLM em regime zero-shot.
 
-Pede a um LLM que estime (V, A) da letra **sem exemplos de treino**, só com
-instruções. Complementa o léxico (LF2) porque entende contexto, negação e ironia
-— exatamente onde o ANEW-Br cega. Riscos: o LLM tem viés próprio (anglocêntrico),
-pode alucinar e é sensível ao prompt. Por isso é **uma** LF, ancorada pelo gold
-via calibração afim — nunca a verdade.
+O modelo recebe a letra e uma instrução, sem exemplos, e devolve ``(V, A)`` em
+JSON na escala 1-9. Contrato de reprodutibilidade:
 
-Contrato de reprodutibilidade (do roteiro):
-- Prompt **fixo e versionado** em ``prompts/lf3_zero_shot.md``.
-- Temperatura **baixa**, saída **JSON estruturada** com dois floats numa escala
-  explícita (1-9), documentada no prompt.
-- **Registrar modelo e versão** usados em cada chamada.
+* prompt fixo e versionado em ``prompts/lf2_zero_shot.md`` (``PROMPT_VERSION``);
+* saída JSON estruturada com dois números na escala 1-9;
+* modelo e versão do prompt registrados em ``meta`` a cada chamada.
 
-**Isolamento da dependência:** nenhum SDK de LLM é importado aqui. O acesso ao
-modelo entra como um ``client`` injetável — uma função ``str (prompt) -> str
-(resposta bruta)``. Isso mantém o módulo provider-agnóstico e testável com um
-cliente falso; o adaptador real (Anthropic, OpenAI, etc.) é escrito na borda pelo
-chamador, com temperatura baixa configurada lá.
+Nenhum SDK é importado aqui. O acesso ao modelo é um ``client`` injetável
+(``prompt -> resposta bruta``), o que mantém o módulo agnóstico de provedor e
+testável com um cliente falso. O adaptador real fica em
+``scripts/rotulagem/gerar_lf2_llm.py``.
 
-Mesma regra de instrumentais da LF2: ``tem_letra=não`` -> ``NaN`` explícito.
+Faixa instrumental (``has_lyrics=False``) devolve ``NaN`` explícito.
 """
-from __future__ import annotations
 
 import json
 import re
+from collections.abc import Callable, Iterable
 from pathlib import Path
-from typing import Callable, Iterable
 
 from .lf_common import LFRawOutput
+from .paths import PROMPTS_DIR
 from .scale import to_unit
 
 __all__ = [
     "LLMClient",
+    "LLM_LO",
+    "LLM_HI",
     "PROMPT_PATH",
     "PROMPT_VERSION",
     "load_prompt_template",
@@ -39,113 +35,94 @@ __all__ = [
     "parse_response",
     "estimate_va_from_lyrics_llm",
     "run_batch",
-    "LLM_LO",
-    "LLM_HI",
 ]
 
 # Escala pedida no prompt (SAM 1-9), convertida na borda para [-1, 1].
 LLM_LO, LLM_HI = 1.0, 9.0
 
-PROMPT_PATH = Path(__file__).resolve().parent.parent / "prompts" / "lf3_zero_shot.md"
+PROMPT_PATH = PROMPTS_DIR / "lf2_zero_shot.md"
 PROMPT_VERSION = "v1"  # incrementar junto com o texto do prompt
 
-# Um client recebe o prompt final e devolve a resposta bruta do LLM (texto).
 LLMClient = Callable[[str], str]
 
 
 def load_prompt_template(path: str | Path = PROMPT_PATH) -> str:
-    """Lê o texto do prompt versionado do disco."""
+    """Lê o texto do prompt versionado."""
     return Path(path).read_text(encoding="utf-8")
 
 
 def build_prompt(lyrics: str, template: str | None = None) -> str:
-    """Insere a letra no template do prompt (placeholder ``{lyrics}``)."""
-    tmpl = template if template is not None else load_prompt_template()
-    return tmpl.replace("{lyrics}", lyrics)
+    """Insere a letra no placeholder ``{lyrics}`` do template."""
+    template = load_prompt_template() if template is None else template
+    return template.replace("{lyrics}", lyrics)
 
 
 def parse_response(raw: str) -> tuple[float, float]:
     """Extrai ``(valence, arousal)`` (escala 1-9) da resposta bruta do LLM.
 
-    Tolera texto ao redor do JSON (ex.: cercas ```json ... ```), localizando o
-    primeiro objeto ``{...}`` na resposta.
+    Tolera texto ao redor do JSON (como cercas ```json) e lê o primeiro objeto
+    ``{...}``.
 
     Raises:
-        ValueError: se não houver JSON válido, faltarem chaves, os valores não
-            forem numéricos ou caírem fora de [1, 9].
+        ValueError: sem JSON válido, sem as chaves, com valor não numérico ou fora
+            de [1, 9].
     """
     match = re.search(r"\{.*?\}", raw, re.DOTALL)
     if not match:
         raise ValueError(f"nenhum objeto JSON encontrado na resposta: {raw!r}")
     try:
         obj = json.loads(match.group(0))
-    except json.JSONDecodeError as e:
-        raise ValueError(f"JSON inválido na resposta: {raw!r}") from e
+    except json.JSONDecodeError as error:
+        raise ValueError(f"JSON inválido na resposta: {raw!r}") from error
 
     if "valence" not in obj or "arousal" not in obj:
         raise ValueError(f"chaves 'valence'/'arousal' ausentes: {obj!r}")
     try:
-        v = float(obj["valence"])
-        a = float(obj["arousal"])
-    except (TypeError, ValueError) as e:
-        raise ValueError(f"valores não numéricos: {obj!r}") from e
+        valence, arousal = float(obj["valence"]), float(obj["arousal"])
+    except (TypeError, ValueError) as error:
+        raise ValueError(f"valores não numéricos: {obj!r}") from error
 
-    for name, val in (("valence", v), ("arousal", a)):
-        if not (LLM_LO <= val <= LLM_HI):
-            raise ValueError(
-                f"{name}={val} fora da escala [{LLM_LO}, {LLM_HI}]"
-            )
-    return v, a
+    for name, value in (("valence", valence), ("arousal", arousal)):
+        if not LLM_LO <= value <= LLM_HI:
+            raise ValueError(f"{name}={value} fora da escala [{LLM_LO}, {LLM_HI}]")
+    return valence, arousal
 
 
 def estimate_va_from_lyrics_llm(
     lyrics: str,
     client: LLMClient,
     *,
-    tem_letra: bool = True,
+    has_lyrics: bool = True,
     model_name: str = "",
     template: str | None = None,
 ) -> LFRawOutput:
-    """Estima (V_raw, A_raw) em [-1, 1] da letra via LLM zero-shot.
+    """Estima ``(V_raw, A_raw)`` em [-1, 1] da letra, com um LLM zero-shot.
 
     Args:
         lyrics: texto completo da letra.
-        client: função ``str -> str`` que envia o prompt ao LLM (temperatura baixa
-            configurada pelo chamador) e devolve a resposta bruta.
-        tem_letra: se ``False`` (instrumental), retorna ``NaN`` explícito.
-        model_name: identificador do modelo/versão, registrado em ``meta`` para
-            reprodutibilidade.
-        template: template do prompt (usa o versionado em disco se ``None``).
+        client: função ``prompt -> resposta bruta``. A temperatura baixa (ou o
+            esforço de raciocínio) é configurada por quem cria o cliente.
+        has_lyrics: ``False`` para faixa instrumental, que devolve ``NaN``.
+        model_name: modelo e versão, registrados em ``meta``.
+        template: template do prompt; ``None`` usa o versionado em disco.
 
     Returns:
-        :class:`LFRawOutput`; ``meta`` registra modelo, versão do prompt e a
-        resposta bruta. Se o parsing falhar, V/A saem ``NaN`` e o erro fica em
-        ``meta['error']`` (não interrompe o lote).
+        :class:`LFRawOutput`. ``meta`` traz modelo, versão do prompt e a resposta
+        bruta. Se o parsing falhar, V e A saem ``NaN`` com o erro em
+        ``meta["error"]``, sem interromper o lote.
     """
-    if not tem_letra:
-        return LFRawOutput("", float("nan"), float("nan"),
-                           {"reason": "instrumental",
-                            "model": model_name, "prompt_version": PROMPT_VERSION})
+    meta = {"model": model_name, "prompt_version": PROMPT_VERSION}
+    if not has_lyrics:
+        return LFRawOutput("", float("nan"), float("nan"), {**meta, "reason": "instrumental"})
 
-    prompt = build_prompt(lyrics, template=template)
-    raw = client(prompt)
-    meta = {
-        "model": model_name,
-        "prompt_version": PROMPT_VERSION,
-        "raw_response": raw,
-    }
+    raw = client(build_prompt(lyrics, template=template))
+    meta["raw_response"] = raw
     try:
-        v_1_9, a_1_9 = parse_response(raw)
-    except ValueError as e:
-        meta["error"] = str(e)
-        return LFRawOutput("", float("nan"), float("nan"), meta)
+        valence, arousal = parse_response(raw)
+    except ValueError as error:
+        return LFRawOutput("", float("nan"), float("nan"), {**meta, "error": str(error)})
 
-    return LFRawOutput(
-        "",
-        to_unit(v_1_9, LLM_LO, LLM_HI),
-        to_unit(a_1_9, LLM_LO, LLM_HI),
-        meta,
-    )
+    return LFRawOutput("", to_unit(valence, LLM_LO, LLM_HI), to_unit(arousal, LLM_LO, LLM_HI), meta)
 
 
 def run_batch(
@@ -155,24 +132,19 @@ def run_batch(
     model_name: str = "",
     template: str | None = None,
 ) -> list[LFRawOutput]:
-    """Roda a LF3 sobre várias faixas.
+    """Roda a LF2 em várias faixas.
 
     Args:
-        tracks: iterável de ``(track_id, lyrics, tem_letra)``.
+        tracks: iterável de ``(track_id, lyrics, has_lyrics)``.
         client: cliente de LLM injetável.
-        model_name: identificador do modelo/versão (reprodutibilidade).
+        model_name: modelo e versão, para reprodutibilidade.
         template: template do prompt (opcional).
-
-    Returns:
-        Lista de :class:`LFRawOutput` (uma por faixa, ``track_id`` preenchido).
-        Persista com :func:`src.lf_common.write_lf_raw` em ``lf3_raw.csv``.
     """
-    out: list[LFRawOutput] = []
-    for track_id, lyrics, tem_letra in tracks:
-        res = estimate_va_from_lyrics_llm(
-            lyrics, client, tem_letra=tem_letra,
-            model_name=model_name, template=template,
+    results = []
+    for track_id, lyrics, has_lyrics in tracks:
+        result = estimate_va_from_lyrics_llm(
+            lyrics, client, has_lyrics=has_lyrics, model_name=model_name, template=template
         )
-        res.track_id = track_id
-        out.append(res)
-    return out
+        result.track_id = track_id
+        results.append(result)
+    return results

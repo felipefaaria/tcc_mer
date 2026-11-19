@@ -1,120 +1,150 @@
 #!/usr/bin/env python
-"""Fase D — calibra as LFs contra o gold, funde, e mede a dissociação.
+"""Fusão calibrada no gold set: análise exploratória abandonada (Seção 3.7 do artigo).
 
-Lê ``gold_wide.csv`` + ``lf{1,2,3}_raw.csv`` e reporta:
-- **CCC fora-da-amostra** (k-fold aninhado: calibra+funde só no treino) por canal e
-  dimensão — a métrica primária.
-- Pesos de fusão (canal letra) por dimensão.
-- **Dissociação calibrada** ``D = letra - áudio`` vs. ``D`` do gold; maiores
-  dissociadores.
+O artigo usa rótulos brutos. Aqui se reproduz a alternativa que foi explorada e
+descartada, em duas partes:
 
-Mapeamento: LF1↔áudio(melodia), LF2/LF3↔letra. O canal áudio→valência tem gold
-ruidoso (Krippendorff ~0.12) — CCC baixo ali é ESPERADO, não é bug.
+1. **CCC fora da amostra** (k-fold aninhado: a calibração afim e os pesos de fusão são
+   ajustados só no treino) de cada canal contra a condição correspondente do gold set;
+2. **concordância de quadrante** nas faixas do experimento com ouvintes: a calibração e a
+   fusão ajustadas no gold set inteiro são aplicadas a essas faixas (nenhuma está no
+   gold) e comparadas com o áudio e a fusão simples.
 
-    python scripts/fase_d.py
+    python scripts/exploratorio/fusao_calibrada.py --respostas "Tcc Anotação.xlsx"
 """
-from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from tcc_mer.dataset import DATASET_PATH, read_dataset
+from tcc_mer.exploratory.pipeline import apply_channel, fit_channel, nested_kfold_ccc
+from tcc_mer.paths import ANNOTATIONS_DIR, VALIDATION_DIR
+from tcc_mer.quadrant import quadrants
+from tcc_mer.validation import analyzable, duel, load_item_map, load_responses, track_labels
 
-from src.metrics import ccc  # noqa: E402
-from src.pipeline import apply_channel, fit_channel, nested_kfold_ccc  # noqa: E402
-
-ROOT = Path(__file__).resolve().parent.parent
-GOLD = ROOT / "data" / "annotations" / "gold_wide.csv"
-LFDIR = ROOT / "data" / "outputs"
-K = 5
+FOLDS = 5
 SEED = 0
 
+# (rótulo, colunas das LFs, coluna do gold, dimensão)
+CROSS_VALIDATION_PLAN = [
+    ("LF1 áudio (melodia)", ["lf1_V"], "V_audio"),
+    ("LF1 áudio (melodia)", ["lf1_A"], "A_audio"),
+    ("LF2 letra (LLM)", ["lf2_V"], "V_letra"),
+    ("LF2 letra (LLM)", ["lf2_A"], "A_letra"),
+    ("Fusão LF1+LF2 (completa)", ["lf1_V", "lf2_V"], "V_completa"),
+    ("Fusão LF1+LF2 (completa)", ["lf1_A", "lf2_A"], "A_completa"),
+]
 
-def carregar() -> pd.DataFrame:
-    gold = pd.read_csv(GOLD).set_index("trackId")
-    for lf in ("lf1", "lf2", "lf3"):
-        d = pd.read_csv(LFDIR / f"{lf}_raw.csv").set_index("id")
-        gold[f"{lf}_V"] = d["V_raw"]
-        gold[f"{lf}_A"] = d["A_raw"]
-    return gold
+
+def load_gold_with_labels(gold_path: Path, dataset_path: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Gold set e rótulos brutos de todas as faixas (colunas ``lf1_*`` e ``lf2_*``)."""
+    model = read_dataset(dataset_path).set_index("id")
+    model = model.rename(
+        columns={
+            "lf1_audio_valencia": "lf1_V",
+            "lf1_audio_arousal": "lf1_A",
+            "lf2_llm_valencia": "lf2_V",
+            "lf2_llm_arousal": "lf2_A",
+        }
+    )[["lf1_V", "lf1_A", "lf2_V", "lf2_A"]]
+    gold = pd.read_csv(gold_path).set_index("trackId").join(model)
+    return gold, model
 
 
-def oos(df, cols, ycol):
-    X = df[cols].to_numpy(float)
-    y = df[ycol].to_numpy(float)
-    return nested_kfold_ccc(X, y, k=K, seed=SEED)
+def print_cross_validation(gold: pd.DataFrame) -> None:
+    print("=== CCC FORA DA AMOSTRA (k-fold aninhado) ===")
+    print(f"{'canal':28s} {'dim':4s} {'CCC_oos':>8s} {'n':>4s}")
+    for name, columns, target in CROSS_VALIDATION_PLAN:
+        ccc_oos, weights, n = nested_kfold_ccc(
+            gold[columns].to_numpy(float), gold[target].to_numpy(float), k=FOLDS, seed=SEED
+        )
+        shown = "  pesos=" + "/".join(f"{w:.2f}" for w in weights) if len(columns) > 1 else ""
+        print(f"{name:28s} {target[0]:4s} {ccc_oos:>8.2f} {n:>4d}{shown}")
+
+
+def calibrated_quadrants(
+    gold: pd.DataFrame, model: pd.DataFrame, track_ids: pd.Index
+) -> pd.DataFrame:
+    """Quadrantes do áudio calibrado e da fusão calibrada, ajustados no gold set inteiro."""
+    fitted = {}
+    for dimension in ("V", "A"):
+        audio = fit_channel(
+            gold[[f"lf1_{dimension}"]].to_numpy(float), gold[f"{dimension}_audio"].to_numpy(float)
+        )
+        fusion = fit_channel(
+            gold[[f"lf1_{dimension}", f"lf2_{dimension}"]].to_numpy(float),
+            gold[f"{dimension}_completa"].to_numpy(float),
+        )
+        tracks = model.loc[track_ids]
+        fitted[f"audio_{dimension}"] = apply_channel(
+            *audio, tracks[[f"lf1_{dimension}"]].to_numpy(float)
+        )
+        fitted[f"fusion_{dimension}"] = apply_channel(
+            *fusion, tracks[[f"lf1_{dimension}", f"lf2_{dimension}"]].to_numpy(float)
+        )
+    return pd.DataFrame(
+        {
+            "q_cal_audio": quadrants(fitted["audio_V"], fitted["audio_A"]),
+            "q_cal_fusion": quadrants(fitted["fusion_V"], fitted["fusion_A"]),
+        },
+        index=track_ids,
+    )
+
+
+def print_duel(title: str, labels: pd.DataFrame, first: str, second: str) -> None:
+    result = duel(labels, first, second)
+    print(
+        f"   {title}: {result.first} x {result.second} -> {result.proportion:.0%} "
+        f"(IC95% {result.ci_low:.0%}–{result.ci_high:.0%}, p={result.p_value:.4f})"
+    )
+
+
+def print_experiment_agreement(
+    gold: pd.DataFrame, model: pd.DataFrame, responses: pd.DataFrame, item_map: pd.DataFrame
+) -> None:
+    labels = analyzable(track_labels(responses, item_map))
+    if set(labels["trackId"]) & set(gold.index):
+        sys.exit(
+            "[exploratório] há faixas do experimento no gold set: a avaliação não seria "
+            "fora da amostra"
+        )
+    labels = labels.join(
+        calibrated_quadrants(gold, model, pd.Index(labels["trackId"])), on="trackId"
+    )
+    print(f"\n=== CONCORDÂNCIA DE QUADRANTE NAS {len(labels)} FAIXAS DO EXPERIMENTO ===")
+    for name, column in (
+        ("áudio bruto", "q_lf1"),
+        ("fusão simples bruta", "q_simple"),
+        ("áudio calibrado", "q_cal_audio"),
+        ("fusão calibrada", "q_cal_fusion"),
+    ):
+        hits = labels[column] == labels["q_human"]
+        print(f"   {name:22s} {hits.sum():2d}/{len(labels)} = {hits.mean():.0%}")
+    print_duel("fusão calibrada contra áudio bruto", labels, "q_cal_fusion", "q_lf1")
+    print_duel("fusão calibrada contra áudio calibrado", labels, "q_cal_fusion", "q_cal_audio")
 
 
 def main() -> None:
-    if not GOLD.exists():
-        sys.exit(f"[faseD] gold não encontrado: {GOLD} (rode scripts/gerar_gold.py)")
-    df = carregar()
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--respostas", required=True, type=Path)
+    parser.add_argument("--mapa", type=Path, default=VALIDATION_DIR / "mapa_itens.csv")
+    parser.add_argument("--gold", type=Path, default=ANNOTATIONS_DIR / "gold_wide.csv")
+    parser.add_argument("--dataset", type=Path, default=DATASET_PATH)
+    parser.add_argument("--excluir", nargs="*", default=["eu"])
+    args = parser.parse_args()
+    if not args.gold.exists():
+        sys.exit(
+            f"[exploratório] gold não encontrado: {args.gold} (rode scripts/analise/gerar_gold.py)"
+        )
 
-    print("=" * 64)
-    print("CCC FORA-DA-AMOSTRA (k-fold aninhado; calibra+funde só no treino)")
-    print("=" * 64)
-    print(f"{'canal/modelo':28s} {'dim':4s} {'CCC_oos':>8s} {'n':>4s}")
-    plan = [
-        ("LF1 áudio",            ["lf1_V"], "V_audio", "V"),
-        ("LF1 áudio",            ["lf1_A"], "A_audio", "A"),
-        ("LF2 léxico (letra)",   ["lf2_V"], "V_letra", "V"),
-        ("LF2 léxico (letra)",   ["lf2_A"], "A_letra", "A"),
-        ("LF3 LLM (letra)",      ["lf3_V"], "V_letra", "V"),
-        ("LF3 LLM (letra)",      ["lf3_A"], "A_letra", "A"),
-        # LF2 (léxico ANEW-Br) fica FORA da fusão por decisão do Felipe (viés de
-        # positividade estrutural, documentado — ver docs/preparacao_orientacao.md
-        # §5). Ela continua reportada sozinha acima só para registrar esse achado
-        # no artigo; a fusão de letra passa a ser a própria LF3 (por isso não há
-        # mais uma linha "FUSÃO letra" separada — seria idêntica à LF3 sozinha).
-        ("FUSÃO completa (LF1+LF3)", ["lf1_V", "lf3_V"], "V_completa", "V"),
-        ("FUSÃO completa (LF1+LF3)", ["lf1_A", "lf3_A"], "A_completa", "A"),
-    ]
-    for nome, cols, ycol, dim in plan:
-        c, w, n = oos(df, cols, ycol)
-        wtxt = ""
-        if len(cols) > 1 and not np.isnan(w).any():
-            wtxt = "  pesos=" + "/".join(f"{x:.2f}" for x in w)
-        print(f"{nome:28s} {dim:4s} {c:>8.2f} {n:>4d}{wtxt}")
+    gold, model = load_gold_with_labels(args.gold, args.dataset)
+    print_cross_validation(gold)
 
-    # ----- Dissociação calibrada -----
-    print("\n" + "=" * 64)
-    print("DISSOCIAÇÃO CALIBRADA  D = letra - áudio")
-    print("=" * 64)
-    est = {}
-    for dim in ("V", "A"):
-        cal_a, w_a = fit_channel(df[[f"lf1_{dim}"]].to_numpy(float),
-                                 df[f"{dim}_audio"].to_numpy(float))
-        # Canal letra = só LF3 (LF2 excluída da fusão por decisão do Felipe).
-        cal_l, w_l = fit_channel(df[[f"lf3_{dim}"]].to_numpy(float),
-                                 df[f"{dim}_letra"].to_numpy(float))
-        est[f"{dim}_audio_hat"] = apply_channel(cal_a, w_a, df[[f"lf1_{dim}"]].to_numpy(float))
-        est[f"{dim}_letra_hat"] = apply_channel(cal_l, w_l, df[[f"lf3_{dim}"]].to_numpy(float))
-    E = pd.DataFrame(est, index=df.index)
-    E["Dv_hat"] = E["V_letra_hat"] - E["V_audio_hat"]
-    E["Da_hat"] = E["A_letra_hat"] - E["A_audio_hat"]
-    E["Dv_gold"] = df["V_letra"] - df["V_audio"]
-    E["Da_gold"] = df["A_letra"] - df["A_audio"]
-
-    for dim, hat, gold in [("Valência", "Dv_hat", "Dv_gold"), ("Arousal", "Da_hat", "Da_gold")]:
-        v = E.dropna(subset=[hat, gold])
-        c = ccc(v[hat].to_numpy(), v[gold].to_numpy()) if len(v) >= 2 else float("nan")
-        print(f"  D {dim}: CCC(D_hat, D_gold) = {c:+.2f}  (n={len(v)})")
-
-    print("\n  Maiores dissociadores por D_V calibrado (letra - áudio):")
-    top = E.dropna(subset=["Dv_hat"]).sort_values("Dv_hat")
-    print("   letra«áudio (áudio alegre + letra triste):")
-    for tid, r in top.head(5).iterrows():
-        print(f"     {tid:7s} letra={r.V_letra_hat:+.2f} audio={r.V_audio_hat:+.2f} Dv={r.Dv_hat:+.2f}")
-    print("   letra»áudio (letra positiva + áudio contido):")
-    for tid, r in top.tail(5).iterrows():
-        print(f"     {tid:7s} letra={r.V_letra_hat:+.2f} audio={r.V_audio_hat:+.2f} Dv={r.Dv_hat:+.2f}")
-
-    out = LFDIR / "dissociation.csv"
-    E.round(4).to_csv(out)
-    print(f"\n[faseD] estimativas calibradas + D -> {out}")
+    responses = load_responses(args.respostas, exclude=tuple(args.excluir))
+    print_experiment_agreement(gold, model, responses, load_item_map(args.mapa))
 
 
 if __name__ == "__main__":

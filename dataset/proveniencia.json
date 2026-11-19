@@ -1,0 +1,51 @@
+{
+  "n_faixas": 606,
+  "n_por_grupo": {
+    "historica": 516,
+    "gold": 53,
+    "expansao": 37
+  },
+  "n_instrumentais": 18,
+  "n_com_os_dois_canais": 588,
+  "entradas_sha256": {
+    "lf1_raw.csv": "8e4a9fdecedb4f83d74611bfb5ef55f7e3dcb9aa80c6cdc43a047eabc0a00603",
+    "lf2_raw.csv": "49c921c0f3aae74fa37990d372bf1f42498a0113bc8734c2f6ddc27690d2e79a"
+  },
+  "lf1": {
+    "modelo": "music2emo (AMAAI-Lab)",
+    "fonte": "https://github.com/AMAAI-Lab/Music2Emotion",
+    "gerado_em": "2026-09-29T14:34:58.494547+00:00",
+    "n_faixas": 606,
+    "n_com_saida": 606,
+    "limite_smoke": 0,
+    "escala": "modelo 1-9 -> to_unit -> [-1, 1] (V_raw, A_raw)",
+    "correcoes_pos_lote": {
+      "audio_m4a_com_extensao_mp3_corrigido": 38,
+      "faixas_com_segmento_residual_aparadas_29_5s": [
+        "1915-02",
+        "1929-04",
+        "1933-03",
+        "1936-05",
+        "1984-01",
+        "2020-05",
+        "2021-05",
+        "2022-05"
+      ],
+      "reprocessadas_via": "docker/reprocessar_ids.py"
+    }
+  },
+  "lf2": {
+    "provider": "anthropic",
+    "modelo": "claude-sonnet-5",
+    "effort": "low",
+    "prompt_version": "v1",
+    "gerado_em": "2026-09-29T15:42:39.935093+00:00",
+    "n_faixas": 606,
+    "n_com_saida": 591,
+    "n_instrumental": 15,
+    "n_faltam": 0,
+    "completo": true,
+    "custo_total_usd": 1.4322,
+    "escala": "prompt 1-9 -> to_unit -> [-1, 1] (V_raw, A_raw)"
+  }
+}

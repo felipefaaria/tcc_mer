@@ -1,9 +1,10 @@
-"""Testes de src/fusion.py — pesos no simplex por CCC + k-fold fora-da-amostra."""
+"""Testes de tcc_mer/exploratory/weighted_fusion.py: pesos no simplex e k-fold fora da amostra."""
+
 import numpy as np
 import pytest
 
-from src.fusion import fit_fusion_weights, fuse, kfold_out_of_sample_ccc
-from src.metrics import ccc
+from tcc_mer.exploratory.weighted_fusion import fit_fusion_weights, fuse, kfold_out_of_sample_ccc
+from tcc_mer.metrics import ccc
 
 
 def test_pesos_no_simplex():
@@ -11,7 +12,7 @@ def test_pesos_no_simplex():
     rng = np.random.default_rng(0)
     gold = rng.uniform(-1, 1, size=40)
     lf_bom = gold + rng.normal(0, 0.05, size=40)
-    lf_ruim = rng.uniform(-1, 1, size=40)  # ruído
+    lf_ruim = rng.uniform(-1, 1, size=40)
     calibrated = np.column_stack([lf_bom, lf_ruim])
     w = fit_fusion_weights(calibrated, gold)
     assert w.shape == (2,)

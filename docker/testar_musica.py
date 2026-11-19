@@ -1,62 +1,48 @@
 #!/usr/bin/env python
-"""Testa o Music2Emo em UMA música — para rodar na mão e conferir a saída.
+"""Testa o Music2Emo em UMA música, para rodar na mão e conferir a saída.
 
-Uso (dentro do container; normalmente chamado pelo atalho ``docker/testar.ps1``)::
+Normalmente chamado pelo atalho ``docker/testar.ps1``; dentro do container::
 
     python /app/docker/testar_musica.py /musica/minha_musica.mp3
 
-Ele carrega o modelo, roda na música e imprime valência, arousal e os moods —
-tanto na escala nativa do modelo (1 a 9) quanto na escala interna do projeto
-([-1, 1]). É o "teste manual": você dá uma música e olha se o retorno faz sentido.
+Carrega o modelo, roda na música e imprime valência, arousal e os moods, na escala nativa
+do modelo (1 a 9) e na escala do projeto ([-1, 1]).
 """
-from __future__ import annotations
 
 import sys
 from pathlib import Path
 
-from src.lf1_audio import make_music2emo_predictor, M2E_LO, M2E_HI
-from src.scale import to_unit
-
-
-def _quadrante(v_unit: float, a_unit: float) -> str:
-    """Rótulo do quadrante afetivo a partir de (V, A) em [-1, 1]."""
-    if v_unit >= 0 and a_unit >= 0:
-        return "Q1 · V+A+ · feliz/animada (ex.: euforia, alegria)"
-    if v_unit < 0 and a_unit >= 0:
-        return "Q2 · V-A+ · tensa/agitada (ex.: raiva, medo)"
-    if v_unit < 0 and a_unit < 0:
-        return "Q3 · V-A- · triste/calma (ex.: melancolia, tédio)"
-    return "Q4 · V+A- · serena/relaxada (ex.: paz, contentamento)"
+from tcc_mer.lf1_audio import M2E_HI, M2E_LO, make_music2emo_predictor
+from tcc_mer.quadrant import EMOTION_BY_QUADRANT, quadrant_of
+from tcc_mer.scale import to_unit
 
 
 def main() -> None:
     if len(sys.argv) < 2:
         sys.exit("uso: python testar_musica.py <caminho-da-musica>")
-    caminho = sys.argv[1]
-    if not Path(caminho).exists():
-        sys.exit(f"[erro] arquivo não encontrado no container: {caminho}")
+    path = Path(sys.argv[1])
+    if not path.exists():
+        sys.exit(f"[erro] arquivo não encontrado no container: {path}")
 
-    print(f"\n>>> Música: {Path(caminho).name}")
-    print(">>> Carregando o Music2Emo (na 1ª vez baixa os pesos; depois é rápido)...\n")
-    predictor = make_music2emo_predictor()
+    print(f"\n>>> Música: {path.name}")
+    print(">>> Carregando o Music2Emo (na 1ª vez baixa os pesos)...\n")
+    output = make_music2emo_predictor()(str(path))
 
-    saida = predictor(caminho)
-    v9 = float(saida["valence"])          # escala nativa 1-9
-    a9 = float(saida["arousal"])          # escala nativa 1-9
-    v = to_unit(v9, M2E_LO, M2E_HI)       # escala do projeto -1..1
-    a = to_unit(a9, M2E_LO, M2E_HI)
-    moods = saida.get("predicted_moods", []) or []
+    valence_9, arousal_9 = float(output["valence"]), float(output["arousal"])
+    valence = to_unit(valence_9, M2E_LO, M2E_HI)
+    arousal = to_unit(arousal_9, M2E_LO, M2E_HI)
+    quadrant = quadrant_of(valence, arousal)
+    moods = output.get("predicted_moods") or []
 
     print("=" * 56)
-    print(f"  VALÊNCIA (agradável?)  {v9:.2f}/9   ->  {v:+.2f}  em [-1, 1]")
-    print(f"  AROUSAL  (agitada?)    {a9:.2f}/9   ->  {a:+.2f}  em [-1, 1]")
-    print(f"  QUADRANTE:             {_quadrante(v, a)}")
+    print(f"  VALÊNCIA (agradável?)  {valence_9:.2f}/9   ->  {valence:+.2f}  em [-1, 1]")
+    print(f"  AROUSAL  (agitada?)    {arousal_9:.2f}/9   ->  {arousal:+.2f}  em [-1, 1]")
+    print(f"  QUADRANTE:             {quadrant} ({EMOTION_BY_QUADRANT[quadrant]})")
     if moods:
         print(f"  MOODS previstos:       {', '.join(moods)}")
     print("=" * 56)
-    print("\nDica de leitura: valência = quão POSITIVA/agradável; arousal = quão")
-    print("AGITADA/energética. Ex.: uma música animada deve dar V e A altos;")
-    print("uma balada triste, V baixo e A baixo.\n")
+    print("\nValência é o quão agradável, e arousal o quão agitada. Uma música animada deve")
+    print("dar valência e arousal altos; uma balada triste, os dois baixos.\n")
 
 
 if __name__ == "__main__":

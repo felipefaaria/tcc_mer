@@ -1,15 +1,15 @@
-# Não enviar coisas pesadas/irrelevantes para o build da imagem Docker da LF1.
-# (o áudio e as saídas entram por VOLUME em runtime, não pela imagem)
 .git
 data/
 tests/
-docs/
 prompts/
-*.pdf
-__pycache__/
-*.pyc
+_.pdf
+**pycache**/
+_.pyc
 .pytest_cache/
 .venv/
 venv/
 .venv-lf1/
 README.md
+dataset/
+scripts/
+.ruff_cache/

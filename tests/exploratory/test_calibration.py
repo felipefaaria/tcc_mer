@@ -1,8 +1,9 @@
-"""Testes de src/calibration.py — correção afim ajustada no gold."""
+"""Testes de tcc_mer/exploratory/calibration.py — correção afim ajustada no gold."""
+
 import numpy as np
 import pytest
 
-from src.calibration import AffineCalibration
+from tcc_mer.exploratory.calibration import AffineCalibration
 
 
 def test_recupera_relacao_linear_exata():
@@ -30,8 +31,7 @@ def test_ignora_nan_no_ajuste():
     gold = np.array([-0.5, 0.5, 0.2, 1.5, np.nan])
     cal = AffineCalibration.fit(lf, gold)
     # equivalente a ajustar só nos pares válidos [-1,0,1] -> [-0.5,0.5,1.5]
-    cal_ref = AffineCalibration.fit(np.array([-1.0, 0.0, 1.0]),
-                                    np.array([-0.5, 0.5, 1.5]))
+    cal_ref = AffineCalibration.fit(np.array([-1.0, 0.0, 1.0]), np.array([-0.5, 0.5, 1.5]))
     assert cal.a == pytest.approx(cal_ref.a)
     assert cal.b == pytest.approx(cal_ref.b)
 

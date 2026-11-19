@@ -1,1 +1,3 @@
-"""Pacote de código do TCC2 — MER em Música Brasileira (Valência-Arousal + dissociação)."""
+"""Valência-arousal e dissociação áudio-letra em música brasileira."""
+
+__version__ = "0.1.0"

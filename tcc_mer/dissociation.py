@@ -1,59 +1,44 @@
-"""Vetor de dissociação áudio-letra — o objeto de estudo do TCC2.
+"""Dissociação áudio-letra, o objeto de estudo do trabalho.
 
-A discrepância entre o que o áudio "sente" e o que a letra "diz" **não é erro de
-medição**: é o fenômeno central. Uma sofrência dançante tem áudio legitimamente
-alegre e letra legitimamente triste; colapsar isso num rótulo único destrói a
-informação que interessa.
+A distância entre o que o áudio expressa e o que a letra diz não é erro de
+medição. Uma sofrência dançante tem áudio alegre e letra triste, e colapsar os dois
+num rótulo único apaga justamente isso. A dissociação é a diferença assinada, por
+dimensão::
 
-O vetor de dissociação é a diferença assinada, por dimensão:
+    D_V = V_letra - V_áudio
+    D_A = A_letra - A_áudio
 
-    D_V = V_letra - V_audio
-    D_A = A_letra - A_audio
-
-Regras invioláveis:
-- Os canais áudio e letra devem chegar **separados e calibrados individualmente**
-  — nunca fundir as LFs antes de chamar esta função, ou a dissociação some.
-- Faixas instrumentais (``tem_letra=não``) não têm canal de letra: o valor de
-  letra entra como ``NaN`` e D sai como ``NaN`` (explícito), nunca zero.
-- Só faz sentido em escala centrada [-1, 1] (ver :mod:`src.scale`).
+Os canais precisam chegar separados, nunca fundidos. Faixas instrumentais não têm
+canal de letra: o valor entra como ``NaN`` e ``D`` sai ``NaN``, nunca zero.
 """
-from __future__ import annotations
 
 import numpy as np
 
-__all__ = ["compute_dissociation"]
+__all__ = ["compute_dissociation", "magnitude"]
 
 
 def compute_dissociation(
     v_audio: np.ndarray,
-    v_letra: np.ndarray,
+    v_lyrics: np.ndarray,
     a_audio: np.ndarray,
-    a_letra: np.ndarray,
+    a_lyrics: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray]:
-    """Calcula (D_V, D_A) a partir dos canais modais **já separados**.
+    """Calcula ``(D_V, D_A)`` a partir dos canais já separados, em [-1, 1].
 
-    Args:
-        v_audio: valência estimada só do áudio, shape ``(n,)``.
-        v_letra: valência estimada só da letra, shape ``(n,)`` (``NaN`` p/ instrumental).
-        a_audio: arousal estimado só do áudio, shape ``(n,)``.
-        a_letra: arousal estimado só da letra, shape ``(n,)`` (``NaN`` p/ instrumental).
-
-    Returns:
-        ``(D_V, D_A)`` — diferenças assinadas letra-menos-áudio, mesmo shape da
-        entrada. ``NaN`` propaga naturalmente para faixas sem letra.
+    ``NaN`` propaga para as faixas sem letra.
 
     Raises:
-        ValueError: se os quatro vetores não tiverem shapes idênticos.
+        ValueError: se os quatro vetores não tiverem o mesmo shape.
     """
-    v_audio = np.asarray(v_audio, dtype=float)
-    v_letra = np.asarray(v_letra, dtype=float)
-    a_audio = np.asarray(a_audio, dtype=float)
-    a_letra = np.asarray(a_letra, dtype=float)
-
-    shapes = {v_audio.shape, v_letra.shape, a_audio.shape, a_letra.shape}
+    v_audio, v_lyrics, a_audio, a_lyrics = (
+        np.asarray(x, dtype=float) for x in (v_audio, v_lyrics, a_audio, a_lyrics)
+    )
+    shapes = {v_audio.shape, v_lyrics.shape, a_audio.shape, a_lyrics.shape}
     if len(shapes) != 1:
         raise ValueError(f"shapes divergentes entre os canais: {shapes}")
+    return v_lyrics - v_audio, a_lyrics - a_audio
 
-    d_v = v_letra - v_audio
-    d_a = a_letra - a_audio
-    return d_v, d_a
+
+def magnitude(d_v: np.ndarray, d_a: np.ndarray) -> np.ndarray:
+    """Norma euclidiana ``‖D‖ = sqrt(D_V² + D_A²)``, em ``[0, 2·sqrt(2)]``."""
+    return np.hypot(np.asarray(d_v, dtype=float), np.asarray(d_a, dtype=float))

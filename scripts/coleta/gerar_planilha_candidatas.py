@@ -1,13 +1,11 @@
 #!/usr/bin/env python
-"""Converte ``docs/corpus_historico_final.csv`` para uma planilha .xlsx pronta
-para abrir no Google Sheets, com uma aba extra de resumo por ano que destaca
-quais anos ainda não têm as ~5 músicas-alvo (ou não têm nenhuma).
+"""Converte ``data/corpus/candidatas_historico.csv`` numa planilha .xlsx para o Google Sheets.
 
-Exemplo::
+A planilha tem a aba do corpus e uma aba de resumo por ano que destaca os anos sem as cinco faixas
+prontas (ou sem nenhuma).
 
-    python scripts/gerar_planilha_corpus.py
+    python scripts/coleta/gerar_planilha_candidatas.py
 """
-from __future__ import annotations
 
 import argparse
 from pathlib import Path
@@ -16,103 +14,103 @@ import pandas as pd
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-ROOT = Path(__file__).resolve().parent.parent
-AUDIO_DIR = ROOT / "data" / "corpus" / "audio"
-LYRICS_DIR = ROOT / "data" / "corpus" / "lyrics"
-META_ALVO = 5  # "pelo menos 5 músicas de cada ano" — meta original do corpus
+from tcc_mer.corpus_files import TARGET_PER_YEAR, has_audio, has_lyrics_text
+from tcc_mer.paths import CORPUS_DIR, OUTPUTS_DIR
+
+NO_TRACKS = "SEM NENHUMA MUSICA"
+FILLS = {
+    "missing": PatternFill(start_color="F4CCCC", end_color="F4CCCC", fill_type="solid"),
+    "short": PatternFill(start_color="FFF2CC", end_color="FFF2CC", fill_type="solid"),
+    "ok": PatternFill(start_color="D9EAD3", end_color="D9EAD3", fill_type="solid"),
+}
+MAX_COLUMN_WIDTH = 60
 
 
-def _audio_ok(tid: str) -> bool:
-    p = AUDIO_DIR / f"{tid}.mp3"
-    return p.exists() and p.stat().st_size > 1000
-
-
-def _letra_ok(tid: str, status: str) -> bool:
-    p = LYRICS_DIR / f"{tid}.txt"
-    texto_ok = p.exists() and len(p.read_text(encoding="utf-8").strip()) > 0
-    return texto_ok or "instrumental" in status.lower()
-
-
-def adicionar_colunas_status(df: pd.DataFrame) -> pd.DataFrame:
+def add_status_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Acrescenta ``audio_ok``, ``letra_ok`` (letra ou instrumental) e ``ambos_ok``."""
     df = df.copy()
-    df["audio_ok"] = df["id_temp"].apply(_audio_ok)
-    df["letra_ok"] = [_letra_ok(tid, status) for tid, status in zip(df["id_temp"], df["status"])]
+    df["audio_ok"] = df["id_temp"].map(has_audio)
+    df["letra_ok"] = [
+        has_lyrics_text(track_id) or "instrumental" in str(status).lower()
+        for track_id, status in zip(df["id_temp"], df["status"])
+    ]
     df["ambos_ok"] = df["audio_ok"] & df["letra_ok"]
     return df
 
 
-def construir_resumo(df: pd.DataFrame) -> pd.DataFrame:
-    ano_min, ano_max = int(df["ano"].min()), int(df["ano"].max())
-    contagem = df.groupby("ano").size()
-    audio_ok = df.groupby("ano")["audio_ok"].sum()
-    letra_ok = df.groupby("ano")["letra_ok"].sum()
-    ambos_ok = df.groupby("ano")["ambos_ok"].sum()
-    linhas = []
-    for ano in range(ano_min, ano_max + 1):
-        n = int(contagem.get(ano, 0))
-        n_audio = int(audio_ok.get(ano, 0))
-        n_letra = int(letra_ok.get(ano, 0))
-        n_ambos = int(ambos_ok.get(ano, 0))
+def summarize_by_year(df: pd.DataFrame) -> pd.DataFrame:
+    """Uma linha por ano, de ``min`` a ``max``, com as contagens e o status frente à meta."""
+    by_year = df.groupby("ano")
+    totals = by_year.size()
+    audio, lyrics, both = (by_year[column].sum() for column in ("audio_ok", "letra_ok", "ambos_ok"))
+    rows = []
+    for year in range(int(df["ano"].min()), int(df["ano"].max()) + 1):
+        n, n_ready = int(totals.get(year, 0)), int(both.get(year, 0))
         if n == 0:
-            status = "SEM NENHUMA MUSICA"
-        elif n_ambos < META_ALVO:
-            status = f"faltam {META_ALVO - n_ambos} prontas"
+            status = NO_TRACKS
+        elif n_ready < TARGET_PER_YEAR:
+            status = f"faltam {TARGET_PER_YEAR - n_ready} prontas"
         else:
             status = "ok"
-        linhas.append({"ano": ano, "quantidade_corpus": n, "audio_ok": n_audio,
-                       "letra_ok": n_letra, "ambos_ok": n_ambos, "status": status})
-    return pd.DataFrame(linhas)
+        rows.append(
+            {
+                "ano": year,
+                "quantidade_corpus": n,
+                "audio_ok": int(audio.get(year, 0)),
+                "letra_ok": int(lyrics.get(year, 0)),
+                "ambos_ok": n_ready,
+                "status": status,
+            }
+        )
+    return pd.DataFrame(rows)
 
 
-def formatar_aba(ws, df: pd.DataFrame, congelar: str = "A2") -> None:
-    ws.freeze_panes = congelar
-    ws.auto_filter.ref = ws.dimensions
-    for col in ws[1]:
-        col.font = Font(bold=True)
-    for i, coluna in enumerate(df.columns, start=1):
-        maior = max([len(str(coluna))] + [len(str(v)) for v in df[coluna].astype(str)])
-        ws.column_dimensions[get_column_letter(i)].width = min(maior + 2, 60)
+def format_sheet(sheet, df: pd.DataFrame) -> None:
+    sheet.freeze_panes = "A2"
+    sheet.auto_filter.ref = sheet.dimensions
+    for cell in sheet[1]:
+        cell.font = Font(bold=True)
+    for index, column in enumerate(df.columns, start=1):
+        widest = max([len(str(column))] + [len(str(value)) for value in df[column]])
+        sheet.column_dimensions[get_column_letter(index)].width = min(widest + 2, MAX_COLUMN_WIDTH)
 
 
-def destacar_resumo(ws, df_resumo: pd.DataFrame) -> None:
-    vermelho = PatternFill(start_color="F4CCCC", end_color="F4CCCC", fill_type="solid")
-    amarelo = PatternFill(start_color="FFF2CC", end_color="FFF2CC", fill_type="solid")
-    verde = PatternFill(start_color="D9EAD3", end_color="D9EAD3", fill_type="solid")
-    for i, status in enumerate(df_resumo["status"], start=2):  # linha 1 = header
-        if status == "SEM NENHUMA MUSICA":
-            fill = vermelho
-        elif status.startswith("faltam"):
-            fill = amarelo
-        else:
-            fill = verde
-        for col in range(1, len(df_resumo.columns) + 1):
-            ws.cell(row=i, column=col).fill = fill
+def highlight_summary(sheet, summary: pd.DataFrame) -> None:
+    for row, status in enumerate(summary["status"], start=2):  # a linha 1 é o cabeçalho
+        kind = (
+            "missing" if status == NO_TRACKS else "short" if status.startswith("faltam") else "ok"
+        )
+        for column in range(1, len(summary.columns) + 1):
+            sheet.cell(row=row, column=column).fill = FILLS[kind]
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    p.add_argument("--csv", type=Path, default=ROOT / "docs" / "corpus_historico_final.csv")
-    p.add_argument("--out", type=Path, default=ROOT / "docs" / "corpus_historico_final.xlsx")
-    args = p.parse_args()
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--csv", type=Path, default=CORPUS_DIR / "candidatas_historico.csv")
+    parser.add_argument("--out", type=Path, default=OUTPUTS_DIR / "candidatas_historico.xlsx")
+    args = parser.parse_args()
 
-    df = pd.read_csv(args.csv, encoding="utf-8")
-    df = adicionar_colunas_status(df)
-    df_resumo = construir_resumo(df)
+    corpus = add_status_columns(pd.read_csv(args.csv, encoding="utf-8"))
+    summary = summarize_by_year(corpus)
 
-    faltantes = df_resumo[df_resumo["status"] != "ok"]
-    print(f"[planilha] {len(df)} músicas, {df['ano'].nunique()} anos com pelo menos 1 música.")
-    print(f"[planilha] áudio OK: {df['audio_ok'].sum()}/{len(df)} | letra OK: {df['letra_ok'].sum()}/{len(df)} "
-          f"| ambos OK: {df['ambos_ok'].sum()}/{len(df)}")
-    print(f"[planilha] {len(faltantes)} ano(s) abaixo da meta de {META_ALVO} musicas PRONTAS/ano "
-          f"({(df_resumo['status'] == 'SEM NENHUMA MUSICA').sum()} sem nenhuma no corpus).")
+    below_target = summary[summary["status"] != "ok"]
+    print(f"[planilha] {len(corpus)} músicas, {corpus['ano'].nunique()} anos com pelo menos uma.")
+    print(
+        f"[planilha] áudio OK: {corpus['audio_ok'].sum()}/{len(corpus)} | letra OK: "
+        f"{corpus['letra_ok'].sum()}/{len(corpus)} | "
+        f"ambos OK: {corpus['ambos_ok'].sum()}/{len(corpus)}"
+    )
+    print(
+        f"[planilha] {len(below_target)} ano(s) abaixo da meta de {TARGET_PER_YEAR} prontas "
+        f"({(summary['status'] == NO_TRACKS).sum()} sem nenhuma)."
+    )
 
     with pd.ExcelWriter(args.out, engine="openpyxl") as writer:
-        df.to_excel(writer, sheet_name="corpus", index=False)
-        df_resumo.to_excel(writer, sheet_name="resumo_por_ano", index=False)
-        formatar_aba(writer.sheets["corpus"], df)
-        formatar_aba(writer.sheets["resumo_por_ano"], df_resumo)
-        destacar_resumo(writer.sheets["resumo_por_ano"], df_resumo)
-
+        corpus.to_excel(writer, sheet_name="corpus", index=False)
+        summary.to_excel(writer, sheet_name="resumo_por_ano", index=False)
+        format_sheet(writer.sheets["corpus"], corpus)
+        format_sheet(writer.sheets["resumo_por_ano"], summary)
+        highlight_summary(writer.sheets["resumo_por_ano"], summary)
     print(f"[planilha] gravado em {args.out}")
 
 

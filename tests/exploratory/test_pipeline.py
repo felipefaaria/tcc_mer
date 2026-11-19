@@ -1,9 +1,10 @@
-"""Testes de src/pipeline.py — calibração+fusão com k-fold aninhado."""
+"""Testes de tcc_mer/exploratory/pipeline.py — calibração+fusão com k-fold aninhado."""
+
 import numpy as np
 import pytest
 
-from src.metrics import ccc
-from src.pipeline import apply_channel, fit_channel, nested_kfold_ccc
+from tcc_mer.exploratory.pipeline import apply_channel, fit_channel, nested_kfold_ccc
+from tcc_mer.metrics import ccc
 
 
 def test_single_lf_calibracao_recupera_gold():
@@ -15,7 +16,7 @@ def test_single_lf_calibracao_recupera_gold():
     c, w, n = nested_kfold_ccc(X, gold, k=5, seed=0)
     assert n == 60
     assert w.shape == (1,)
-    assert c > 0.9  # calibração afim recupera bem
+    assert c > 0.9
 
 
 def test_fusao_supera_lf_ruidosa():
@@ -27,7 +28,7 @@ def test_fusao_supera_lf_ruidosa():
     X = np.column_stack([boa, ruim])
     c, w, n = nested_kfold_ccc(X, gold, k=5, seed=0)
     assert c > 0.8
-    assert w[0] > w[1]  # mais peso para a LF boa
+    assert w[0] > w[1]
 
 
 def test_fit_apply_channel_recupera_afim():

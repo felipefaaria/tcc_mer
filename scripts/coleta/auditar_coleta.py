@@ -1,112 +1,130 @@
 #!/usr/bin/env python
-"""Varredura completa do corpus historico: para cada musica, confere se o
-arquivo de audio e o de letra realmente existem em disco (nao confia so no
-texto do manifest) e classifica letra vazia como "instrumental confirmado"
-(nao e uma lacuna) sempre que o status da linha diz isso explicitamente.
+"""Auditoria do corpus histórico: o que de fato existe em disco.
 
-Gera:
-- resumo geral (quantas tem audio, letra, ambos)
-- lista de musicas com audio faltando
-- lista de musicas com letra faltando (excluindo instrumentais confirmados)
-- tabela por ano: total, audio_ok, letra_ok, ambos_ok, status vs meta de 5/ano
+Para cada música de ``data/corpus/candidatas_historico.csv``, confere se o arquivo de áudio e o
+de letra existem (não confia só no manifesto) e trata a letra vazia como "instrumental
+confirmado" quando o status da linha diz isso. Grava ``data/corpus/auditoria_coleta.md`` com o
+resumo geral, os anos abaixo da meta de cinco faixas prontas e as faixas sem áudio ou sem letra.
 
-Grava tudo em docs/auditoria_corpus.md (utf-8) e adiciona uma aba na planilha.
+Opera sobre os ids da fase de coleta (``H####``), antes da consolidação em ``<ano>-<seq>``.
 """
-from __future__ import annotations
 
 import csv
-import sys
-from pathlib import Path
 
-for _stream in (sys.stdout, sys.stderr):
-    if hasattr(_stream, "reconfigure"):
-        _stream.reconfigure(encoding="utf-8", errors="replace")
-
-ROOT = Path(__file__).resolve().parent.parent
-AUDIO_DIR = ROOT / "data" / "corpus" / "audio"
-LYRICS_DIR = ROOT / "data" / "corpus" / "lyrics"
-META_ALVO = 5
+from tcc_mer.corpus_files import TARGET_PER_YEAR, has_audio, has_lyrics_text
+from tcc_mer.env import use_utf8_console
+from tcc_mer.paths import CORPUS_DIR
 
 
-def audio_ok(tid: str) -> bool:
-    p = AUDIO_DIR / f"{tid}.mp3"
-    return p.exists() and p.stat().st_size > 1000
+def audit(rows: list[dict]) -> dict:
+    """Situação de cada faixa e totais por ano."""
+    missing_audio, missing_lyrics, instrumental_ids = [], [], []
+    per_year: dict[int, dict] = {}
+    for row in rows:
+        track_id, year = row["id_temp"], int(row["ano"])
+        instrumental = "instrumental" in row["status"].lower()
+        audio_ok = has_audio(track_id)
+        lyrics_text = has_lyrics_text(track_id)
+        lyrics_ok = lyrics_text or instrumental
+
+        if instrumental and not lyrics_text:
+            instrumental_ids.append(track_id)
+        entry = (track_id, year, row["faixa"], row["interprete_compositor"])
+        if not audio_ok:
+            missing_audio.append(entry)
+        if not lyrics_ok:
+            missing_lyrics.append(entry)
+
+        counts = per_year.setdefault(
+            year, {"total": 0, "audio_ok": 0, "letra_ok": 0, "ambos_ok": 0}
+        )
+        counts["total"] += 1
+        counts["audio_ok"] += audio_ok
+        counts["letra_ok"] += lyrics_ok
+        counts["ambos_ok"] += audio_ok and lyrics_ok
+    return {
+        "missing_audio": missing_audio,
+        "missing_lyrics": missing_lyrics,
+        "n_instrumental": len(instrumental_ids),
+        "per_year": per_year,
+    }
 
 
-def letra_texto_ok(tid: str) -> bool:
-    p = LYRICS_DIR / f"{tid}.txt"
-    return p.exists() and len(p.read_text(encoding="utf-8").strip()) > 0
+def build_report(n_tracks: int, result: dict) -> tuple[list[str], dict]:
+    per_year = result["per_year"]
+    n_audio = sum(c["audio_ok"] for c in per_year.values())
+    n_lyrics = sum(c["letra_ok"] for c in per_year.values())
+    n_both = sum(c["ambos_ok"] for c in per_year.values())
+
+    lines = [
+        "# Auditoria do corpus histórico\n",
+        f"Total de músicas: **{n_tracks}**\n",
+        f"- Áudio confirmado: **{n_audio}/{n_tracks}** ({100 * n_audio / n_tracks:.1f}%)",
+        f"- Letra confirmada (inclui {result['n_instrumental']} instrumentais confirmados, que "
+        f"não são lacuna): **{n_lyrics}/{n_tracks}** ({100 * n_lyrics / n_tracks:.1f}%)",
+        f"- **Ambos OK (áudio + letra/instrumental)**: **{n_both}/{n_tracks}** "
+        f"({100 * n_both / n_tracks:.1f}%)\n",
+        f"## Anos abaixo da meta ({TARGET_PER_YEAR} músicas/ano), por músicas *prontas*\n",
+        "| Ano | Total no corpus | Áudio OK | Letra OK | **Ambos OK** | Status |",
+        "|---|---|---|---|---|---|",
+    ]
+    below_target = 0
+    for year in range(min(per_year), max(per_year) + 1):
+        counts = per_year.get(year, {"total": 0, "audio_ok": 0, "letra_ok": 0, "ambos_ok": 0})
+        if counts["ambos_ok"] >= TARGET_PER_YEAR:
+            continue
+        below_target += 1
+        status = (
+            "SEM NENHUMA"
+            if counts["total"] == 0
+            else f"faltam {TARGET_PER_YEAR - counts['ambos_ok']}"
+        )
+        lines.append(
+            f"| {year} | {counts['total']} | {counts['audio_ok']} | {counts['letra_ok']} "
+            f"| {counts['ambos_ok']} | {status} |"
+        )
+    lines.append(
+        f"\n**{below_target} ano(s)** abaixo de {TARGET_PER_YEAR} músicas *prontas* "
+        f"(áudio e letra ou instrumental confirmados).\n"
+    )
+
+    for title, entries in (
+        ("Músicas sem áudio confirmado", result["missing_audio"]),
+        ("Músicas sem letra confirmada (excluindo instrumentais)", result["missing_lyrics"]),
+    ):
+        lines.append(f"\n## {title}\n")
+        lines.extend(
+            f"- {track_id} ({year}) — {name} — {performer}"
+            for track_id, year, name, performer in sorted(entries, key=lambda e: e[1])
+        )
+    return lines, {
+        "audio": n_audio,
+        "lyrics": n_lyrics,
+        "both": n_both,
+        "below_target": below_target,
+    }
 
 
 def main() -> None:
-    rows = list(csv.DictReader((ROOT / "docs" / "corpus_historico_final.csv").open(encoding="utf-8")))
+    use_utf8_console()
+    with (CORPUS_DIR / "candidatas_historico.csv").open(encoding="utf-8") as file:
+        rows = list(csv.DictReader(file))
+    result = audit(rows)
+    lines, totals = build_report(len(rows), result)
 
-    sem_audio, sem_letra, instrumentais = [], [], []
-    por_ano: dict[int, dict] = {}
-
-    for r in rows:
-        tid, ano, faixa = r["id_temp"], int(r["ano"]), r["faixa"]
-        status = r["status"].lower()
-        instrumental = "instrumental" in status
-        a_ok = audio_ok(tid)
-        l_txt_ok = letra_texto_ok(tid)
-        l_ok = l_txt_ok or instrumental
-
-        if instrumental and not l_txt_ok:
-            instrumentais.append((tid, ano, faixa))
-        if not a_ok:
-            sem_audio.append((tid, ano, faixa, r["interprete_compositor"]))
-        if not l_ok:
-            sem_letra.append((tid, ano, faixa, r["interprete_compositor"]))
-
-        d = por_ano.setdefault(ano, {"total": 0, "audio_ok": 0, "letra_ok": 0, "ambos_ok": 0})
-        d["total"] += 1
-        d["audio_ok"] += int(a_ok)
-        d["letra_ok"] += int(l_ok)
-        d["ambos_ok"] += int(a_ok and l_ok)
-
-    n = len(rows)
-    n_audio = sum(1 for r in rows if audio_ok(r["id_temp"]))
-    n_letra = sum(1 for r in rows if letra_texto_ok(r["id_temp"]) or "instrumental" in r["status"].lower())
-    n_ambos = sum(1 for r in rows if audio_ok(r["id_temp"]) and
-                  (letra_texto_ok(r["id_temp"]) or "instrumental" in r["status"].lower()))
-
-    linhas = []
-    linhas.append("# Auditoria do corpus histórico\n")
-    linhas.append(f"Total de músicas: **{n}**\n")
-    linhas.append(f"- Áudio confirmado: **{n_audio}/{n}** ({100*n_audio/n:.1f}%)")
-    linhas.append(f"- Letra confirmada (inclui {len(instrumentais)} instrumentais confirmados, "
-                  f"que não são lacuna): **{n_letra}/{n}** ({100*n_letra/n:.1f}%)")
-    linhas.append(f"- **Ambos OK (áudio + letra/instrumental)**: **{n_ambos}/{n}** ({100*n_ambos/n:.1f}%)\n")
-
-    linhas.append("## Anos abaixo da meta (5 músicas/ano) — por músicas *prontas* (ambos OK)\n")
-    linhas.append("| Ano | Total no corpus | Áudio OK | Letra OK | **Ambos OK** | Status |")
-    linhas.append("|---|---|---|---|---|---|")
-    ano_min, ano_max = min(por_ano), max(por_ano)
-    faltantes_prontos = 0
-    for ano in range(ano_min, ano_max + 1):
-        d = por_ano.get(ano, {"total": 0, "audio_ok": 0, "letra_ok": 0, "ambos_ok": 0})
-        if d["ambos_ok"] >= META_ALVO:
-            continue
-        faltantes_prontos += 1
-        falta = META_ALVO - d["ambos_ok"]
-        status = "SEM NENHUMA" if d["total"] == 0 else f"faltam {falta}"
-        linhas.append(f"| {ano} | {d['total']} | {d['audio_ok']} | {d['letra_ok']} | {d['ambos_ok']} | {status} |")
-    linhas.append(f"\n**{faltantes_prontos} ano(s)** abaixo de {META_ALVO} músicas *prontas* (áudio+letra/instrumental confirmados).\n")
-
-    linhas.append("## Músicas sem áudio confirmado\n")
-    for tid, ano, faixa, interprete in sorted(sem_audio, key=lambda x: x[1]):
-        linhas.append(f"- {tid} ({ano}) — {faixa} — {interprete}")
-
-    linhas.append("\n## Músicas sem letra confirmada (excluindo instrumentais)\n")
-    for tid, ano, faixa, interprete in sorted(sem_letra, key=lambda x: x[1]):
-        linhas.append(f"- {tid} ({ano}) — {faixa} — {interprete}")
-
-    out = ROOT / "docs" / "auditoria_corpus.md"
-    out.write_text("\n".join(linhas), encoding="utf-8")
-    print(f"[auditoria] audio={n_audio}/{n} letra={n_letra}/{n} ambos={n_ambos}/{n}")
-    print(f"[auditoria] {faltantes_prontos} ano(s) abaixo de {META_ALVO} musicas prontas")
-    print(f"[auditoria] {len(sem_audio)} sem audio, {len(sem_letra)} sem letra (nao-instrumental)")
+    out = CORPUS_DIR / "auditoria_coleta.md"
+    out.write_text("\n".join(lines), encoding="utf-8")
+    print(
+        f"[auditoria] áudio={totals['audio']}/{len(rows)} letra={totals['lyrics']}/{len(rows)} "
+        f"ambos={totals['both']}/{len(rows)}"
+    )
+    print(
+        f"[auditoria] {totals['below_target']} ano(s) abaixo de {TARGET_PER_YEAR} músicas prontas"
+    )
+    print(
+        f"[auditoria] {len(result['missing_audio'])} sem áudio, "
+        f"{len(result['missing_lyrics'])} sem letra (não instrumental)"
+    )
     print(f"[auditoria] gravado em {out}")
 
 

@@ -1,136 +1,110 @@
 #!/usr/bin/env python
-"""Verifica se as músicas de uma lista de candidatos (CSV com colunas
-``ano,faixa,compositor_interprete,...``) existem no Genius (letra) e no Deezer
-(preview de áudio) — só BUSCA, não baixa nada. Serve pra saber, antes de gastar
-esforço de extração/curadoria, quantos candidatos de uma fase são realmente
-utilizáveis (músicas antigas podem simplesmente não ter preview digital).
+"""Verifica se as candidatas existem no Genius (letra) e no Deezer (prévia de áudio).
 
-Escreve um relatório com uma linha por música: se achou no Genius (e o título
-que casou, pra conferência humana) e se achou no Deezer (idem).
+Lê um csv de candidatas (colunas ``ano``, ``faixa`` e ``compositor_interprete``) e só BUSCA: não
+baixa nada. Serve para saber, antes de gastar esforço de extração, quantas candidatas de uma
+fase são utilizáveis (músicas antigas muitas vezes não têm prévia digital). Grava um relatório
+com uma linha por música: se achou em cada fonte e o título que casou, para conferência humana.
 
-Exemplos::
+A chave do Genius vem de ``GENIUS_ACCESS_TOKEN``, do ambiente ou de um ``.env`` na raiz.
 
-    python scripts/verificar_disponibilidade.py docs/cancao_no_tempo_top5_por_ano.csv
+    python scripts/coleta/verificar_disponibilidade.py candidatas.csv
 """
-from __future__ import annotations
 
 import argparse
 import csv
-import re
+import os
 import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-ROOT = Path(__file__).resolve().parent.parent
+from tcc_mer.env import load_env
+from tcc_mer.sources import NETWORK_ERRORS, deezer_hits, first_artist, genius_hits
 
-try:
-    from dotenv import load_dotenv
-    load_dotenv(ROOT / ".env")
-except ImportError:
-    pass
-
-import requests  # noqa: E402
-
-GENIUS_API = "https://api.genius.com"
-DEEZER_API = "https://api.deezer.com/search"
+SAVE_EVERY = 20
 
 
-def _primeiro_artista(interprete: str) -> str:
-    sem_parenteses = re.sub(r"\([^)]*\)", "", interprete).strip()
-    base = sem_parenteses or interprete.strip()
-    for sep in (" e ", " E ", ",", "/"):
-        if sep in base:
-            return base.split(sep)[0].strip()
-    return base
-
-
-def checar_genius(interprete: str, faixa: str, token: str,
-                  timeout: float = 15.0) -> tuple[bool, str]:
-    headers = {"Authorization": f"Bearer {token}"}
-    query = f"{_primeiro_artista(interprete)} {faixa}"
+def check_genius(performer: str, title: str, token: str) -> tuple[bool, str]:
+    """``(achou, "artista - título")``; em caso de erro, ``(False, "erro: ...")``."""
     try:
-        r = requests.get(f"{GENIUS_API}/search", params={"q": query},
-                         headers=headers, timeout=timeout)
-        r.raise_for_status()
-        hits = r.json().get("response", {}).get("hits", [])
-    except Exception as e:  # noqa: BLE001
-        return False, f"erro: {e}"
+        hits = genius_hits(f"{first_artist(performer)} {title}", token)
+    except NETWORK_ERRORS as error:
+        return False, f"erro: {error}"
     if not hits:
         return False, ""
     top = hits[0]["result"]
     return True, f"{top.get('primary_artist', {}).get('name', '?')} - {top.get('title', '?')}"
 
 
-def checar_deezer(interprete: str, faixa: str,
-                  timeout: float = 15.0) -> tuple[bool, str]:
-    query = f"{_primeiro_artista(interprete)} {faixa}"
+def check_deezer(performer: str, title: str) -> tuple[bool, str]:
+    """``(achou, "artista - título")``; em caso de erro, ``(False, "erro: ...")``."""
     try:
-        r = requests.get(DEEZER_API, params={"q": query}, timeout=timeout)
-        r.raise_for_status()
-        data = r.json().get("data", [])
-    except Exception as e:  # noqa: BLE001
-        return False, f"erro: {e}"
-    if not data or not data[0].get("preview"):
+        hits = deezer_hits(f"{first_artist(performer)} {title}")
+    except NETWORK_ERRORS as error:
+        return False, f"erro: {error}"
+    if not hits or not hits[0].get("preview"):
         return False, ""
-    item = data[0]
-    return True, f"{item.get('artist', {}).get('name', '?')} - {item.get('title', '?')}"
+    return True, f"{hits[0].get('artist', {}).get('name', '?')} - {hits[0].get('title', '?')}"
+
+
+def write_report(path: Path, fields: list[str], rows: list[dict]) -> None:
+    with path.open("w", encoding="utf-8", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(rows)
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    p.add_argument("csv_in", type=Path)
-    p.add_argument("--out", type=Path, default=None)
-    p.add_argument("--sleep", type=float, default=1.0)
-    p.add_argument("--limit", type=int, default=None)
-    args = p.parse_args()
+    load_env()
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("csv_in", type=Path)
+    parser.add_argument("--out", type=Path)
+    parser.add_argument("--sleep", type=float, default=1.0)
+    parser.add_argument("--limit", type=int)
+    args = parser.parse_args()
     out_path = args.out or args.csv_in.with_name(args.csv_in.stem + "_disponibilidade.csv")
 
-    import os
     token = os.environ.get("GENIUS_ACCESS_TOKEN")
     if not token:
         sys.exit("[verificar] defina GENIUS_ACCESS_TOKEN no .env")
-
-    with args.csv_in.open(encoding="utf-8") as f:
-        linhas = list(csv.DictReader(f))
+    with args.csv_in.open(encoding="utf-8") as file:
+        candidates = list(csv.DictReader(file))
     if args.limit:
-        linhas = linhas[:args.limit]
+        candidates = candidates[: args.limit]
 
-    campos = list(linhas[0].keys()) + ["genius_achou", "genius_match",
-                                       "deezer_achou", "deezer_match"]
-    resultados = []
-    n_genius = n_deezer = n_ambos = 0
-    for i, row in enumerate(linhas, start=1):
-        interprete, faixa, ano = row["compositor_interprete"], row["faixa"], row["ano"]
-        g_ok, g_match = checar_genius(interprete, faixa, token)
+    fields = [*candidates[0].keys(), "genius_achou", "genius_match", "deezer_achou", "deezer_match"]
+    report = []
+    for position, row in enumerate(candidates, start=1):
+        performer, title = row["compositor_interprete"], row["faixa"]
+        genius_ok, genius_match = check_genius(performer, title, token)
         time.sleep(args.sleep)
-        d_ok, d_match = checar_deezer(interprete, faixa)
+        deezer_ok, deezer_match = check_deezer(performer, title)
         time.sleep(args.sleep)
-        row = dict(row)
-        row["genius_achou"] = g_ok
-        row["genius_match"] = g_match
-        row["deezer_achou"] = d_ok
-        row["deezer_match"] = d_match
-        resultados.append(row)
-        n_genius += g_ok
-        n_deezer += d_ok
-        n_ambos += g_ok and d_ok
-        print(f"[{i}/{len(linhas)}] {ano} {faixa[:35]:35s} "
-              f"genius={'OK' if g_ok else '--'} deezer={'OK' if d_ok else '--'}")
-        if i % 20 == 0:
-            with out_path.open("w", encoding="utf-8", newline="") as f:
-                w = csv.DictWriter(f, fieldnames=campos)
-                w.writeheader()
-                w.writerows(resultados)
+        report.append(
+            {
+                **row,
+                "genius_achou": genius_ok,
+                "genius_match": genius_match,
+                "deezer_achou": deezer_ok,
+                "deezer_match": deezer_match,
+            }
+        )
+        print(
+            f"[{position}/{len(candidates)}] {row['ano']} {title[:35]:35s} "
+            f"genius={'OK' if genius_ok else '--'} deezer={'OK' if deezer_ok else '--'}"
+        )
+        if position % SAVE_EVERY == 0:
+            write_report(out_path, fields, report)
 
-    with out_path.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=campos)
-        w.writeheader()
-        w.writerows(resultados)
-
-    print(f"\n[verificar] {len(resultados)} verificadas.")
-    print(f"  Genius: {n_genius}/{len(resultados)}  Deezer: {n_deezer}/{len(resultados)}  "
-          f"Ambos: {n_ambos}/{len(resultados)}")
+    write_report(out_path, fields, report)
+    n_genius = sum(r["genius_achou"] for r in report)
+    n_deezer = sum(r["deezer_achou"] for r in report)
+    n_both = sum(r["genius_achou"] and r["deezer_achou"] for r in report)
+    print(f"\n[verificar] {len(report)} verificadas.")
+    print(
+        f"  Genius: {n_genius}/{len(report)}  Deezer: {n_deezer}/{len(report)}  "
+        f"Ambos: {n_both}/{len(report)}"
+    )
     print(f"[verificar] relatório em {out_path}")
 
 

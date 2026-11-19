@@ -1,8 +1,9 @@
-"""Testes de src/scale.py — conversão para [-1, 1] com casos de borda."""
+"""Testes de tcc_mer/scale.py — conversão para [-1, 1] com casos de borda."""
+
 import numpy as np
 import pytest
 
-from src.scale import to_unit
+from tcc_mer.scale import to_unit
 
 
 @pytest.mark.parametrize("lo,hi", [(1, 9), (0, 10), (-5, 5)])

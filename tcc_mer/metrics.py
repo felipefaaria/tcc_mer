@@ -1,25 +1,23 @@
-"""Métricas de avaliação — CCC (métrica primária), MAE/RMSE, quadrante, bootstrap.
+"""Métricas de avaliação: CCC de Lin (primária), MAE, RMSE, quadrante e bootstrap.
 
-A métrica primária é o **CCC de Lin** (Lin's Concordance Correlation Coefficient),
-reportado **separadamente** para Valência e Arousal. Diferente da Pearson do TCC1,
-o CCC penaliza tanto o desalinhamento de forma quanto o de localização/escala
-(viés de deslocamento e diferença de variância) — que é exatamente o que
-queremos medir em PP1.
+O CCC é reportado separadamente para valência e arousal. Diferente da correlação
+de Pearson, ele penaliza também o deslocamento e a diferença de escala entre as
+séries, que é o que se quer medir em rótulos sem calibração.
 
-Todas as métricas operam em escala interna [-1, 1] (ver :mod:`src.scale`) e
-tratam pares com ``NaN`` como ausentes (removidos par-a-par).
+Todas as métricas operam em [-1, 1] (ver :mod:`tcc_mer.scale`) e descartam pares
+com ``NaN``.
 """
-from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 import numpy as np
+
+from .quadrant import QUADRANTS, quadrants
 
 __all__ = [
     "ccc",
     "mae",
     "rmse",
-    "quadrant_from_va",
     "quadrant_accuracy",
     "quadrant_f1_macro",
     "bootstrap_ci",
@@ -27,7 +25,7 @@ __all__ = [
 
 
 def _paired_valid(x: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """Alinha ``x`` e ``y`` removendo posições com ``NaN`` em qualquer um dos dois."""
+    """Alinha ``x`` e ``y`` removendo as posições com ``NaN`` em qualquer um."""
     x = np.asarray(x, dtype=float).ravel()
     y = np.asarray(y, dtype=float).ravel()
     if x.shape != y.shape:
@@ -37,116 +35,68 @@ def _paired_valid(x: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray]
 
 
 def ccc(x: np.ndarray, y: np.ndarray) -> float:
-    """Concordance Correlation Coefficient de Lin entre ``x`` e ``y``.
+    """Coeficiente de correlação de concordância de Lin entre ``x`` e ``y``.
 
-    ``CCC = 2*cov / (var_x + var_y + (mean_x - mean_y)**2)``, usando variância/
-    covariância populacionais (divisor N). O termo ``(mean_x - mean_y)**2`` no
-    denominador é o que captura o viés de deslocamento — perfeito para PP1.
+    ``CCC = 2·cov / (var_x + var_y + (mean_x - mean_y)²)``, com variância e
+    covariância populacionais (divisor N). O termo ``(mean_x - mean_y)²`` é o que
+    captura o viés de deslocamento.
 
-    Pares com ``NaN`` são descartados. Retorna ``nan`` se restarem <2 pares ou se
-    ambas as séries forem constantes (denominador zero).
+    Retorna ``nan`` se restarem menos de 2 pares ou se o denominador for zero.
     """
     x, y = _paired_valid(x, y)
     if x.size < 2:
         return float("nan")
     mx, my = x.mean(), y.mean()
-    vx, vy = x.var(), y.var()  # populacional (ddof=0)
-    cov = ((x - mx) * (y - my)).mean()
-    denom = vx + vy + (mx - my) ** 2
-    if denom == 0:
+    denominator = x.var() + y.var() + (mx - my) ** 2
+    if denominator == 0:
         return float("nan")
-    return float(2.0 * cov / denom)
+    covariance = ((x - mx) * (y - my)).mean()
+    return float(2.0 * covariance / denominator)
 
 
 def mae(x: np.ndarray, y: np.ndarray) -> float:
     """Erro absoluto médio (ignora pares com ``NaN``)."""
     x, y = _paired_valid(x, y)
-    if x.size == 0:
-        return float("nan")
-    return float(np.mean(np.abs(x - y)))
+    return float(np.mean(np.abs(x - y))) if x.size else float("nan")
 
 
 def rmse(x: np.ndarray, y: np.ndarray) -> float:
     """Raiz do erro quadrático médio (ignora pares com ``NaN``)."""
     x, y = _paired_valid(x, y)
-    if x.size == 0:
-        return float("nan")
-    return float(np.sqrt(np.mean((x - y) ** 2)))
+    return float(np.sqrt(np.mean((x - y) ** 2))) if x.size else float("nan")
 
 
-def quadrant_from_va(v: float, a: float) -> str:
-    """Mapeia (V, A) em [-1, 1]^2 para o quadrante do circumplexo de Russell.
+def _paired_quadrants(v_true, a_true, v_pred, a_pred) -> tuple[np.ndarray, np.ndarray]:
+    """Quadrantes verdadeiro e predito, só das faixas em que ambos existem."""
+    q_true = quadrants(v_true, a_true).ravel()
+    q_pred = quadrants(v_pred, a_pred).ravel()
+    valid = (q_true != "") & (q_pred != "")
+    return q_true[valid], q_pred[valid]
 
-    Convenção de borda: ``>= 0`` conta como positivo (eixo pertence ao lado +).
 
-    - Q1: V+, A+  (eufórico/animado)
-    - Q2: V-, A+  (tenso/raivoso)
-    - Q3: V-, A-  (triste/deprimido)
-    - Q4: V+, A-  (sereno/relaxado)
+def quadrant_accuracy(v_true, a_true, v_pred, a_pred) -> float:
+    """Fração de faixas em que o quadrante predito coincide com o verdadeiro."""
+    q_true, q_pred = _paired_quadrants(v_true, a_true, v_pred, a_pred)
+    return float(np.mean(q_true == q_pred)) if q_true.size else float("nan")
 
-    Retorna ``""`` se algum dos valores for ``NaN``.
+
+def quadrant_f1_macro(v_true, a_true, v_pred, a_pred) -> float:
+    """F1-macro sobre os quatro quadrantes (média simples).
+
+    Quadrantes sem suporte e sem predição não entram na média.
     """
-    if np.isnan(v) or np.isnan(a):
-        return ""
-    if v >= 0 and a >= 0:
-        return "Q1"
-    if v < 0 and a >= 0:
-        return "Q2"
-    if v < 0 and a < 0:
-        return "Q3"
-    return "Q4"
-
-
-def _quadrants(v: np.ndarray, a: np.ndarray) -> np.ndarray:
-    v = np.asarray(v, dtype=float).ravel()
-    a = np.asarray(a, dtype=float).ravel()
-    return np.array([quadrant_from_va(vi, ai) for vi, ai in zip(v, a)], dtype=object)
-
-
-def quadrant_accuracy(
-    v_true: np.ndarray, a_true: np.ndarray, v_pred: np.ndarray, a_pred: np.ndarray
-) -> float:
-    """Acurácia de quadrante (visão categórica grosseira, comparável ao TCC1).
-
-    Faixas em que verdadeiro ou predito caia em quadrante vazio (``NaN``) são
-    ignoradas.
-    """
-    qt = _quadrants(v_true, a_true)
-    qp = _quadrants(v_pred, a_pred)
-    mask = (qt != "") & (qp != "")
-    if mask.sum() == 0:
-        return float("nan")
-    return float(np.mean(qt[mask] == qp[mask]))
-
-
-def quadrant_f1_macro(
-    v_true: np.ndarray, a_true: np.ndarray, v_pred: np.ndarray, a_pred: np.ndarray
-) -> float:
-    """F1-macro sobre as 4 classes de quadrante (média não ponderada).
-
-    Classes sem suporte nem predição são omitidas da média. Faixas com quadrante
-    vazio (``NaN``) são ignoradas.
-    """
-    qt = _quadrants(v_true, a_true)
-    qp = _quadrants(v_pred, a_pred)
-    mask = (qt != "") & (qp != "")
-    qt, qp = qt[mask], qp[mask]
-    if qt.size == 0:
-        return float("nan")
-    f1s = []
-    for q in ("Q1", "Q2", "Q3", "Q4"):
-        tp = int(np.sum((qp == q) & (qt == q)))
-        fp = int(np.sum((qp == q) & (qt != q)))
-        fn = int(np.sum((qp != q) & (qt == q)))
+    q_true, q_pred = _paired_quadrants(v_true, a_true, v_pred, a_pred)
+    scores = []
+    for q in QUADRANTS:
+        tp = int(np.sum((q_pred == q) & (q_true == q)))
+        fp = int(np.sum((q_pred == q) & (q_true != q)))
+        fn = int(np.sum((q_pred != q) & (q_true == q)))
         if tp + fp + fn == 0:
-            continue  # classe ausente em ambos: não entra na média
-        prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0
-        rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-        f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0
-        f1s.append(f1)
-    if not f1s:
-        return float("nan")
-    return float(np.mean(f1s))
+            continue
+        precision = tp / (tp + fp) if tp + fp else 0.0
+        recall = tp / (tp + fn) if tp + fn else 0.0
+        scores.append(2 * precision * recall / (precision + recall) if precision + recall else 0.0)
+    return float(np.mean(scores)) if scores else float("nan")
 
 
 def bootstrap_ci(
@@ -154,41 +104,36 @@ def bootstrap_ci(
     stat_fn: Callable[[np.ndarray], float],
     n_boot: int = 2000,
     alpha: float = 0.05,
-    seed: int | None = None,
+    seed: int | np.random.Generator | None = None,
 ) -> tuple[float, float]:
     """Intervalo de confiança por bootstrap percentil para qualquer estatística.
 
-    Reamostra **linhas** de ``values`` com reposição (mantém pareamento). Para
-    estatísticas pareadas como o CCC, passe ``values`` 2-D com shape ``(n, 2)``
-    (colunas = as duas séries) e um ``stat_fn`` que desempacota as colunas, ex.::
+    Reamostra **linhas** de ``values`` com reposição, o que preserva o pareamento.
+    Para estatísticas pareadas como o CCC, passe uma matriz ``(n, 2)``::
 
-        bootstrap_ci(np.column_stack([x, y]),
-                     lambda m: ccc(m[:, 0], m[:, 1]))
+        bootstrap_ci(np.column_stack([x, y]), lambda m: ccc(m[:, 0], m[:, 1]))
 
     Args:
-        values: array 1-D ``(n,)`` ou 2-D ``(n, k)``; a reamostragem é por linha.
-        stat_fn: função que recebe uma reamostra (mesmo n. de colunas) e devolve
-            um ``float``.
+        values: array ``(n,)`` ou ``(n, k)``.
+        stat_fn: recebe uma reamostra e devolve um ``float``.
         n_boot: número de reamostragens.
-        alpha: nível do IC (0.05 => IC de 95%).
-        seed: semente para reprodutibilidade.
+        alpha: nível do intervalo (0,05 dá IC de 95%).
+        seed: semente, ou um ``Generator`` já criado para compartilhar o fluxo de sorteios
+            entre várias chamadas.
 
     Returns:
-        ``(low, high)`` — percentis ``alpha/2`` e ``1 - alpha/2`` da distribuição
-        bootstrap. Reamostras que devolvem ``nan`` são descartadas.
+        ``(low, high)``. Reamostras que devolvem ``nan`` são descartadas.
     """
     values = np.asarray(values, dtype=float)
     n = values.shape[0]
     if n < 2:
         return (float("nan"), float("nan"))
     rng = np.random.default_rng(seed)
-    stats = np.empty(n_boot, dtype=float)
-    for b in range(n_boot):
-        idx = rng.integers(0, n, size=n)
-        stats[b] = stat_fn(values[idx])
-    stats = stats[~np.isnan(stats)]
-    if stats.size == 0:
+    draws = np.array([stat_fn(values[rng.integers(0, n, size=n)]) for _ in range(n_boot)])
+    draws = draws[~np.isnan(draws)]
+    if draws.size == 0:
         return (float("nan"), float("nan"))
-    lo = float(np.percentile(stats, 100 * alpha / 2))
-    hi = float(np.percentile(stats, 100 * (1 - alpha / 2)))
-    return (lo, hi)
+    return (
+        float(np.percentile(draws, 100 * alpha / 2)),
+        float(np.percentile(draws, 100 * (1 - alpha / 2))),
+    )

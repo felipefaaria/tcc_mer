@@ -1,40 +1,41 @@
-"""Testes de src/dissociation.py — D_V, D_A a partir de canais separados."""
+"""Testes de tcc_mer/dissociation.py — D_V, D_A a partir de canais separados."""
+
 import numpy as np
 import pytest
 
-from src.dissociation import compute_dissociation
+from tcc_mer.dissociation import compute_dissociation
 
 
 def test_formula_basica():
     """D = letra - audio, por dimensão."""
     v_audio = np.array([0.5, -0.2])
-    v_letra = np.array([-0.5, -0.2])
+    v_lyrics = np.array([-0.5, -0.2])
     a_audio = np.array([0.3, 0.1])
-    a_letra = np.array([0.1, 0.4])
-    d_v, d_a = compute_dissociation(v_audio, v_letra, a_audio, a_letra)
+    a_lyrics = np.array([0.1, 0.4])
+    d_v, d_a = compute_dissociation(v_audio, v_lyrics, a_audio, a_lyrics)
     np.testing.assert_allclose(d_v, [-1.0, 0.0])
     np.testing.assert_allclose(d_a, [-0.2, 0.3])
 
 
 def test_sofrencia_dancante():
     """Sofrência: áudio alegre (V+), letra triste (V-) => D_V fortemente negativo."""
-    v_audio = np.array([0.7])   # batida alegre
-    v_letra = np.array([-0.6])  # letra triste
-    a_audio = np.array([0.6])   # dançante
-    a_letra = np.array([0.4])   # texto menos "energético"
-    d_v, d_a = compute_dissociation(v_audio, v_letra, a_audio, a_letra)
+    v_audio = np.array([0.7])
+    v_lyrics = np.array([-0.6])  # letra triste
+    a_audio = np.array([0.6])
+    a_lyrics = np.array([0.4])
+    d_v, d_a = compute_dissociation(v_audio, v_lyrics, a_audio, a_lyrics)
     assert d_v[0] < -1.0  # letra bem mais triste que o áudio
-    assert d_a[0] < 0     # próximo de zero / levemente negativo
+    assert d_a[0] < 0
     assert abs(d_a[0]) < abs(d_v[0])
 
 
 def test_instrumental_nan_propaga():
-    """tem_letra=não: canal de letra é NaN => D é NaN (nunca zero)."""
+    """faixa instrumental: canal de letra é NaN => D é NaN (nunca zero)."""
     v_audio = np.array([0.5, 0.2])
-    v_letra = np.array([-0.3, np.nan])  # 2ª faixa é instrumental
+    v_lyrics = np.array([-0.3, np.nan])  # 2ª faixa é instrumental
     a_audio = np.array([0.4, 0.1])
-    a_letra = np.array([0.2, np.nan])
-    d_v, d_a = compute_dissociation(v_audio, v_letra, a_audio, a_letra)
+    a_lyrics = np.array([0.2, np.nan])
+    d_v, d_a = compute_dissociation(v_audio, v_lyrics, a_audio, a_lyrics)
     assert not np.isnan(d_v[0])
     assert np.isnan(d_v[1])
     assert np.isnan(d_a[1])

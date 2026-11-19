@@ -1,29 +1,19 @@
 #!/usr/bin/env python
-"""Runner da LF2 (léxico ANEW-Br) — lê as letras e gera lf2_raw.csv.
+"""Gera ``lexicon_raw.csv`` com valência e arousal da letra pelo léxico ANEW-Br.
 
-Roda no Python normal do projeto (sem Docker): a LF2 é leve. Descobre as letras
-em ``data/corpus/lyrics/*.txt`` (uma por faixa, nome do arquivo = id), casa os
-lemas com o léxico ANEW-Br e escreve:
+Fonte de rótulo **descartada** do artigo (Seção 4.1): o script existe para reproduzir a
+comparação. Casa os lemas de cada letra em ``data/corpus/lyrics/<id>.txt`` com as normas do
+ANEW-Br e grava:
 
-- ``data/outputs/lf2_raw.csv``   (id, V_raw, A_raw em [-1, 1])
-- ``data/outputs/lf2_meta.json`` (léxico, lematizador, cobertura por faixa)
+* ``data/outputs/lexicon_raw.csv``: ``id, V_raw, A_raw`` em [-1, 1];
+* ``data/outputs/lexicon_meta.json``: léxico, lematizador e cobertura.
 
-O ANEW-Br é material de terceiros com licença própria — **não é versionado** no
-repo. Aponte ``--lexicon`` para o csv local.
+O ANEW-Br tem licença própria e não é versionado: aponte ``--lexicon`` para o arquivo local.
+Faixa instrumental (manifesto, ou letra vazia) fica ``NaN``.
 
-Instrumentais (``tem_letra=não``): não têm arquivo de letra, então simplesmente
-não aparecem no csv — o join com as demais LFs produz ``NaN`` (nunca zero), como
-a metodologia exige. Para marcar um instrumental explicitamente, deixe um .txt
-vazio: a LF2 devolve ``NaN`` com ``meta['reason']=='instrumental'``.
-
-Exemplos::
-
-    # arquivo oficial anew-br.txt (preset padrão):
-    python scripts/gerar_lf2.py --lexicon data/lexicons/anew-br.txt
-    # um CSV padrão seu, sem lematizador:
-    python scripts/gerar_lf2.py --lexicon meu_lexico.csv --preset csv --no-lemmatize
+    python scripts/rotulagem/gerar_lexicon.py --lexicon data/lexicons/anew-br.txt
+    python scripts/rotulagem/gerar_lexicon.py --lexicon meu.csv --preset csv --no-lemmatize
 """
-from __future__ import annotations
 
 import argparse
 import json
@@ -32,140 +22,120 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Permite rodar como `python scripts/gerar_lf2.py` a partir da raiz do repo.
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from tcc_mer.dataset import load_metadata
+from tcc_mer.lexicon import AnewBrLexicon, make_spacy_lemmatizer, run_batch
+from tcc_mer.lf_common import write_lf_raw
+from tcc_mer.paths import LEXICONS_DIR, LYRICS_DIR, OUTPUTS_DIR
 
-from src.lf2_lexicon import (  # noqa: E402
-    AnewBrLexicon,
-    make_spacy_lemmatizer,
-    run_batch,
-)
-from src.lf_common import write_lf_raw  # noqa: E402
+TAG = "[lexicon]"
 
-# Presets de formato de léxico. 'anew-br-txt' = o anew-br.txt oficial
-# (github.com/affective-computing/anew-br): espaços + vírgula decimal + colunas
-# em português. 'csv' = CSV padrão (vírgula, ponto decimal).
+# Formatos de arquivo de léxico: o ``anew-br.txt`` oficial (espaços, vírgula decimal,
+# colunas em português) e um CSV padrão.
 PRESETS = {
-    "csv": dict(word_col="word", valence_col="valence_mean",
-                arousal_col="arousal_mean", sep=",", decimal=".", encoding="utf-8"),
-    "anew-br-txt": dict(word_col="Palavra", valence_col="Valencia-Media",
-                        arousal_col="Alerta-Media", sep=r"\s+", decimal=",",
-                        encoding="utf-8"),
+    "anew-br-txt": {
+        "word_col": "Palavra",
+        "valence_col": "Valencia-Media",
+        "arousal_col": "Alerta-Media",
+        "sep": r"\s+",
+        "decimal": ",",
+    },
+    "csv": {
+        "word_col": "word",
+        "valence_col": "valence_mean",
+        "arousal_col": "arousal_mean",
+        "sep": ",",
+        "decimal": ".",
+    },
 }
-
-ROOT = Path(__file__).resolve().parent.parent
+FORMAT_OPTIONS = ("word_col", "valence_col", "arousal_col", "sep", "decimal")
 
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Gera lf2_raw.csv a partir das letras.")
-    p.add_argument("--lexicon", required=True, type=Path,
-                   help="csv do ANEW-Br (não versionado).")
-    p.add_argument("--lyrics-dir", type=Path,
-                   default=ROOT / "data" / "corpus" / "lyrics",
-                   help="pasta com <id>.txt (padrão: data/corpus/lyrics).")
-    p.add_argument("--out", type=Path,
-                   default=ROOT / "data" / "outputs" / "lf2_raw.csv",
-                   help="csv de saída (padrão: data/outputs/lf2_raw.csv).")
-    p.add_argument("--preset", choices=list(PRESETS), default="anew-br-txt",
-                   help="formato do léxico (padrão: anew-br-txt oficial).")
-    p.add_argument("--word-col", help="sobrescreve a coluna de palavra do preset.")
-    p.add_argument("--valence-col", help="sobrescreve a coluna de valência (SAM 1-9).")
-    p.add_argument("--arousal-col", help="sobrescreve a coluna de arousal (SAM 1-9).")
-    p.add_argument("--sep", help="sobrescreve o separador de colunas do preset.")
-    p.add_argument("--decimal", help="sobrescreve o caractere decimal do preset.")
-    p.add_argument("--no-lemmatize", action="store_true",
-                   help="desliga o lematizador spaCy (usa normalização simples).")
-    p.add_argument("--no-weight-by-freq", action="store_true",
-                   help="agrega por lemas únicos em vez de ponderar por frequência.")
-    return p.parse_args()
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--lexicon", type=Path, default=LEXICONS_DIR / "anew-br.txt")
+    parser.add_argument("--lyrics-dir", type=Path, default=LYRICS_DIR)
+    parser.add_argument("--out", type=Path, default=OUTPUTS_DIR / "lexicon_raw.csv")
+    parser.add_argument("--preset", choices=list(PRESETS), default="anew-br-txt")
+    for option in FORMAT_OPTIONS:
+        parser.add_argument(f"--{option.replace('_', '-')}", help=f"sobrescreve {option} do preset")
+    parser.add_argument(
+        "--no-lemmatize",
+        action="store_true",
+        help="não usa o lematizador spaCy (usa os tokens como estão)",
+    )
+    parser.add_argument(
+        "--no-weight-by-freq",
+        action="store_true",
+        help="média sobre lemas únicos em vez de ocorrências",
+    )
+    return parser.parse_args()
 
 
-def descobrir_letras(lyrics_dir: Path) -> list[tuple[str, str, bool]]:
-    """Lista (id, texto, tem_letra) a partir dos .txt; vazio => instrumental."""
+def discover_lyrics(lyrics_dir: Path) -> list[tuple[str, str, bool]]:
+    """``(id, texto, tem_letra)`` de cada faixa; o manifesto marca as instrumentais."""
     if not lyrics_dir.exists():
-        sys.exit(f"[lf2] pasta de letras não existe: {lyrics_dir}")
-    arquivos = sorted(lyrics_dir.glob("*.txt"))
-    tracks: list[tuple[str, str, bool]] = []
-    for f in arquivos:
-        texto = f.read_text(encoding="utf-8", errors="replace").strip()
-        tracks.append((f.stem, texto, bool(texto)))
+        sys.exit(f"{TAG} pasta de letras não existe: {lyrics_dir}")
+    metadata = load_metadata()
+    instrumental = set(metadata.loc[metadata["instrumental"], "id"])
+    tracks = []
+    for path in sorted(lyrics_dir.glob("*.txt")):
+        text = path.read_text(encoding="utf-8", errors="replace").strip()
+        tracks.append((path.stem, text, bool(text) and path.stem not in instrumental))
     return tracks
 
 
-def escolher_lematizador(no_lemmatize: bool):
-    if no_lemmatize:
-        print("[lf2] lematizador: DESLIGADO (normalização simples).")
+def choose_lemmatizer(disabled: bool):
+    if disabled:
+        print(f"{TAG} lematizador desligado (tokens como estão)")
         return None
     try:
-        lem = make_spacy_lemmatizer()
-        print("[lf2] lematizador: spaCy pt_core_news_sm.")
-        return lem
-    except ImportError as e:
-        print(f"[lf2] spaCy indisponível ({e.__class__.__name__}); "
-              f"seguindo com normalização simples. Detalhe: {e}")
+        lemmatizer = make_spacy_lemmatizer()
+    except ImportError as error:
+        print(f"{TAG} spaCy indisponível, seguindo sem lematizar: {error}")
         return None
+    print(f"{TAG} lematizador: spaCy pt_core_news_sm")
+    return lemmatizer
 
 
 def main() -> None:
     args = parse_args()
     if not args.lexicon.exists():
-        sys.exit(f"[lf2] léxico não encontrado: {args.lexicon}")
+        sys.exit(f"{TAG} léxico não encontrado: {args.lexicon}")
 
-    fmt = dict(PRESETS[args.preset])  # cópia; flags explícitas sobrescrevem
-    for k in ("word_col", "valence_col", "arousal_col", "sep", "decimal"):
-        v = getattr(args, k)
-        if v is not None:
-            fmt[k] = v
-    lexicon = AnewBrLexicon.from_csv(args.lexicon, **fmt)
-    print(f"[lf2] léxico ({args.preset}) carregado: {len(lexicon.norms)} palavras.")
+    options = dict(PRESETS[args.preset])
+    options.update({k: v for k in FORMAT_OPTIONS if (v := getattr(args, k)) is not None})
+    lexicon = AnewBrLexicon.from_csv(args.lexicon, **options)
+    print(f"{TAG} léxico ({args.preset}): {len(lexicon.norms)} palavras")
 
-    tracks = descobrir_letras(args.lyrics_dir)
+    tracks = discover_lyrics(args.lyrics_dir)
     if not tracks:
-        sys.exit(f"[lf2] nenhuma letra .txt em {args.lyrics_dir}.")
-    n_instr = sum(1 for _, _, tl in tracks if not tl)
-    print(f"[lf2] {len(tracks)} faixa(s) ({n_instr} instrumental/vazia).")
-
-    lemmatizer = escolher_lematizador(args.no_lemmatize)
-
-    saidas = run_batch(
-        tracks, lexicon,
-        lemmatizer=lemmatizer,
-        weight_by_freq=not args.no_weight_by_freq,
+        sys.exit(f"{TAG} nenhuma letra .txt em {args.lyrics_dir}")
+    lemmatizer = choose_lemmatizer(args.no_lemmatize)
+    outputs = run_batch(
+        tracks, lexicon, lemmatizer=lemmatizer, weight_by_freq=not args.no_weight_by_freq
     )
+    write_lf_raw(outputs, args.out)
 
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    write_lf_raw(saidas, args.out)
-
-    n_ok = sum(1 for s in saidas if not math.isnan(s.v_raw))
-    coberturas = [s.meta.get("coverage", 0.0) for s in saidas
-                  if not math.isnan(s.v_raw)]
-    cob_media = sum(coberturas) / len(coberturas) if coberturas else 0.0
-
+    rated = [o for o in outputs if not math.isnan(o.v_raw)]
+    coverage = sum(o.meta["coverage"] for o in rated) / len(rated) if rated else 0.0
     meta = {
         "lexico": str(args.lexicon),
         "n_palavras_lexico": len(lexicon.norms),
         "lematizador": "spacy:pt_core_news_sm" if lemmatizer else "normalizacao_simples",
         "weight_by_freq": not args.no_weight_by_freq,
         "gerado_em": datetime.now(timezone.utc).isoformat(),
-        "n_faixas": len(saidas),
-        "n_com_saida": n_ok,
-        "cobertura_media": round(cob_media, 3),
+        "n_faixas": len(outputs),
+        "n_com_saida": len(rated),
+        "cobertura_media": round(coverage, 3),
         "escala": "SAM 1-9 -> to_unit -> [-1, 1] (V_raw, A_raw)",
     }
-    (args.out.parent / "lf2_meta.json").write_text(
-        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    (args.out.parent / "lexicon_meta.json").write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
-    print(f"[lf2] pronto: {args.out}  ({n_ok}/{len(saidas)} com V/A; "
-          f"cobertura média {cob_media:.1%})")
-    if cob_media < 0.10 and n_ok:
-        print("[lf2] AVISO: cobertura baixa (<10%). Verifique as colunas do "
-              "léxico e considere ligar o lematizador (--lemmatize/spaCy).")
-    for s in saidas[:10]:
-        if math.isnan(s.v_raw):
-            print(f"    {s.track_id}: — ({s.meta.get('reason', 'sem match')})")
-        else:
-            print(f"    {s.track_id}: V={s.v_raw:+.3f}  A={s.a_raw:+.3f}  "
-                  f"cob={s.meta['coverage']:.0%} ({s.meta['n_matched']} palavras)")
+    print(f"{TAG} {args.out}: {len(rated)}/{len(outputs)} com V/A; cobertura média {coverage:.1%}")
+    if rated and coverage < 0.10:
+        print(f"{TAG} aviso: cobertura baixa (<10%). Confira as colunas e use o lematizador.")
 
 
 if __name__ == "__main__":

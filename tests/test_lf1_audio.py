@@ -1,15 +1,16 @@
-"""Testes de src/lf1_audio.py — wrapper Music2Emo com predictor injetado (fake).
+"""Testes de tcc_mer/lf1_audio.py — wrapper Music2Emo com predictor injetado (fake).
 
 A dependência pesada (music2emo) NUNCA é importada aqui: injetamos um predictor
 falso, provando que a lógica de escala/persistência/robustez é testável sem o
 modelo real.
 """
+
 import numpy as np
 import pytest
 
-from src.lf1_audio import estimate_va_from_audio, run_batch
-from src.lf_common import write_lf_raw, read_lf_raw
-from src.scale import to_unit
+from tcc_mer.lf1_audio import estimate_va_from_audio, run_batch
+from tcc_mer.lf_common import read_lf_raw, write_lf_raw
+from tcc_mer.scale import to_unit
 
 
 def fake_predictor(audio_path):
@@ -50,6 +51,7 @@ def test_run_batch_smoke():
 
 def test_run_batch_erro_vira_nan_sem_parar():
     """on_error='nan': uma faixa que quebra não interrompe o lote."""
+
     def flaky(path):
         if path == "quebra.mp3":
             raise RuntimeError("decodificação falhou")
@@ -88,8 +90,10 @@ def test_make_predictor_sem_music2emo_da_import_error():
     lá o factory tentaria baixar/instanciar o modelo real.
     """
     import importlib.util
+
     if importlib.util.find_spec("music2emo") is not None:
         pytest.skip("music2emo instalado neste ambiente; teste não se aplica")
-    from src.lf1_audio import make_music2emo_predictor
+    from tcc_mer.lf1_audio import make_music2emo_predictor
+
     with pytest.raises(ImportError):
         make_music2emo_predictor()

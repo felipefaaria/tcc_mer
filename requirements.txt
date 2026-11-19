@@ -1,27 +1,6 @@
-# Núcleo numérico
-numpy>=1.24
-scipy>=1.10
-pandas>=2.0
-
-# Testes
-pytest>=7.0
-
-# --- Dependências opcionais das fases seguintes ---
-# Fase B (Labeling Functions):
-#   music2emo        # LF1 - áudio (MERT); roda no container Docker (ver docker/)
-#   spacy            # LF2 - lematizador PT-BR OPCIONAL (aumenta cobertura ANEW-Br):
-#                    #   pip install spacy && python -m spacy download pt_core_news_sm
-#                    #   sem ele, a LF2 usa normalização simples (documentado)
-#   google-genai     # LF3 - adaptador Gemini (scripts/gerar_lf3.py); chave em
-#                    #   GEMINI_API_KEY. Provider-agnóstico: trocar de provedor
-#                    #   = outra make_*_client, sem tocar em src/lf3_llm.py
-#   openpyxl         # ler corpus .xlsx
-# Fase C (estímulos):
-#   librosa          # análise de áudio para corte de excertos
-#   (ffmpeg via sistema, não pip)
-# Extração do corpus expandido (scripts/extrair_corpus.py):
-#   requests             # já costuma vir transitivo, mas declarado explícito aqui
-#   beautifulsoup4       # parse da página de letra do Genius
-#   python-dotenv        # carrega .env (GENIUS_ACCESS_TOKEN/ANTHROPIC_API_KEY) sem precisar de setx
-# LF3 via Anthropic (scripts/gerar_lf3_anthropic.py, scripts/avaliar_modelos_anthropic.py):
-#   anthropic            # SDK oficial; chave em ANTHROPIC_API_KEY
+# Instala o pacote tcc_mer em modo editável, com as ferramentas de desenvolvimento.
+# As dependências por etapa (llm, lexicon, collection, validation) estão em pyproject.toml:
+#   pip install -e ".[dev]"                    # análise do dataset e testes
+#   pip install -e ".[dev,validation]"         # gold set e experimento com ouvintes
+#   pip install -e ".[dev,llm]"                # rotulagem da letra com o LLM
+-e .[dev]

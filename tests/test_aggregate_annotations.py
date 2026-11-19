@@ -1,9 +1,10 @@
-"""Testes de src/aggregate_annotations.py — consolidação do gold."""
+"""Testes de tcc_mer/aggregate_annotations.py — consolidação do gold."""
+
 import numpy as np
 import pandas as pd
 import pytest
 
-from src.aggregate_annotations import (
+from tcc_mer.aggregate_annotations import (
     agreement_table,
     load_annotations_xlsx,
     to_gold_wide,
@@ -18,12 +19,14 @@ def _df(rows):
 @pytest.fixture
 def longo():
     # T1: melodia (A e B), letra (A); T2: melodia (A)
-    return _df([
-        ["A", "melodia", "T1", 1, 5, 0],
-        ["B", "melodia", "T1", 9, 5, 0],
-        ["A", "letra",   "T1", 5, 1, 0],
-        ["A", "melodia", "T2", 5, 9, 0],
-    ])
+    return _df(
+        [
+            ["A", "melodia", "T1", 1, 5, 0],
+            ["B", "melodia", "T1", 9, 5, 0],
+            ["A", "letra", "T1", 5, 1, 0],
+            ["A", "melodia", "T2", 5, 9, 0],
+        ]
+    )
 
 
 def test_gold_media_e_conversao(longo):
@@ -48,10 +51,12 @@ def test_celula_ausente_vira_nan(longo):
 
 def test_teste_reteste_promediado():
     # mesmo (pid,track,modalidade) duas vezes -> média antes de agregar
-    df = _df([
-        ["A", "letra", "T1", 1, 5, 0],
-        ["A", "letra", "T1", 9, 5, 0],  # reteste
-    ])
+    df = _df(
+        [
+            ["A", "letra", "T1", 1, 5, 0],
+            ["A", "letra", "T1", 9, 5, 0],  # reteste
+        ]
+    )
     g = to_gold_wide(df)
     # média das duas respostas do mesmo anotador = 5 -> to_unit = 0; N=1 anotador
     assert g.loc["T1", "V_letra"] == pytest.approx(0.0)
@@ -59,10 +64,12 @@ def test_teste_reteste_promediado():
 
 
 def test_drop_naoconheco():
-    df = _df([
-        ["A", "letra", "T1", 9, 5, 0],
-        ["B", "letra", "T1", 1, 5, 1],  # não conheço
-    ])
+    df = _df(
+        [
+            ["A", "letra", "T1", 9, 5, 0],
+            ["B", "letra", "T1", 1, 5, 1],  # não conheço
+        ]
+    )
     com = to_gold_wide(df, drop_naoconheco=False)
     sem = to_gold_wide(df, drop_naoconheco=True)
     assert com.loc["T1", "N_letra"] == 2
@@ -80,8 +87,7 @@ def test_agreement_table_estrutura(longo):
 
 def test_load_valida_colunas(tmp_path):
     # falta 'arousal'
-    ruim = pd.DataFrame({"pid": ["A"], "modalidade": ["letra"],
-                         "trackId": ["T1"], "valencia": [5]})
+    ruim = pd.DataFrame({"pid": ["A"], "modalidade": ["letra"], "trackId": ["T1"], "valencia": [5]})
     p = tmp_path / "ruim.xlsx"
     ruim.to_excel(p, sheet_name="respostas", index=False)
     with pytest.raises(ValueError):
@@ -102,3 +108,22 @@ def test_load_ok(tmp_path, longo):
     df = load_annotations_xlsx(p)
     assert len(df) == 4
     assert "naoConheco" in df.columns
+
+
+def test_load_unifica_grafias_do_mesmo_anotador(tmp_path):
+    path = tmp_path / "a.xlsx"
+    pd.DataFrame(
+        {
+            "pid": ["Pai", "pai ", "THI", "Thi"],
+            "modalidade": ["melodia"] * 2 + ["letra"] * 2,
+            "trackId": ["t1", "t2", "t1", "t2"],
+            "valencia": [5, 6, 4, 3],
+            "arousal": [5, 5, 5, 5],
+        }
+    ).to_excel(path, sheet_name="respostas", index=False)
+
+    df = load_annotations_xlsx(path)
+
+    assert sorted(df["pid"].unique()) == ["pai", "thi"]
+    table = agreement_table(df).set_index(["modalidade", "dimensao"])
+    assert table.loc[("melodia", "valencia"), "n_anotadores"] == 1

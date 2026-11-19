@@ -1,33 +1,29 @@
-"""Utilitários compartilhados pelas Labeling Functions (Fase B).
+"""Contrato comum das funções de rotulagem (LF).
 
-Cada LF produz um (V, A) por faixa e persiste sua saída **bruta** (já na escala
-interna [-1, 1] via :func:`src.scale.to_unit`, mas **antes** da calibração afim ao
-gold) em ``data/outputs/lfN_raw.csv`` com as colunas ``id, V_raw, A_raw``.
-
-A regra de ouro da Fase B é o **isolamento da dependência externa**: a lógica de
-escala/instrumental/persistência vive aqui e nos módulos de cada LF (testável sem
-o modelo pesado); o modelo/serviço externo entra por injeção (um ``predictor`` ou
-``client``), nunca importado no topo do módulo.
+Cada LF produz um ``(V, A)`` por faixa, já em [-1, 1] e **sem calibração**, e o
+persiste em ``data/outputs/<lf>_raw.csv`` com as colunas ``id, V_raw, A_raw``.
+A dependência pesada (modelo, API) entra por injeção (um ``predictor`` ou
+``client``) e nunca é importada no topo dos módulos, o que mantém a lógica
+testável sem o serviço externo.
 """
-from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 __all__ = ["LFRawOutput", "write_lf_raw", "read_lf_raw"]
 
+RAW_COLUMNS = ("id", "V_raw", "A_raw")
+
 
 @dataclass
 class LFRawOutput:
-    """Saída bruta de uma LF para uma faixa, na escala interna [-1, 1].
+    """Saída bruta de uma LF para uma faixa, em [-1, 1].
 
-    ``v_raw``/``a_raw`` são ``np.nan`` quando a LF não se aplica (ex.: faixa
-    instrumental para LFs de letra) ou não teve cobertura suficiente. ``meta``
-    carrega diagnóstico livre (cobertura, moods, modelo/versão) que NÃO entra no
-    csv de rótulo, mas é útil para reprodutibilidade.
+    ``v_raw`` e ``a_raw`` são ``NaN`` quando a LF não se aplica (faixa instrumental
+    numa LF de letra) ou falhou. ``meta`` guarda diagnóstico livre (cobertura,
+    moods, modelo) e não é gravado no csv.
     """
 
     track_id: str
@@ -37,10 +33,7 @@ class LFRawOutput:
 
 
 def write_lf_raw(outputs: list[LFRawOutput], path: str | Path) -> pd.DataFrame:
-    """Persiste uma lista de :class:`LFRawOutput` em ``id, V_raw, A_raw``.
-
-    Cria o diretório-pai se necessário. Retorna o DataFrame escrito.
-    """
+    """Grava ``id, V_raw, A_raw`` em ``path`` (criando a pasta) e devolve o DataFrame."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     df = pd.DataFrame(
@@ -55,10 +48,9 @@ def write_lf_raw(outputs: list[LFRawOutput], path: str | Path) -> pd.DataFrame:
 
 
 def read_lf_raw(path: str | Path) -> pd.DataFrame:
-    """Lê um csv ``lfN_raw.csv`` (colunas ``id, V_raw, A_raw``)."""
+    """Lê um ``<lf>_raw.csv`` e valida as colunas ``id, V_raw, A_raw``."""
     df = pd.read_csv(path)
-    expected = {"id", "V_raw", "A_raw"}
-    missing = expected - set(df.columns)
+    missing = set(RAW_COLUMNS) - set(df.columns)
     if missing:
         raise ValueError(f"colunas ausentes em {path}: {missing}")
     return df

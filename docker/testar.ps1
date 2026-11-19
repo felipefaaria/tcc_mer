@@ -2,7 +2,7 @@
 #
 # Uso (PowerShell, a partir da raiz do projeto):
 #     .\docker\testar.ps1 "data\corpus\audio\BOS01.mp3"
-#     .\docker\testar.ps1 "C:\Users\lipes\Downloads\qualquer_musica.mp3"
+#     .\docker\testar.ps1 "C:\caminho\qualquer_musica.mp3"
 #
 # A música pode estar em QUALQUER pasta do computador. O script monta a pasta dela
 # dentro do container e roda o modelo. Precisa do Docker Desktop aberto e da imagem
@@ -29,7 +29,8 @@ catch {
 $dir  = [System.IO.Path]::GetDirectoryName($full)
 $nome = [System.IO.Path]::GetFileName($full)
 
-# Raiz do projeto = pasta acima desta (docker\), para montar o código atualizado.
+# Raiz do projeto = pasta acima desta (docker\). O código do pacote e dos scripts é montado
+# por cima do da imagem, então mudanças nele valem sem reconstruir a imagem.
 $raiz = [System.IO.Path]::GetDirectoryName($PSScriptRoot)
 
 Write-Host ""
@@ -39,5 +40,6 @@ Write-Host ">>> (a 1a vez baixa os pesos do modelo e demora; depois e rapido)" -
 docker run --rm `
     -v "${dir}:/musica" `
     -v "${raiz}\docker:/app/docker" `
+    -v "${raiz}\tcc_mer:/app/tcc_mer" `
     -v "lf1-hfcache:/root/.cache/huggingface" `
     --entrypoint python tcc-lf1 /app/docker/testar_musica.py "/musica/$nome"

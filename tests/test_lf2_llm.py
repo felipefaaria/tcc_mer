@@ -1,8 +1,9 @@
-"""Testes de src/lf3_llm.py — LLM zero-shot com client injetado (fake)."""
+"""Testes de tcc_mer/lf2_llm.py — LLM zero-shot com client injetado (fake)."""
+
 import numpy as np
 import pytest
 
-from src.lf3_llm import (
+from tcc_mer.lf2_llm import (
     PROMPT_VERSION,
     build_prompt,
     estimate_va_from_lyrics_llm,
@@ -10,7 +11,6 @@ from src.lf3_llm import (
     parse_response,
     run_batch,
 )
-from src.scale import to_unit
 
 
 def test_prompt_versionado_existe_e_tem_placeholder():
@@ -51,7 +51,9 @@ def test_parse_chave_faltando_levanta():
 
 
 def test_estimativa_converte_para_unit():
-    client = lambda prompt: '{"valence": 9, "arousal": 1}'
+    def client(prompt):
+        return '{"valence": 9, "arousal": 1}'
+
     res = estimate_va_from_lyrics_llm("letra alegre", client, model_name="fake-1")
     assert res.v_raw == pytest.approx(1.0)
     assert res.a_raw == pytest.approx(-1.0)
@@ -60,14 +62,19 @@ def test_estimativa_converte_para_unit():
 
 
 def test_instrumental_nan():
-    client = lambda prompt: '{"valence": 5, "arousal": 5}'
-    res = estimate_va_from_lyrics_llm("x", client, tem_letra=False)
+    def client(prompt):
+        return '{"valence": 5, "arousal": 5}'
+
+    res = estimate_va_from_lyrics_llm("x", client, has_lyrics=False)
     assert np.isnan(res.v_raw) and np.isnan(res.a_raw)
 
 
 def test_resposta_ruim_vira_nan_com_erro_em_meta():
     """LLM que alucina texto não-JSON: V/A viram NaN, erro registrado."""
-    client = lambda prompt: "desculpe, não posso"
+
+    def client(prompt):
+        return "desculpe, não posso"
+
     res = estimate_va_from_lyrics_llm("letra", client, model_name="fake")
     assert np.isnan(res.v_raw)
     assert "error" in res.meta
@@ -76,17 +83,34 @@ def test_resposta_ruim_vira_nan_com_erro_em_meta():
 
 def test_client_recebe_prompt_com_a_letra():
     capturado = {}
+
     def client(prompt):
         capturado["prompt"] = prompt
         return '{"valence": 5, "arousal": 5}'
+
     estimate_va_from_lyrics_llm("LETRA_UNICA_123", client)
     assert "LETRA_UNICA_123" in capturado["prompt"]
 
 
 def test_run_batch():
-    client = lambda prompt: '{"valence": 6, "arousal": 4}'
+    def client(prompt):
+        return '{"valence": 6, "arousal": 4}'
+
     tracks = [("t1", "letra a", True), ("t2", "sem letra", False)]
     out = run_batch(tracks, client, model_name="m")
     assert out[0].track_id == "t1"
     assert not np.isnan(out[0].v_raw)
     assert np.isnan(out[1].v_raw)
+
+
+PROMPT_V1_SHA256 = "28d964fb602274f0bbcc2f40105d5952c44908ab4e3fc11a42e8cf9a6b45a612"
+
+
+def test_prompt_v1_nao_mudou():
+    """O arquivo inteiro é enviado ao modelo, cabeçalho incluído. Editá-lo muda o instrumento
+    de medição: se precisar, incremente PROMPT_VERSION e atualize este hash."""
+    import hashlib
+
+    from tcc_mer.lf2_llm import PROMPT_PATH
+
+    assert hashlib.sha256(PROMPT_PATH.read_bytes()).hexdigest() == PROMPT_V1_SHA256
